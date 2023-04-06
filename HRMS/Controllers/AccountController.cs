@@ -54,8 +54,6 @@ namespace HRMS.Controllers
                     PostalCode = employeeViewModel.PostalCode,
                     DateHired = employeeViewModel.DateHired,
                     ActiveStatus = false,
-
-
                 };
                 var result = await _userManager.CreateAsync(employeeModel, employeeViewModel.Password);
                 if (result.Succeeded)
