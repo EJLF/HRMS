@@ -33,13 +33,29 @@ namespace HRMS.Controllers
             {
                 var employeeModel = new ApplicationUser
                 {
-                    UserName = employeeViewModel.Email,
                     Email = employeeViewModel.Email,
+                    UserName = employeeViewModel.Email,
                     FirstName = employeeViewModel.FirstName,
                     MiddleName = employeeViewModel.MiddleName,
-                    LastName = employeeViewModel.LastName
-                    
-                    
+                    LastName = employeeViewModel.LastName,
+                    FullName = employeeViewModel.FirstName +" "+ employeeViewModel.MiddleName +" "+ employeeViewModel.LastName,
+                    Gender = employeeViewModel.Gender,
+                    DateOfBirth = employeeViewModel.DateOfBirth,
+                    Phone = employeeViewModel.Phone,
+                    DepartmentId = employeeViewModel.DepartmentId,
+                    EmployeeType = employeeViewModel.EmployeeType,
+                    SSSNumber = employeeViewModel.SSSNumber,
+                    PhilHealthId = employeeViewModel.PhilHealthId,
+                    PagIbigId = employeeViewModel.PagIbigId,
+                    Street = employeeViewModel.Street,
+                    Barangay = employeeViewModel.Barangay,
+                    City = employeeViewModel.City,
+                    State = employeeViewModel.State,
+                    PostalCode = employeeViewModel.PostalCode,
+                    DateHired = employeeViewModel.DateHired,
+                    ActiveStatus = false,
+
+
                 };
                 var result = await _userManager.CreateAsync(employeeModel, employeeViewModel.Password);
                 if (result.Succeeded)
@@ -97,5 +113,9 @@ namespace HRMS.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+
+       
+
+
     }
 }

@@ -42,39 +42,35 @@ namespace HRMS.Data
 
             var userId= Guid.NewGuid().ToString();
             var managerId= Guid.NewGuid().ToString();
-            modelBuilder.Entity<ApplicationUser>().HasData(
+
+                  modelBuilder.Entity<ApplicationUser>().HasData(
                  new ApplicationUser
                  {
                      Id = userId,
                      FirstName = "Admin",
                      MiddleName = "Admin",
                      LastName = "Admin",
-
+                     Gender = "Male",
+                     DateOfBirth = DateTime.Now,
                      Email = "admin@admin.com",
                      NormalizedEmail = "ADMIN@ADMIN.COM",
                      EmailConfirmed = true,
                      UserName = "admin@admin.com",
                      NormalizedUserName = "ADMIN@ADMIN.COM",
+                     Phone = "09111111111",
+                     Street = "Admin",
+                     Barangay = "Admin",
+                     City = "Admin",
+                     State = "Admin",
+                     PostalCode = 1,
+
                      PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
                      SecurityStamp = String.Empty,
-                 },
-                 new ApplicationUser
-                 {
-                     Id = managerId,
-                     FirstName = "Manager",
-                     MiddleName = "Manager",
-                     LastName = "Manager",
-                     Email = "manager@manager.com",
-                     NormalizedEmail = "MANAGER@MANAGER.COM",
-                     EmailConfirmed = true,
-                     UserName = "manager@manager.com",
-                     NormalizedUserName = "MANAGER@MANAGER.COM",
-                     PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "manager"),
-                     SecurityStamp = String.Empty,
-                 });
+                 }
+                 );
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
-                    new IdentityUserRole<string> { UserId = userId, RoleId = roleid }, // Admin user has Admin role
-                    new IdentityUserRole<string> { UserId = managerId, RoleId = mroleid }
+                    new IdentityUserRole<string> { UserId = userId, RoleId = roleid } // Admin user has Admin role
+                  //  new IdentityUserRole<string> { UserId = managerId, RoleId = mroleid }
                 );
            
         }
