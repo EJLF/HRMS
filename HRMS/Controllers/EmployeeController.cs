@@ -96,7 +96,7 @@ namespace HRMS.Controllers
                 State = employee.State,
                 PostalCode = employee.PostalCode,
                 DateHired = employee.DateHired,
-                ActiveStatus = employee.ActiveStatus,
+            //    ActiveStatus = employee.ActiveStatus,
             };
             return View(employeeViewModel);
         }
@@ -126,7 +126,7 @@ namespace HRMS.Controllers
                 oldValue.State = employee.State;
                 oldValue.PostalCode = employee.PostalCode;
                 oldValue.DateHired = employee.DateHired;
-                oldValue.ActiveStatus = employee.ActiveStatus;
+             //   oldValue.ActiveStatus = employee.ActiveStatus;
             }
 
             var result = await _userManager.UpdateAsync(oldValue);
@@ -161,9 +161,31 @@ namespace HRMS.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> DeleteFormInActive(string accountId)
+        {
+            var oldValue = await _userManager.FindByIdAsync(accountId);
+            {
+                oldValue.ActiveStatus = true;
+            }
+
+            var result = await _userManager.UpdateAsync(oldValue);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("List");
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return View();
+        }
+
+        //Create
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             return View();
         }
         [HttpPost]

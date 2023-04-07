@@ -35,11 +35,12 @@
                 <div class="col-md-2">
                   <label for="inputPassword5" class="form-label">Gender</label>
                   <select  asp-for="Gender" name="Gender" class="form-control">
-                        <option value="">Gender</option>
+                        <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Others">Others</option>
                     </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                 <div class="col-md-5">
                   <label for="inputName5" class="form-label">Phone</label>
@@ -53,23 +54,24 @@
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Department</label>
-                  <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+                  <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentList"></select>
                   <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Position</label>
-                  <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionId"></select>
+                  <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionList"></select>
                   <span asp-validation-for="PositionId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Employment Type</label>
                     <select  asp-for="EmployeeType" name="EmployeeType" class="form-control" >
-                        <option value="" disabled>Employment Type</option>
+                        <option value="">Select Employment Type</option>
                         <option value="Regular">Regular</option>
                         <option value="Partime">Partime</option>
                         <option value="Job Order">Job Order</option>
                         <option value="Contract Of Service">Contract Of Service</option>
                     </select>
+                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">SSS</label>

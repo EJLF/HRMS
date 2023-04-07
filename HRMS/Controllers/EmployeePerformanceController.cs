@@ -2,7 +2,9 @@
 using HRMS.Models;
 using HRMS.Repository;
 using HRMS.Repository.SqlRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Controllers
@@ -11,10 +13,14 @@ namespace HRMS.Controllers
     {
 
         IEmployeePerformanceDBRepository _repo;
-        //MSDBContext _dbcontext;
-        public EmployeePerformanceController(IEmployeePerformanceDBRepository repo)
+        private UserManager<ApplicationUser> _userManager { get; }
+        public RoleManager<IdentityRole> _roleManager { get; }
+        private SignInManager<ApplicationUser> _signInManager { get; }
+        public EmployeePerformanceController(IEmployeePerformanceDBRepository repo, UserManager<ApplicationUser> userManager)
         {
-            this._repo = repo;
+            _repo = repo;
+            _userManager = userManager;
+
         }
 
         public IActionResult List(string searchValue)
@@ -25,7 +31,21 @@ namespace HRMS.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.EmpId = _repo.GetEmployeeList();
+            var listEmployee = new List<SelectListItem>();
+            List<ApplicationUser> departments = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList();
+            listEmployee = departments.Select(emp => new SelectListItem
+            {
+                Value = emp.FullName,
+                Text = emp.FullName
+            }).ToList();
+
+            var defItem = new SelectListItem()
+            {
+                Value = "",
+                Text = "Select Position"
+            };
+            listEmployee.Insert(0, defItem);
+            ViewBag.EmpId = listEmployee;
             return View();
         }
         [HttpPost]
