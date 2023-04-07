@@ -10,7 +10,7 @@ namespace HRMS.Repository
         // GetAllEmployeePerformance
         List<EmployeePerformance> ListOfEmployeePerformance();
         // GetId
-        EmployeePerformance GetEmployeePerformanceById(string Id);
+        EmployeePerformance GetEmployeePerformanceById(int Id);
         // Update
         EmployeePerformance UpdateEmployeePerformance(string EmployeePerformanceId, EmployeePerformance newEmployeePerformance);
         // Delete

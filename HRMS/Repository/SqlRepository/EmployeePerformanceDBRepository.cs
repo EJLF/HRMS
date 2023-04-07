@@ -31,9 +31,9 @@ namespace HRMS.Repository.SqlRepository
             throw new NotImplementedException();
         }
 
-        public EmployeePerformance GetEmployeePerformanceById(string Id)
+        public EmployeePerformance GetEmployeePerformanceById(int Id)
         {
-            throw new NotImplementedException();
+            return _dbcontext.EmployeePerformances.AsNoTracking().ToList().FirstOrDefault(x => x.No == Id);
         }
 
         public List<EmployeePerformance> ListEmployeePerformance(string value)

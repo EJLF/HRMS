@@ -54,5 +54,10 @@ namespace HRMS.Controllers
             return View();
 
         }
+
+        public IActionResult Details(int no)
+        {
+            return View(_repo.GetEmployeePerformanceById(no));
+        }
     }
 }

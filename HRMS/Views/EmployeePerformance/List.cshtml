@@ -30,6 +30,7 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Employe Name</th>
+                    <th scope="col">About</th>
                     <th scope="col">Position Name</th>
                     <th></th>
                
@@ -41,6 +42,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.No)
                             </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.About)
                             </td>
@@ -49,9 +53,8 @@
                                 @Html.DisplayFor(modelItem => item.ReviewBy)
                             </td>
                             <td>
-                                <a asp-action="Update" asp-route-id="@item.No">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.No">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.No">Delete</a>
+                                <a asp-action="Details" asp-route-No="@item.No">Details</a> |
+                                <a asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
                         </tr>
                 }
