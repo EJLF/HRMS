@@ -15,17 +15,27 @@ namespace HRMS.Controllers
     {
         IEmployeeRepository _repo;
         private UserManager<ApplicationUser> _userManager { get; }
-        public EmployeeController(UserManager<ApplicationUser> userManager, IEmployeeRepository repo)
+        public RoleManager<IdentityRole> _roleManager { get; }
+        private SignInManager<ApplicationUser> _signInManager { get; }
+        public EmployeeController(UserManager<ApplicationUser> userManager, IEmployeeRepository repo, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _repo = repo;
+            _roleManager = roleManager;
+            _signInManager = signInManager; 
         }
 
         //Get All the Employee
         public async Task<IActionResult> List()
         {
-            return View(_userManager.Users.Include(d => d.Department).Include(p => p.Position).ToList());
+            return View(_userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList());
         }
+
+        public async Task<IActionResult> InactiveList()
+        {
+            return View(_userManager.Users.Include(d => d.Department).Include(p => p.Position).Where(status => status.ActiveStatus == false).ToList());
+        }
+
         public IActionResult Details(string accountId)
         {
             var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
@@ -137,7 +147,7 @@ namespace HRMS.Controllers
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
             {
-                oldValue.ActiveStatus = true;
+                oldValue.ActiveStatus = false;
             }
 
             var result = await _userManager.UpdateAsync(oldValue);
@@ -151,9 +161,65 @@ namespace HRMS.Controllers
             }
             return View();
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(RegisterEmployeeViewModel employeeViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var employeeModel = new ApplicationUser
+                {
+                    Email = employeeViewModel.Email,
+                    UserName = employeeViewModel.Email,
+                    FirstName = employeeViewModel.FirstName,
+                    MiddleName = employeeViewModel.MiddleName,
+                    LastName = employeeViewModel.LastName,
+                    FullName = employeeViewModel.FirstName + " " + employeeViewModel.MiddleName + " " + employeeViewModel.LastName,
+                    Gender = employeeViewModel.Gender,
+                    DateOfBirth = employeeViewModel.DateOfBirth,
+                    Phone = employeeViewModel.Phone,
+                    DepartmentId = employeeViewModel.DepartmentId,
+                    EmployeeType = employeeViewModel.EmployeeType,
+                    SSSNumber = employeeViewModel.SSSNumber,
+                    PhilHealthId = employeeViewModel.PhilHealthId,
+                    PagIbigId = employeeViewModel.PagIbigId,
+                    Street = employeeViewModel.Street,
+                    Barangay = employeeViewModel.Barangay,
+                    City = employeeViewModel.City,
+                    State = employeeViewModel.State,
+                    PostalCode = employeeViewModel.PostalCode,
+                    DateHired = employeeViewModel.DateHired,
+                    ActiveStatus = true,
+                };
+                var result = await _userManager.CreateAsync(employeeModel, employeeViewModel.Password);
+                if (result.Succeeded)
+                {
+                    // add roles to it and allow him to login
+                    var role = _roleManager.Roles.FirstOrDefault(r => r.Name == "Employee");
+                    if (role != null)
+                    {
+                        var roleResult = await _userManager.AddToRoleAsync(employeeModel, role.Name);
+                        if (!roleResult.Succeeded)
+                        {
+                            ModelState.AddModelError(String.Empty, "employee Role cannot be assigned");
+                        }
+                    }
+
+                    // login the employee automatically
+                    await _signInManager.SignInAsync(employeeModel, isPersistent: false);
+                    return RedirectToAction("List", "Employee");
+
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            return View(employeeViewModel);
         }
     }
 }
