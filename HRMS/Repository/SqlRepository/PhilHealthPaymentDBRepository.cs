@@ -33,7 +33,7 @@ namespace HRMS.Repository.SqlRepository
 
         public PhilHealthPayment GetPhilHealthPaymentById(int No)
         {
-            return _dbcontext.PhilHealthPayments.Include(p => p.PhilHealth).AsNoTracking().ToList().FirstOrDefault(x => x.No == No);
+            return _dbcontext.PhilHealthPayments.AsNoTracking().ToList().FirstOrDefault(x => x.No == No);
         }
 
         public List<PhilHealthPayment> ListOfPhilHealthPayment()

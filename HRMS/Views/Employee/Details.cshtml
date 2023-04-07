@@ -57,14 +57,17 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">SSS number</div>
                     <div class="col-lg-9 col-md-8">@Model.SSSNumber</div>
+                    <a class="btn btn-primary" role="button" asp-controller="SSSPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-sss="@Model.SSSNumber"><i class="fa fa-plus"></i> Add Payment</a>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Philhealth</div>
                     <div class="col-lg-9 col-md-8">@Model.PhilHealthId</div>
+                   <a class="btn btn-primary" role="button" asp-controller="PhilhealthPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-philhealth="@Model.PhilHealthId"><i class="fa fa-plus"></i> Add Payment</a>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">PagIbig</div>
                     <div class="col-lg-9 col-md-8">@Model.PagIbigId</div>
+                    <a class="btn btn-primary" role="button" asp-controller="PagIbigPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-pagibig="@Model.PagIbigId"><i class="fa fa-plus"></i> Add Payment</a>
                   </div>
 
                   <div class="row">

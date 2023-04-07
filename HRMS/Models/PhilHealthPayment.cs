@@ -7,9 +7,9 @@ namespace HRMS.Models
     {
         [Key]
         public int No { get; set; }
+        public string FullName { get; set; }
         public string? PhilHealthNumber { get; set; }
-        [ForeignKey("PhilHealthNumber")]
-        public PhilHealth? PhilHealth { get; set; }
+
         public int Payment { get; set; }
         public string Month { get; set; } = DateTime.Now.Month.ToString();
         public string Year { get; set; } = DateTime.Now.Year.ToString();

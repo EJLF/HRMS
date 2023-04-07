@@ -33,7 +33,7 @@ namespace HRMS.Repository.SqlRepository
         }
         public PagIbigPayment GetPagIbigPaymentById(int No)
         {
-            return _dbcontext.PagIbigPayments.Include(p => p.PagIbig).AsNoTracking().ToList().FirstOrDefault(x =>x.No == No);
+            return _dbcontext.PagIbigPayments.AsNoTracking().ToList().FirstOrDefault(x =>x.No == No);
         }
 
         public List<PagIbigPayment> ListOfPagIbigPayment()

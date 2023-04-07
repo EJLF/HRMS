@@ -1,5 +1,6 @@
 ﻿using HRMS.Models;
 using HRMS.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Controllers
@@ -7,10 +8,12 @@ namespace HRMS.Controllers
     public class PhilHealthPaymentController : Controller
     {
         IPhilHealthPaymentDBRepository _repo;
+        private UserManager<ApplicationUser> _userManager { get; }
 
-        public PhilHealthPaymentController(IPhilHealthPaymentDBRepository repo)
+        public PhilHealthPaymentController(IPhilHealthPaymentDBRepository repo, UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
+            _userManager = userManager;
         }
 
         public IActionResult List()
@@ -20,9 +23,18 @@ namespace HRMS.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(string employeeName, string philhealth)
         {
-            return View();
+            var email = User.Identity.Name;
+            var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+            PhilHealthPayment newPhilHealthPayment = new PhilHealthPayment();
+            {
+                newPhilHealthPayment.FullName = employeeName;
+                newPhilHealthPayment.PhilHealthNumber = philhealth;
+                newPhilHealthPayment.Month = DateTime.Now.ToString("MMMM");
+                newPhilHealthPayment.Year = DateTime.Now.ToString("yyyy");
+                return View(newPhilHealthPayment);
+            }
         }
 
         [HttpPost]

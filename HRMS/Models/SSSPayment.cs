@@ -7,9 +7,9 @@ namespace HRMS.Models
     {
         [Key]
         public int No { get; set; }
+        public string FullName { get; set; }
         public string? SSSNumber { get; set; }
-        [ForeignKey("SSSNumber")]
-        public SSS? SSS { get; set; }
+
         public int Payment { get; set; }
 
         public string? Month { get; set; } = DateTime.Now.Month.ToString();

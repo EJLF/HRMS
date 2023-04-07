@@ -1,5 +1,6 @@
 ﻿using HRMS.Models;
 using HRMS.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRMS.Controllers
@@ -7,9 +8,11 @@ namespace HRMS.Controllers
     public class PagIbigPaymentController : Controller
     {
         IPagIbigPaymentRepository _repo;
-        public PagIbigPaymentController(IPagIbigPaymentRepository repo)
+        private UserManager<ApplicationUser> _userManager { get; }
+        public PagIbigPaymentController(IPagIbigPaymentRepository repo, UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
+            _userManager = userManager;
         }
 
         public IActionResult List()
@@ -19,9 +22,18 @@ namespace HRMS.Controllers
         }
         [HttpGet]
 
-        public IActionResult Create()
+        public IActionResult Create(string employeeName, string pagibig)
         {
-            return View();
+            var email = User.Identity.Name;
+            var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+            PagIbigPayment newSSSPayment = new PagIbigPayment();
+            {
+                newSSSPayment.FullName = employeeName;
+                newSSSPayment.PagIbigNumber = pagibig;
+                newSSSPayment.Month = DateTime.Now.ToString("MMMM");
+                newSSSPayment.Year = DateTime.Now.ToString("yyyy");
+                return View(newSSSPayment);
+            }
         }
         [HttpPost]
         public IActionResult Create(PagIbigPayment pagIbigPayment)

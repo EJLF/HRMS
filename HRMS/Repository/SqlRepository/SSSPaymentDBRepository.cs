@@ -33,7 +33,7 @@ namespace HRMS.Repository.SqlRepository
 
         public SSSPayment GetSSSPaymentById(int No)
         {
-            return _dbcontext.SSSPayments.Include(e => e.SSS).AsNoTracking().ToList().FirstOrDefault(x => x.No == No);
+            return _dbcontext.SSSPayments.ToList().FirstOrDefault(x => x.No == No);
 
         }
 

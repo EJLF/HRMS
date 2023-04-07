@@ -1,30 +1,44 @@
 ﻿using HRMS.Data;
 using HRMS.Models;
 using HRMS.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.X86;
 
 namespace HRMS.Controllers
 {
 
-        public class SSSPaymentController : Controller
+    public class SSSPaymentController : Controller
+    {
+        ISSSPaymentRepository _repo;
+        private UserManager<ApplicationUser> _userManager { get; }
+        public RoleManager<IdentityRole> _roleManager { get; }
+        public SSSPaymentController(ISSSPaymentRepository repo, UserManager<ApplicationUser> userManager)
         {
-            ISSSPaymentRepository _repo;
-            public SSSPaymentController(ISSSPaymentRepository repo)
-            {
-                this._repo = repo;
-            }
+            this._repo = repo;
+                this._userManager = userManager;
+        }
 
         public IActionResult List()
-            {
-                var list = _repo.ListOfSSSPayment();
-                return View(list);
-            }
+        {
+            var list = _repo.ListOfSSSPayment();
+            return View(list);
+        }
         [HttpGet]
-        public IActionResult Create() 
+        public IActionResult Create(string employeeName, string sss) 
+        {
+            var email = User.Identity.Name;
+            var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+            SSSPayment newSSSPayment = new SSSPayment();
             {
-                return View();
+                newSSSPayment.FullName = employeeName;
+                newSSSPayment.SSSNumber= sss;
+                newSSSPayment.Month = DateTime.Now.ToString("MMMM");
+                newSSSPayment.Year = DateTime.Now.ToString("yyyy");
+                return View(newSSSPayment);
             }
+
+        }
         [HttpPost]
         public IActionResult Create(SSSPayment sssPayment)
             { 
@@ -55,5 +69,10 @@ namespace HRMS.Controllers
             return RedirectToAction("List");
         }
 
+        public IActionResult Details(int No)
+        {
+
+            return View(_repo.GetSSSPaymentById(No));
         }
     }
+}
