@@ -67,11 +67,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Year)
                             </td>
+                        @if (User.IsInRole("HR"))
+                        {
                             <td>
                                 <a class="btn btn-success" role="button" asp-action="Edit" asp-route-No="@item.No">Edit</a> 
                                 <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
-                        </tr>
+                        }
+                    </tr>
                 }
                 </tbody>
               </table>

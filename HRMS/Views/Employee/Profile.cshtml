@@ -29,9 +29,7 @@
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                 </li>
-                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-benefits">Manage Benefits</button>
-                </li>
+
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                 </li>
@@ -111,8 +109,10 @@
                     </div>
                     <div class="row mb-3">
                         <label asp-for="MiddleName" class="col-md-4 col-lg-3 col-form-label"></label>
-                        <input asp-for="MiddleName" class="form-control" />
-                        <span asp-validation-for="MiddleName" class="text-danger"></span>
+                         <div class="col-md-8 col-lg-9">
+                            <input asp-for="MiddleName" class="form-control" />
+                            <span asp-validation-for="MiddleName" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <label asp-for="LastName" class="col-md-4 col-lg-3 col-form-label"></label>
@@ -121,12 +121,14 @@
                     </div>
                     <div class="row mb-3">
                         <label asp-for="Gender" class="col-md-4 col-lg-3 col-form-label"></label>
-                        <select name="Gender" class="form-control">
-                            <option value="Male" disabled>Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Others">Others</option>
-                        </select>
+                         <div class="col-md-8 col-lg-9">
+                            <select name="Gender" class="form-control">
+                                <option value="Male" disabled>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <label asp-for="DateOfBirth" class="col-md-4 col-lg-3 col-form-label"></label>
@@ -191,24 +193,7 @@
 
                 </div>
 
-                <div class="tab-pane fade profile-benefits pt-3" id="profile-benefits">
-                  <!-- Change Benefits Form -->
-                  <form>
-
-                      <div class="text-center">
-                        <a class="btn btn-primary" role="button" asp-controller="SSSPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-sss="@Model.SSSNumber"><i class="fa fa-plus"></i> Add SSS Payment</a>
-                      </div>
-                      </br>
-                       <div class="text-center">
-                       <a class="btn btn-primary" role="button" asp-controller="PhilhealthPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-philhealth="@Model.PhilHealthId"><i class="fa fa-plus"></i> Add Philhealth Payment</a>
-                      </div>
-                      </br>
-                       <div class="text-center">
-                        <a class="btn btn-primary" role="button" asp-controller="PagIbigPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-pagibig="@Model.PagIbigId"><i class="fa fa-plus"></i> Add PagIbig Payment</a>
-                      </div>
-                  </form><!-- End Benefits Form -->
-
-                </div>
+               
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->

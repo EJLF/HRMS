@@ -52,10 +52,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ReviewBy)
                             </td>
+                 @if(User.IsInRole("HR"))
+                         {
                             <td>
                                 <a asp-action="Details" asp-route-No="@item.No">Details</a> |
                                 <a asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
+                         }
                         </tr>
                 }
                 </tbody>

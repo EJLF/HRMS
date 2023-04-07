@@ -159,7 +159,7 @@
                 else if (User.IsInRole("Manager"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-area="" asp-controller="Employee" asp-action="Details"  asp-route-empId="2"><i class="bi bi-person-circle"></i> Profile</a>
+                        <a class="nav-link collapsed" asp-area="" asp-controller="Employee" asp-action="Profile"><i class="bi bi-person-circle"></i> Profile</a>
                     </li>
 
                     <li class="nav-item">
@@ -192,7 +192,7 @@
                 else if (User.IsInRole("Employee"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-area="" asp-controller="Employee" asp-action="Details"  asp-route-empId="1"><i class="bi bi-person-circle"></i> Profile</a>
+                        <a class="nav-link collapsed" asp-area="" asp-controller="Profile" asp-action="Details"><i class="bi bi-person-circle"></i> Profile</a>
                     </li>
 
                     <li class="nav-item">
