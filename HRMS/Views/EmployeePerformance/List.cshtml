@@ -1,13 +1,13 @@
-﻿@model IEnumerable<HRMS.Models.EmployeePerformance>
+﻿@model List<EmployeePerformance>
 
 @{
     ViewData["Title"] = "List";
 }
 
-<main id="main" class="main">
+ <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Performance Table</h1>
+      <h1>Performance Review</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -24,27 +24,13 @@
           <div class="card">
             <div class="card-body">
             </br>  
-           <p>
-                <a class="btn btn-primary" role="button" asp-action="Create"><i class="fa fa-plus"></i> Add Review</a>
-            </p>
-            <form action="List">
-                <div class="input-group md-form align-content-sm-around form-2 pl-0">
-                    <input name="searchValue" class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" />
-                    <div class="input-group-append">
-                        <button type="submit" class="input-group-text red lighten-3" id="basic-text1">
-                            <i class="fas fa-search text-black-grey" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">NO</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Review</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Employe Name</th>
+                    <th scope="col">Position Name</th>
                     <th></th>
                
                   </tr>
@@ -53,18 +39,19 @@
                  @foreach (var item in Model) {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.EmpPerformanceId)
+                                @Html.DisplayFor(modelItem => item.No)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Employee.FullName)
+                                @Html.DisplayFor(modelItem => item.About)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReviewBy)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.PerformanceReview)
-                            </td>
-                            <td>
-                               <a class="btn btn-success" role="button" asp-action="Update" asp-route-EmpPerformanceId="@item.EmpPerformanceId">Edit</a> 
-                               <a class="btn btn-warning" role="button" asp-action="Details" asp-route-EmpPerformanceId="@item.EmpPerformanceId">Details</a> 
-                               <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-EmpPerformanceId="@item.EmpPerformanceId">Delete</a>
+                                <a asp-action="Update" asp-route-id="@item.No">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.No">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.No">Delete</a>
                             </td>
                         </tr>
                 }
@@ -80,16 +67,6 @@
     </section>
 
   </main><!-- End #main -->
-
-@section scripts{
-    <script>
-        $(function () {
-            $("#basic-text1").on('keyup', function (e) {
-                $("form").submit();
-            });
-        });
-    </script>
-}
 
 
 

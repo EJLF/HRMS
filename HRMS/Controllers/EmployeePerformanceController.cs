@@ -15,7 +15,7 @@ namespace HRMS.Controllers
         IEmployeePerformanceDBRepository _repo;
         private UserManager<ApplicationUser> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
-        private SignInManager<ApplicationUser> _signInManager { get; }
+        //private SignInManager<ApplicationUser> _signInManager { get; }
         public EmployeePerformanceController(IEmployeePerformanceDBRepository repo, UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
@@ -23,66 +23,36 @@ namespace HRMS.Controllers
 
         }
 
-        public IActionResult List(string searchValue)
+        public IActionResult List()
         {
-            var list = _repo.ListEmployeePerformance(searchValue);
-            return View(list);
+            return View(_repo.ListOfEmployeePerformance());
         }
+        
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync(string employeeName, string reviewerName)
         {
-            var listEmployee = new List<SelectListItem>();
-            List<ApplicationUser> departments = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList();
-            listEmployee = departments.Select(emp => new SelectListItem
+            var email = User.Identity.Name;
+            var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+            EmployeePerformance employeePerformance = new EmployeePerformance();
             {
-                Value = emp.FullName,
-                Text = emp.FullName
-            }).ToList();
+                reviewerName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
 
-            var defItem = new SelectListItem()
-            {
-                Value = "",
-                Text = "Select Position"
-            };
-            listEmployee.Insert(0, defItem);
-            ViewBag.EmpId = listEmployee;
-            return View();
+                employeePerformance.EmployeeName = employeeName;
+                employeePerformance.ReviewBy = reviewerName;
+                return View(employeePerformance);
+            }
         }
         [HttpPost]
-        public IActionResult Create(EmployeePerformance newEmp)
+        public IActionResult Create(EmployeePerformance newEmployeePerformance)
         {
             if (ModelState.IsValid)
             {
-                var emp = _repo.AddEmployeePerformance(newEmp);
+                var Dept = _repo.AddEmployeePerformance(newEmployeePerformance);
                 return RedirectToAction("List");
             }
-            ViewData["Message"] = "Data is not valid to create the EmployeePerformance";
+            ViewData["Message"] = "Data is not valid to create the Department";
             return View();
-        }
 
-        [HttpGet]
-        public IActionResult Update(int EmpPerformanceId)
-        {
-            EmployeePerformance EmployeePerformance = _repo.GetEmployeePerformanceById(EmpPerformanceId); ;
-            ViewBag.EmpId = _repo.GetEmployeeList();
-            return View(EmployeePerformance);
-        }
-        [HttpPost]
-        public IActionResult Update(int EmpPerformanceId, EmployeePerformance EmployeePerformance)
-        {
-            _repo.UpdateEmployeePerformance(EmpPerformanceId, EmployeePerformance);
-            return RedirectToAction("List");
-        }
-
-        public IActionResult Details(int EmpPerformanceId)
-        {
-            var emp = _repo.GetEmployeePerformanceById(EmpPerformanceId);
-            return View(emp);
-        }
-        public IActionResult Delete(int EmpPerformanceId)
-        {
-            _repo.DeleteEmployeePerformance(EmpPerformanceId);
-            return RedirectToAction("List");
         }
     }
 }

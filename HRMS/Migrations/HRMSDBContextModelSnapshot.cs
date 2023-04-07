@@ -217,14 +217,14 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c17653d2-5dbd-40b1-94bc-4d1c67ca2fb0",
+                            Id = "9015e689-fbd1-4cc3-9957-dc006fe1193b",
                             AccessFailedCount = 0,
                             ActiveStatus = false,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "5d0d9de8-7e67-43cd-97cd-bf68b8ed6131",
+                            ConcurrencyStamp = "6aedaf61-6cf0-4265-bd79-c4dbc03f6522",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 6, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1725),
+                            DateOfBirth = new DateTime(2023, 4, 7, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(1030),
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -234,7 +234,7 @@ namespace HRMS.Migrations
                             MiddleName = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECwkK+SaxN6Y5srMyFeM1M9bkmFUM9LOWIyoka7BMIaC2QbTGTgf40vaIpkg7wjeCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI4AsgIWKiRFl17/sHTnct8KPxEC2QQjQUx5z3VNY3oUleKnZU0tCSbZdvr98I5C8A==",
                             Phone = "09111111111",
                             PhoneNumberConfirmed = false,
                             PostalCode = 1,
@@ -390,8 +390,8 @@ namespace HRMS.Migrations
                             ActiveStatus = true,
                             Barangay = "Sabang",
                             City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 7, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1440),
-                            DateOfBirth = new DateTime(2023, 4, 7, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1425),
+                            DateHired = new DateTime(2023, 4, 8, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(711),
+                            DateOfBirth = new DateTime(2023, 4, 8, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(698),
                             DepartmentId = 2,
                             Email = "alvin@gmail.com",
                             EmployeeType = "Regular",
@@ -413,8 +413,8 @@ namespace HRMS.Migrations
                             ActiveStatus = true,
                             Barangay = "Sabang",
                             City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 8, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1455),
-                            DateOfBirth = new DateTime(2023, 4, 7, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1455),
+                            DateHired = new DateTime(2023, 4, 9, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(722),
+                            DateOfBirth = new DateTime(2023, 4, 8, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(722),
                             DepartmentId = 2,
                             Email = "earl@gmail.com",
                             EmployeeType = "Regular",
@@ -436,8 +436,8 @@ namespace HRMS.Migrations
                             ActiveStatus = true,
                             Barangay = "Sabang",
                             City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 9, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1461),
-                            DateOfBirth = new DateTime(2023, 4, 7, 15, 38, 7, 296, DateTimeKind.Local).AddTicks(1460),
+                            DateHired = new DateTime(2023, 4, 10, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(725),
+                            DateOfBirth = new DateTime(2023, 4, 8, 11, 29, 28, 708, DateTimeKind.Local).AddTicks(725),
                             DepartmentId = 1,
                             Email = "cocomama@gmail.com",
                             EmployeeType = "Regular",
@@ -457,22 +457,32 @@ namespace HRMS.Migrations
 
             modelBuilder.Entity("HRMS.Models.EmployeePerformance", b =>
                 {
-                    b.Property<int>("EmpPerformanceId")
+                    b.Property<int>("No")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpPerformanceId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("No"), 1L, 1);
 
-                    b.Property<int?>("EmpId")
-                        .HasColumnType("int");
+                    b.Property<string>("About")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateReview")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PerformanceReview")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EmpPerformanceId");
+                    b.Property<string>("ReviewBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("EmpId");
+                    b.HasKey("No");
 
                     b.ToTable("EmployeePerformances");
                 });
@@ -712,29 +722,29 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f5f9ba0-f1fb-4de2-8f92-7aefb6dbf82b",
-                            ConcurrencyStamp = "a168e751-be94-491a-a8d5-fe90f5049e32",
+                            Id = "64126313-18ad-4dcb-888a-b6cc76379836",
+                            ConcurrencyStamp = "4d0e58fd-f680-40d6-a492-ab5665bebf28",
                             Name = "Human Resource",
                             NormalizedName = "HUMAN RESOURCE"
                         },
                         new
                         {
-                            Id = "bcfc960a-9ca5-4cf5-b2e4-a83faa0f51cb",
-                            ConcurrencyStamp = "70a4a425-34a2-495d-825c-923233c6e282",
+                            Id = "624d40cc-7802-4532-8eaf-6b43a2f1c59e",
+                            ConcurrencyStamp = "124e8785-2998-4c51-951c-ea593f4608ba",
                             Name = "HR",
                             NormalizedName = "HR"
                         },
                         new
                         {
-                            Id = "039633b6-cbc5-4b77-a79a-14adf92d0c08",
-                            ConcurrencyStamp = "c784e868-4e01-451f-862c-ee04c7a4379b",
+                            Id = "288b1ba3-5821-4fca-af9d-0811be5669d7",
+                            ConcurrencyStamp = "55661048-bd09-4b1c-8e9d-1c2c58392350",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "f7ca4b3d-cfd7-4301-bddc-c7fafb9ef7e6",
-                            ConcurrencyStamp = "2da5f93c-c99b-4390-adf8-ec864d208850",
+                            Id = "a5a08b02-20f3-4925-bf79-9104debdad4b",
+                            ConcurrencyStamp = "3b51f486-0639-4323-aa9b-9e353619bb45",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -829,8 +839,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c17653d2-5dbd-40b1-94bc-4d1c67ca2fb0",
-                            RoleId = "bcfc960a-9ca5-4cf5-b2e4-a83faa0f51cb"
+                            UserId = "9015e689-fbd1-4cc3-9957-dc006fe1193b",
+                            RoleId = "624d40cc-7802-4532-8eaf-6b43a2f1c59e"
                         });
                 });
 
@@ -911,15 +921,6 @@ namespace HRMS.Migrations
                     b.Navigation("Department");
 
                     b.Navigation("Position");
-                });
-
-            modelBuilder.Entity("HRMS.Models.EmployeePerformance", b =>
-                {
-                    b.HasOne("HRMS.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmpId");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("HRMS.Models.PagIbig", b =>

@@ -50,6 +50,7 @@
                     <th scope="col">Position</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Details</th>
+                    <th scope="col">Review</th>
                     <th scope="col">Delete</th>
                     
                   </tr>
@@ -79,8 +80,9 @@
          
 
                                  <td>   <a class="btn btn-success" role="button" asp-action="Update" asp-route-accountId="@item.Id"><i class="fa fa-edit"></i> </a> </td>
-                                 <td>   <a class="btn btn-warning" role="button"asp-action="Details" asp-route-accountId="@item.Id"><i class="fa fa-display"></i></a> </td>
-                                 <td>   <a class="btn btn-danger" role="button"asp-action="Delete" asp-route-accountId="@item.Id"><i class="fa fa-trash"></i></a></td>
+                                 <td>   <a class="btn btn-warning" role="button" asp-action="Details" asp-route-accountId="@item.Id"><i class="fa fa-display"></i></a> </td>
+                                 <td>   <a class="btn btn-warning" role="button" asp-controller="EmployeePerformance" asp-action="Create" asp-route-employeeName="@item.FullName"><i class="fa fa-plus"></i></a> </td>
+                                 <td>   <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-accountId="@item.Id"><i class="fa fa-trash"></i></a></td>
                             </tr>
                     }
                 </tbody>
