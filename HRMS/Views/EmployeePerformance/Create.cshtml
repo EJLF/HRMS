@@ -14,16 +14,23 @@
 
               <!-- Floating Labels Form -->
               <form asp-controller="EmployeePerformance" asp-action="Create" method="post" class="row g-3">
+                  <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingName" placeholder="Employee Name" asp-for="EmployeeName" disabled>
+                    <input type="text" class="form-control" id="floatingName" placeholder="Employee Name" asp-for="userID" readonly>
+                    <label for="floatingName">UserID</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Employee Name" asp-for="EmployeeName" readonly>
                     <label for="floatingName">Employee Name</label>
                   </div>
                 </div>
                 <div class="col-md-8">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="floatingEmail" placeholder="About" asp-for="About" >
-                    <label for="floatingEmail">About</label>
+                    <label for="floatingEmail">Subject / Topic</label>
                   </div>
                 </div>
                 
@@ -35,13 +42,12 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingEmail" placeholder="Review by" asp-for="ReviewBy" disabled>
+                    <input type="text" class="form-control" id="floatingEmail" placeholder="Review by" asp-for="ReviewBy" readonly>
                     <label for="floatingEmail">Review By:</label>
                   </div>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>
               </form><!-- End floating Labels Form -->
 

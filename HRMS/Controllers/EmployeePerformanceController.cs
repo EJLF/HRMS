@@ -23,21 +23,38 @@ namespace HRMS.Controllers
 
         }
 
-        public IActionResult List()
+        public IActionResult List(string employeeID,string name)
         {
-            return View(_repo.ListOfEmployeePerformance());
+            return View(_repo.ListOfEmployeePerformance(employeeID));
         }
-        
-        [HttpGet]
-        public async Task<IActionResult> CreateAsync(string employeeName, string reviewerName)
+        public IActionResult ProfileList()
         {
+            var email = User.Identity.Name;
+            var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
+            var employeeID = employee.Id;
+            var name = employee.FullName;
+            var value = _repo.ListOfEmployeePerformance(employeeID);
+
+            foreach (var item in value)
+            {
+                item.userID = name;
+            }
+
+            return View(value);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateAsync(string employeeName, string userID)
+        {
+
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
             EmployeePerformance employeePerformance = new EmployeePerformance();
             {
-                reviewerName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
+                string reviewerName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
 
-                employeePerformance.EmployeeName = employeeName;
+                employeePerformance.userID = userID;
+                //employeePerformance.EmployeeName = employeeName;
                 employeePerformance.ReviewBy = reviewerName;
                 return View(employeePerformance);
             }
@@ -45,6 +62,7 @@ namespace HRMS.Controllers
         [HttpPost]
         public IActionResult Create(EmployeePerformance newEmployeePerformance)
         {
+
             if (ModelState.IsValid)
             {
                 var Dept = _repo.AddEmployeePerformance(newEmployeePerformance);

@@ -1,4 +1,4 @@
-﻿@model List<IdentityRole>
+﻿@model List<UserRoleViewModel>
 @{
 }
 
@@ -23,25 +23,24 @@
           <div class="card">
             <div class="card-body">
             </br>  
-            <a asp-action="Create" asp-controller="Role">Add Role</a>
-
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Role Name</th>
+                    <th>No</th>
+                    <th>User Name</th>
+                    <th>Role Name</th>
                     <th></th>
-               
                   </tr>
                 </thead>
                 <tbody>
-                 @foreach(var role in Model){
+                 @{int i=0;}
+                 @foreach(var userRole in Model){
                     <tr>
-                      <th scope="row">@role.Id</th>
-                      <td>@role.Name</td>
-                      <td><a asp-controller="Role" asp-action="Update" asp-route-roleId="@role.Id">Edit</a>
-                      <a asp-controller="Role" asp-action="Delete" asp-route-roleId="@role.Id" >Delete</a></td>
+                      <td>@(++i)</td>
+                      <td>@userRole.FullName</td>
+                      <td>@userRole.RoleName</td>
+                      <td><a class="btn btn-primary" role="button" asp-action="UpdateUserRole" asp-route-roleName="@userRole.RoleName" asp-route-userId="@userRole.UserId">Edit</a></td>
                     </tr>
                 }
                 </tbody>

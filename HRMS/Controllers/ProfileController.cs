@@ -22,7 +22,8 @@ namespace HRMS.Controllers
         }
         public IActionResult Details()
         {
-
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
             EditEmployeeViewModel employeeViewModel = new EditEmployeeViewModel()

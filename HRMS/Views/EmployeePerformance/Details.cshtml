@@ -42,7 +42,13 @@
                 <div class="text-center">
                 </div>
               </form><!-- End floating Labels Form -->
-              <a class="btn btn-secondary" asp-action="List" asp-controller="EmployeePerformance">Back</a>
+                @if (User.IsInRole("HR"))
+                {
+                    <a class="btn btn-secondary" asp-action="List"  asp-controller="EmployeePerformance">Back</a>
+                }
+                else{
+                    <a class="btn btn-secondary" asp-action="ProfileList"  asp-controller="EmployeePerformance">Back</a>
+                }
             </div>
           </div>
         </section>

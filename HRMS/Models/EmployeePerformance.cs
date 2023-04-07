@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using HRMS.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace HRMS.Models
 {
@@ -9,6 +10,7 @@ namespace HRMS.Models
     {
         [Key]
         public int No { get; set; }
+        public string userID { get; set; }
         public string EmployeeName { get; set; }
         [Required]
         [MinLength(3)]

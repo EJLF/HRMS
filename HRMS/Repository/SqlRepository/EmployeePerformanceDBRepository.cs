@@ -1,5 +1,6 @@
 ﻿using HRMS.Data;
 using HRMS.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +9,11 @@ namespace HRMS.Repository.SqlRepository
     public class EmployeePerformanceDBRepository: IEmployeePerformanceDBRepository
     {
         HRMSDBContext _dbcontext;
-
-        public EmployeePerformanceDBRepository(HRMSDBContext dbContext)
+        private UserManager<ApplicationUser> _userManager { get; }
+        public EmployeePerformanceDBRepository(HRMSDBContext dbContext, UserManager<ApplicationUser> userManager)
         {
             _dbcontext = dbContext;
+            _userManager = userManager;
         }
 
         public EmployeePerformance AddEmployeePerformance(EmployeePerformance newEmployeePerformance)
@@ -26,24 +28,18 @@ namespace HRMS.Repository.SqlRepository
             throw new NotImplementedException();
         }
 
-        public List<SelectListItem> GetEmployeeList()
-        {
-            throw new NotImplementedException();
-        }
-
         public EmployeePerformance GetEmployeePerformanceById(int Id)
         {
             return _dbcontext.EmployeePerformances.AsNoTracking().ToList().FirstOrDefault(x => x.No == Id);
         }
-
-        public List<EmployeePerformance> ListEmployeePerformance(string value)
+        public List<EmployeePerformance> ListOfEmployeePerformance(string employeeID)
         {
-            throw new NotImplementedException();
-        }
+            if (employeeID == null)
+            {
+                return _dbcontext.EmployeePerformances.AsNoTracking().ToList();
+            }
 
-        public List<EmployeePerformance> ListOfEmployeePerformance()
-        {
-            return _dbcontext.EmployeePerformances.AsNoTracking().ToList();
+            return _dbcontext.EmployeePerformances.Where(e => e.userID == employeeID).AsNoTracking().ToList();
         }
 
         public EmployeePerformance UpdateEmployeePerformance(string EmployeePerformanceId, EmployeePerformance newEmployeePerformance)

@@ -55,6 +55,7 @@ namespace HRMS.Migrations
                 {
                     No = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    userID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PerformanceReview = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -458,16 +459,16 @@ namespace HRMS.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "214ac338-d65c-4102-9811-8dd264c86f9c", "fd242bd8-14d0-4196-9e5e-481cd889c912", "Human Resource", "HUMAN RESOURCE" },
-                    { "7b7be5e9-9569-4735-a248-dc64b9ba6213", "4331aa04-d00e-4146-a0a1-2a9ac83e235a", "Manager", "MANAGER" },
-                    { "850da655-1623-4860-8174-cba2b70e531d", "d455b744-a61f-4aae-8b79-4762c690e961", "HR", "HR" },
-                    { "e1b8a0b0-607a-4a1f-857e-d1d8b66803dd", "7b14c244-7a01-4018-9ccd-c68794ac41c0", "Employee", "EMPLOYEE" }
+                    { "6c5b05d3-c759-4b66-8ed0-125f353412bd", "79158de9-b36c-4b47-a8f0-c477681d41eb", "Employee", "EMPLOYEE" },
+                    { "a073c4be-7853-48ba-9290-92f0573db865", "5ded4ed7-e2c5-41ef-ab38-079bf0166633", "Human Resource", "HUMAN RESOURCE" },
+                    { "c14316a5-6d09-4499-9659-747ed9c0fc92", "fad0766e-0eaf-4e2c-b01b-3ff520c6fac1", "HR", "HR" },
+                    { "c651e859-838f-4847-9ab5-09a7a4931cf6", "1ea36a62-095e-4aa8-a12f-bc2112761aad", "Manager", "MANAGER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveStatus", "Barangay", "City", "ConcurrencyStamp", "DateHired", "DateOfBirth", "DepartmentId", "Email", "EmailConfirmed", "EmployeeType", "FirstName", "FullName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PagIbigId", "PasswordHash", "PhilHealthId", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "PositionId", "PostalCode", "SSSNumber", "SecurityStamp", "State", "Street", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "14f700c3-fcb1-4014-9ce8-26da3f7ab69a", 0, false, "Admin", "Admin", "fd63cae7-f436-4888-bf18-c970e49cc5cf", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 7, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1850), null, "admin@admin.com", true, null, "Admin", null, "Male", "Admin", false, null, "Admin", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", null, "AQAAAAEAACcQAAAAEO6AUxDkvx7w4tAyXTkMynT3LIuBUcLsXrqRrpaVVh3bbswM39TR6lI5F0N6gOA2wQ==", null, "09111111111", null, false, null, 1, null, "", "Admin", "Admin", false, "admin@admin.com" });
+                values: new object[] { "7521d9b2-8c19-476b-b745-d0cfb97ff3a3", 0, true, "Admin", "Admin", "7c7c8dc1-c3f4-46ca-b700-dd7309a0c21b", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 7, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6944), null, "admin@admin.com", true, null, "Admin", null, "Male", "Admin", false, null, "Admin", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", null, "AQAAAAEAACcQAAAAEOCIWTcv8N4z0neTwYP3V9SeHEQrWJMQN/SEJB5UABy0c88y5MrUIB9cwXkpcpLnlw==", null, "09111111111", null, false, null, 1, null, "", "Admin", "Admin", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Departments",
@@ -491,16 +492,16 @@ namespace HRMS.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "850da655-1623-4860-8174-cba2b70e531d", "14f700c3-fcb1-4014-9ce8-26da3f7ab69a" });
+                values: new object[] { "c14316a5-6d09-4499-9659-747ed9c0fc92", "7521d9b2-8c19-476b-b745-d0cfb97ff3a3" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "EmpId", "ActiveStatus", "Barangay", "City", "DateHired", "DateOfBirth", "DepartmentId", "Email", "EmployeeType", "FirstName", "Gender", "LastName", "MiddleName", "Password", "Phone", "PositionId", "PostalCode", "State", "Street", "UserName" },
                 values: new object[,]
                 {
-                    { 1, true, "Sabang", "Lipa City", new DateTime(2023, 4, 8, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1614), new DateTime(2023, 4, 8, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1599), 2, "alvin@gmail.com", "Regular", "Alvin", "Male", "Root", "Eleuterio", "alvin", "09952610728", 2, 4217, "Batangas", "P. Laygo St.", "alvin" },
-                    { 2, true, "Sabang", "Lipa City", new DateTime(2023, 4, 9, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1624), new DateTime(2023, 4, 8, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1624), 2, "earl@gmail.com", "Regular", "Earl Joseph", "Male", "Ferran", "Litong", "earl", "09657610728", 1, 4217, "Mindoro", "P. Laygo St.", "earl" },
-                    { 3, true, "Sabang", "Lipa City", new DateTime(2023, 4, 10, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1628), new DateTime(2023, 4, 8, 14, 56, 7, 942, DateTimeKind.Local).AddTicks(1627), 1, "cocomama@gmail.com", "Regular", "Coco", "Male", "Martin", "Mama", "coco", "09127610728", 2, 4217, "Mindoro", "P. Laygo St.", "coco" }
+                    { 1, true, "Sabang", "Lipa City", new DateTime(2023, 4, 8, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6719), new DateTime(2023, 4, 8, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6704), 2, "alvin@gmail.com", "Regular", "Alvin", "Male", "Root", "Eleuterio", "alvin", "09952610728", 2, 4217, "Batangas", "P. Laygo St.", "alvin" },
+                    { 2, true, "Sabang", "Lipa City", new DateTime(2023, 4, 9, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6731), new DateTime(2023, 4, 8, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6730), 2, "earl@gmail.com", "Regular", "Earl Joseph", "Male", "Ferran", "Litong", "earl", "09657610728", 1, 4217, "Mindoro", "P. Laygo St.", "earl" },
+                    { 3, true, "Sabang", "Lipa City", new DateTime(2023, 4, 10, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6734), new DateTime(2023, 4, 8, 21, 45, 18, 986, DateTimeKind.Local).AddTicks(6733), 1, "cocomama@gmail.com", "Regular", "Coco", "Male", "Martin", "Mama", "coco", "09127610728", 2, 4217, "Mindoro", "P. Laygo St.", "coco" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -63,6 +63,7 @@ namespace HRMS.Data
                      City = "Admin",
                      State = "Admin",
                      PostalCode = 1,
+                     ActiveStatus=true,
 
                      PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
                      SecurityStamp = String.Empty,

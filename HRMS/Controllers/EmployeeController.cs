@@ -38,6 +38,8 @@ namespace HRMS.Controllers
 
         public IActionResult Details(string accountId)
         {
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
             EditEmployeeViewModel employeeViewModel = new EditEmployeeViewModel()
             {

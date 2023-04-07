@@ -8,14 +8,13 @@ namespace HRMS.Repository
         // Add Employee
         EmployeePerformance AddEmployeePerformance(EmployeePerformance newEmployeePerformance);
         // GetAllEmployeePerformance
-        List<EmployeePerformance> ListOfEmployeePerformance();
+        List<EmployeePerformance> ListOfEmployeePerformance(string employeeID);
         // GetId
         EmployeePerformance GetEmployeePerformanceById(int Id);
         // Update
         EmployeePerformance UpdateEmployeePerformance(string EmployeePerformanceId, EmployeePerformance newEmployeePerformance);
         // Delete
         EmployeePerformance DeleteEmployeePerformance(string EmployeePerformanceId);
-        List<EmployeePerformance> ListEmployeePerformance(string value);
-        List<SelectListItem> GetEmployeeList();
+
     }
 }
