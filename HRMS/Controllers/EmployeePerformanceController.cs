@@ -15,12 +15,10 @@ namespace HRMS.Controllers
         IEmployeePerformanceDBRepository _repo;
         private UserManager<ApplicationUser> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
-        //private SignInManager<ApplicationUser> _signInManager { get; }
         public EmployeePerformanceController(IEmployeePerformanceDBRepository repo, UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
             _userManager = userManager;
-
         }
 
         public IActionResult List(string employeeID,string name)
@@ -31,10 +29,11 @@ namespace HRMS.Controllers
         {
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
+
             var employeeID = employee.Id;
             var name = employee.FullName;
-            var value = _repo.ListOfEmployeePerformance(employeeID);
 
+            var value = _repo.ListOfEmployeePerformance(employeeID);
             foreach (var item in value)
             {
                 item.userID = name;

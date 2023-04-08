@@ -97,8 +97,14 @@ namespace HRMS.Controllers
                 //login cookie and transfter to the client 
                 if (result.Succeeded)
                 {
+                    var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == userViewModel.UserName);
+                    if (statusCheck.ActiveStatus == true)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Privacy", "Home");
+
                 }
                 ModelState.AddModelError(string.Empty, "invalid login credentials");
             }
