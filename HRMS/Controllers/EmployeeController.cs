@@ -22,18 +22,50 @@ namespace HRMS.Controllers
             _userManager = userManager;
             _repo = repo;
             _roleManager = roleManager;
-            _signInManager = signInManager; 
+            _signInManager = signInManager;
         }
 
         //Get All the Employee
-        public async Task<IActionResult> List()
+
+
+
+
+        public async Task<IActionResult> List(int searchOption = 0, string employeeSearch = "")
         {
-            return View(_userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList());
+            var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList();
+            if (searchOption > 0)
+            {
+                employees = _userManager.Users.Where(status => status.Department.DeptId == searchOption).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(employeeSearch))
+            {
+
+                employees = _userManager.Users.Where(e => e.FullName.Contains(employeeSearch)).ToList();
+            }
+
+            ViewBag.Departments = _repo.GetDepartmentList();
+
+            return View(employees.ToList());
         }
 
-        public async Task<IActionResult> InactiveList()
+        public async Task<IActionResult> InactiveList(int searchOption = 0, string employeeSearch = "")
         {
-            return View(_userManager.Users.Include(d => d.Department).Include(p => p.Position).Where(status => status.ActiveStatus == false).ToList());
+            var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == false).Include(p => p.Position).ToList();
+            if (searchOption > 0)
+            {
+                employees = _userManager.Users.Where(status => status.Department.DeptId == searchOption).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(employeeSearch))
+            {
+
+                employees = _userManager.Users.Where(e => e.FullName.Contains(employeeSearch)).ToList();
+            }
+
+            ViewBag.Departments = _repo.GetDepartmentList();
+
+            return View(employees.ToList());
         }
 
         public IActionResult Details(string accountId)
@@ -73,7 +105,7 @@ namespace HRMS.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(string accountId)
         {
-            var employee = _userManager.Users.Include(d=>d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
+            var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
             ViewBag.DepartmentList = _repo.GetDepartmentList();
             ViewBag.PositionList = _repo.GetPositionList();
             //  var roles = await _userManager.GetRolesAsync(user);
@@ -98,14 +130,14 @@ namespace HRMS.Controllers
                 State = employee.State,
                 PostalCode = employee.PostalCode,
                 DateHired = employee.DateHired,
-            //    ActiveStatus = employee.ActiveStatus,
+                //    ActiveStatus = employee.ActiveStatus,
             };
             return View(employeeViewModel);
         }
         [HttpPost]
         public async Task<IActionResult> Update(EditEmployeeViewModel employee)
         {
-            
+
             var oldValue = await _userManager.FindByIdAsync(employee.Id.ToString());
             {
 
@@ -128,7 +160,7 @@ namespace HRMS.Controllers
                 oldValue.State = employee.State;
                 oldValue.PostalCode = employee.PostalCode;
                 oldValue.DateHired = employee.DateHired;
-             //   oldValue.ActiveStatus = employee.ActiveStatus;
+                //   oldValue.ActiveStatus = employee.ActiveStatus;
             }
 
             var result = await _userManager.UpdateAsync(oldValue);
@@ -245,8 +277,9 @@ namespace HRMS.Controllers
             }
             return View(employeeViewModel);
         }
-       
+
         // Create Pefromance Review
-       
+
     }
 }
+
