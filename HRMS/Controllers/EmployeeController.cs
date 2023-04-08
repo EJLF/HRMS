@@ -51,6 +51,8 @@ namespace HRMS.Controllers
 
         public async Task<IActionResult> InactiveList(int searchOption = 0, string employeeSearch = "")
         {
+            var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus==false).CountAsync();
+            ViewBag.NumberOfInActive = inaciveCount;
             var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == false).Include(p => p.Position).ToList();
             if (searchOption > 0)
             {

@@ -1,4 +1,5 @@
-﻿@inject SignInManager<ApplicationUser> _signInManager
+﻿@using Microsoft.EntityFrameworkCore
+@inject SignInManager<ApplicationUser> _signInManager
 @inject UserManager<ApplicationUser> _userManager
 
 <!DOCTYPE html>
@@ -7,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HRMS</title>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -80,14 +82,20 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
+@if (User.IsInRole("HR"))
+    {
+        var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus == false).CountAsync();
+        ViewBag.NumberOfInActive = inaciveCount;
+        if(ViewBag.NumberOfInActive!=0){
+             <li class="nav-item dropdown">
+                <a class="nav-link nav-icon" asp-controller="Employee" asp-action="InactiveList">
+                    <i class="bi bi-bell"></i>
+                    <span class="badge bg-primary badge-number">@ViewBag.NumberOfInActive</span>
+                </a><!-- End Notification Icon -->
+             </li><!-- End Notification Nav -->
+          }
+        
 
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown">
 
@@ -96,7 +104,7 @@
             <span class="badge bg-success badge-number">3</span>
           </a><!-- End Messages Icon -->
         </li><!-- End Messages Nav -->
-
+    }
         <li class="nav-item dropdown pe-3">
         @if (_signInManager.IsSignedIn(User))
         {
