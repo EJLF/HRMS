@@ -215,16 +215,16 @@
                   <!-- Change Benefits Form -->
                   <form>
 
-                      <div class="text-center">
-                        <a class="btn btn-primary" role="button" asp-controller="SSSPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-sss="@Model.SSSNumber"><i class="fa fa-plus"></i> Add SSS Payment</a>
+                       <div class="col-md-3">
+                        <a class="btn btn-primary form-control" role="button" asp-controller="SSSPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-sss="@Model.SSSNumber"><i class="bi bi-person-vcard-fill float-left"></i> Add SSS Payment</a>
                       </div>
                       </br>
-                       <div class="text-center">
-                       <a class="btn btn-primary" role="button" asp-controller="PhilhealthPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-philhealth="@Model.PhilHealthId"><i class="fa fa-plus"></i> Add Philhealth Payment</a>
+                        <div class="col-md-3">
+                       <a class="btn btn-primary form-control" role="button" asp-controller="PhilhealthPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-philhealth="@Model.PhilHealthId"><i class="bi bi-person-vcard-fill"></i> Add Philhealth Payment</a>
                       </div>
                       </br>
-                       <div class="text-center">
-                        <a class="btn btn-primary" role="button" asp-controller="PagIbigPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-pagibig="@Model.PagIbigId"><i class="fa fa-plus"></i> Add PagIbig Payment</a>
+                        <div class="col-md-3">
+                        <a class="btn btn-primary form-control" role="button" asp-controller="PagIbigPayment" asp-action="Create" asp-route-employeeName="@Model.FullName" asp-route-pagibig="@Model.PagIbigId"><i class="bi bi-person-vcard-fill"></i> Add PagIbig Payment</a>
                       </div>
                   </form><!-- End Benefits Form -->
 
