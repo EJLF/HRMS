@@ -38,7 +38,7 @@ namespace HRMS.Repository.SqlRepository
             {
                 return _dbcontext.EmployeePerformances.AsNoTracking().ToList();
             }
-
+            int count = _dbcontext.EmployeePerformances.Count();
             return _dbcontext.EmployeePerformances.Where(e => e.userID == employeeID).AsNoTracking().ToList();
         }
 

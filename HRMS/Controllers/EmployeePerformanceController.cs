@@ -21,22 +21,26 @@ namespace HRMS.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult List(string employeeID,string name)
+        public IActionResult List()
         {
-            return View(_repo.ListOfEmployeePerformance(employeeID));
+            
+            var value = _repo.ListOfEmployeePerformance(null);
+            foreach (var item in value)
+            {
+                var fullName = _userManager.Users.FirstOrDefault(x => x.Id == item.userID);
+                item.userID = fullName.FullName;
+            }
+
+            return View(value);
         }
         public IActionResult ProfileList()
         {
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
-
-            var employeeID = employee.Id;
-            var name = employee.FullName;
-
-            var value = _repo.ListOfEmployeePerformance(employeeID);
+            var value = _repo.ListOfEmployeePerformance(employee.Id);
             foreach (var item in value)
             {
-                item.userID = name;
+                item.userID = employee.FullName; 
             }
 
             return View(value);

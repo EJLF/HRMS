@@ -1,4 +1,6 @@
-﻿@using Microsoft.EntityFrameworkCore
+﻿@using HRMS.Repository
+@using Microsoft.EntityFrameworkCore
+@inject IEmployeePerformanceDBRepository _repo
 @inject SignInManager<ApplicationUser> _signInManager
 @inject UserManager<ApplicationUser> _userManager
 
@@ -84,6 +86,7 @@
         </li><!-- End Search Icon-->
 @if (User.IsInRole("HR"))
     {
+        //return the number of new SignIn and Register
         var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus == false).CountAsync();
         ViewBag.NumberOfInActive = inaciveCount;
         if(ViewBag.NumberOfInActive!=0){
@@ -91,19 +94,23 @@
                 <a class="nav-link nav-icon" asp-controller="Employee" asp-action="InactiveList">
                     <i class="bi bi-bell"></i>
                     <span class="badge bg-primary badge-number">@ViewBag.NumberOfInActive</span>
-                </a><!-- End Notification Icon -->
-             </li><!-- End Notification Nav -->
+                </a>
+             </li>
           }
-        
 
 
-        <li class="nav-item dropdown">
+        //return the number Of Message
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-        </li><!-- End Messages Nav -->
+        var countMessage = _repo.ListOfEmployeePerformance(null).Count();
+        ViewBag.countMessage=countMessage;
+        if(ViewBag.countMessage!=0){
+            <li class="nav-item dropdown">
+                <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="List">
+                <i class="bi bi-chat-left-text"></i>
+                <span class="badge bg-success badge-number">@ViewBag.countMessage</span>
+              </a>
+            </li>
+        }
     }
         <li class="nav-item dropdown pe-3">
         @if (_signInManager.IsSignedIn(User))
