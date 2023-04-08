@@ -1,4 +1,5 @@
 ﻿using HRMS.Models;
+using HRMS.Repository;
 using HRMS.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ namespace HRMS.Controllers
 {
     public class AccountController : Controller
     {
+        IEmployeeRepository _repo;
         private UserManager<ApplicationUser> _userManager { get; }
         // login user details 
         private SignInManager<ApplicationUser> _signInManager { get; }
@@ -14,21 +16,26 @@ namespace HRMS.Controllers
 
         public AccountController(UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
-                                RoleManager<IdentityRole> roleManager)
+                                RoleManager<IdentityRole> roleManager,
+                                IEmployeeRepository repo)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _repo = repo;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEmployeeViewModel employeeViewModel)
         {
+            
             if (ModelState.IsValid)
             {
                 var employeeModel = new ApplicationUser
@@ -90,6 +97,7 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LogInEmployeeViewModel userViewModel)
         {
+
             if (ModelState.IsValid)
             {
                 // login activity -> cookie [Roles and Claims]

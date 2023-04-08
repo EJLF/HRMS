@@ -48,10 +48,18 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.About)
                             </td>
-              
-                            <td>
-                                <a asp-action="Details" asp-route-No="@item.No">Open</a>
+                        @if(@item.Status==true)
+                        {
+                             <td>
+                                <a asp-action="Details" asp-route-No="@item.No">New Message</a>
                             </td>
+                        }
+                        else{
+                             <td>
+                                <a asp-action="Details" asp-route-No="@item.No">View Message</a>
+                            </td>
+                        }
+                           
                          
                         </tr>
                 }

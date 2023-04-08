@@ -42,9 +42,11 @@ namespace HRMS.Repository.SqlRepository
             return _dbcontext.EmployeePerformances.Where(e => e.userID == employeeID).AsNoTracking().ToList();
         }
 
-        public EmployeePerformance UpdateEmployeePerformance(string EmployeePerformanceId, EmployeePerformance newEmployeePerformance)
+        public EmployeePerformance UpdateEmployeePerformance(int EmployeePerformanceId, EmployeePerformance newEmployeePerformance)
         {
-            throw new NotImplementedException();
+            _dbcontext.EmployeePerformances.Update(newEmployeePerformance);
+            _dbcontext.SaveChanges();
+            return newEmployeePerformance;
         }
     }
 }

@@ -59,6 +59,7 @@ namespace HRMS.Controllers
                 employeePerformance.userID = userID;
                 //employeePerformance.EmployeeName = employeeName;
                 employeePerformance.ReviewBy = reviewerName;
+                employeePerformance.Status = true;
                 return View(employeePerformance);
             }
         }
@@ -74,6 +75,20 @@ namespace HRMS.Controllers
             ViewData["Message"] = "Data is not valid to create the Department";
             return View();
 
+        }
+
+        public async Task<IActionResult> Unread(int No)
+        {
+            var employee = _repo.GetEmployeePerformanceById(No);
+            {
+                employee.Status = false;
+            }
+
+            var result = _repo.UpdateEmployeePerformance(No, employee);
+            
+           
+            return RedirectToAction("ProfileList");
+           
         }
 
         public IActionResult Details(int no)

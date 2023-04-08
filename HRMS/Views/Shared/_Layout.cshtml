@@ -101,7 +101,7 @@
 
         //return the number Of Message
 
-        var countMessage = _repo.ListOfEmployeePerformance(null).Count();
+        var countMessage = _repo.ListOfEmployeePerformance(null).Where(e => e.Status == true).Count();
         ViewBag.countMessage=countMessage;
         if(ViewBag.countMessage!=0){
             <li class="nav-item dropdown">

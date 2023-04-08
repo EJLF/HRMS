@@ -50,6 +50,7 @@ namespace HRMS.Data
                      FirstName = "Admin",
                      MiddleName = "Admin",
                      LastName = "Admin",
+                     DepartmentId=1,
                      Gender = "Male",
                      DateOfBirth = DateTime.Now,
                      Email = "admin@admin.com",

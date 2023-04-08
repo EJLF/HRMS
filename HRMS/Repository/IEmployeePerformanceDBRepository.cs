@@ -12,7 +12,7 @@ namespace HRMS.Repository
         // GetId
         EmployeePerformance GetEmployeePerformanceById(int Id);
         // Update
-        EmployeePerformance UpdateEmployeePerformance(string EmployeePerformanceId, EmployeePerformance newEmployeePerformance);
+        EmployeePerformance UpdateEmployeePerformance(int EmployeePerformanceId, EmployeePerformance newEmployeePerformance);
         // Delete
         EmployeePerformance DeleteEmployeePerformance(string EmployeePerformanceId);
 

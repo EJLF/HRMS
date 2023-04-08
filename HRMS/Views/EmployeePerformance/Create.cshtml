@@ -14,7 +14,9 @@
 
               <!-- Floating Labels Form -->
               <form asp-controller="EmployeePerformance" asp-action="Create" method="post" class="row g-3">
-                  <div asp-validation-summary="All" class="text-danger"></div>
+                  <div asp-validation-summary="All" class="text-danger">
+                       <input type="text" class="form-control" id="floatingName" placeholder="Employee Name" asp-for="Status" >
+                  </div>
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="floatingName" placeholder="Employee Name" asp-for="userID" readonly>
