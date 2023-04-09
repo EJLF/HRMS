@@ -8,6 +8,10 @@ namespace HRMS.ViewModel
 {
     public class RegisterEmployeeViewModel
     {
+        public RegisterEmployeeViewModel()
+        {
+            DateHired = DateTime.Today; // set the date to today
+        }
         [Required]
         [MinLength(2)]
         [DisplayName("First Name")]
@@ -38,14 +42,14 @@ namespace HRMS.ViewModel
         [Required]
         [DisplayName("Department")]
         public int DepartmentId { get; set; }
-        [Required]
+        
         [ForeignKey("DepartmentId")]
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
         [Required]
         [DisplayName("Position")]
         public int PositionId { get; set; }
         [ForeignKey("PositionId")]
-        public Position Position { get; set; }
+        public Position? Position { get; set; }
         public string EmployeeType { get; set; }
 
         //Benefits
@@ -76,6 +80,7 @@ namespace HRMS.ViewModel
         //Account Status
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateHired { get; set; }
 
         public bool ActiveStatus { get; set; }
