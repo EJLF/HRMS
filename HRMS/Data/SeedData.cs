@@ -31,9 +31,7 @@ namespace HRMS.Data
             var roleid = Guid.NewGuid().ToString();
             var mroleid = Guid.NewGuid().ToString();
             modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole {Id = Guid.NewGuid().ToString(), Name = "Human Resource",NormalizedName = "HUMAN RESOURCE"},
-
-                new IdentityRole{Id = roleid ,Name = "HR",NormalizedName = "HR"},
+                new IdentityRole {Id = roleid, Name = "Administrator",NormalizedName = "ADMINISTRATOR"},
 
                 new IdentityRole{Id = Guid.NewGuid().ToString(),Name = "Employee",NormalizedName = "EMPLOYEE"},
 

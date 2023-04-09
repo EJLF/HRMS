@@ -35,7 +35,8 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEmployeeViewModel employeeViewModel)
         {
-            
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             if (ModelState.IsValid)
             {
                 var employeeModel = new ApplicationUser
@@ -108,7 +109,7 @@ namespace HRMS.Controllers
                     var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == userViewModel.UserName);
                     if (statusCheck.ActiveStatus == true)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Dashboard");
                     }
 
                     return RedirectToAction("Privacy", "Home");

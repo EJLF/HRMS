@@ -6,7 +6,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Role Table</h1>
+      <h1>Account / Role Table</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -40,7 +40,7 @@
                       <td>@(++i)</td>
                       <td>@userRole.FullName</td>
                       <td>@userRole.RoleName</td>
-                      <td><a class="btn btn-primary" role="button" asp-action="UpdateUserRole" asp-route-roleName="@userRole.RoleName" asp-route-userId="@userRole.UserId">Edit</a></td>
+                      <td><a class="btn btn-primary" role="button" asp-action="UpdateUserRole" asp-route-roleName="@userRole.RoleName" asp-route-userId="@userRole.UserId">Assign Role</a></td>
                     </tr>
                 }
                 </tbody>

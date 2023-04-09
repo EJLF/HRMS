@@ -35,15 +35,18 @@ namespace HRMS.ViewModel
         public string Phone { get; set; }
 
         // Foreign Key
+        [Required]
         [DisplayName("Department")]
-        public int? DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
+        [Required]
         [ForeignKey("DepartmentId")]
-        public Department? Department { get; set; }
+        public Department Department { get; set; }
+        [Required]
         [DisplayName("Position")]
-        public int? PositionId { get; set; }
+        public int PositionId { get; set; }
         [ForeignKey("PositionId")]
-        public Position? Position { get; set; }
-        public string? EmployeeType { get; set; }
+        public Position Position { get; set; }
+        public string EmployeeType { get; set; }
 
         //Benefits
         [RegularExpression("[0-9]{13}", ErrorMessage = "This is not a valid SSS Number")]

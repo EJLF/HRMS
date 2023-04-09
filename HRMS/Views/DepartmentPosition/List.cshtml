@@ -25,22 +25,25 @@
             <div class="card-body">
             </br>  
             <p>
-                <a asp-action="Create">Create New</a>
+                
             </p>
             <form action="List">
-                <div class="input-group md-form align-content-sm-around form-2 pl-0">
-                    <select id="#my-dropdown" name="searchOption" class="form-control" asp-items="ViewBag.DepartmentId"></select>
-                    <input name="searchValue" class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" />
-                    <div class="input-group-append">
-                        <button type="submit" class="input-group-text red lighten-3" id="basic-text1">
-                            <i class="fas fa-search text-black-grey" aria-hidden="true"></i>
-                        </button>
+                <div class="row justify-content-between">
+                    <div class="col-sm-auto">
+                        <a asp-action="Create">Create New</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group md-form align-content-sm-around form-2 pl-0">
+                            <label class="mr-2 mt-2">Filter: </label>
+                            <select id="department-filter" name="searchOption" class="form-control" asp-items="ViewBag.Departments"> </select>
+                        </div>
                     </div>
                 </div>
             </form>
 
+
               <!-- Table with stripped rows -->
-              <table class="table datatable">
+              <table id="employee-table" class="table datatable">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -56,7 +59,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.No)
                             </td>
-                            <td>
+                            <td data-department-id="@item.Department.DeptId">
                                 @Html.DisplayFor(modelItem => item.Department.DeptName)
                             </td>
 
@@ -81,6 +84,27 @@
     </section>
 
   </main><!-- End #main -->
+
+<script>
+    const departmentFilter = document.getElementById('department-filter');
+    const employeeTable = document.getElementById('employee-table');
+
+    departmentFilter.addEventListener('change', () => {
+      const selectedDepartmentId = parseInt(departmentFilter.value);
+      const rows = employeeTable.querySelectorAll('tbody tr');
+
+      rows.forEach((row) => {
+        const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
+
+        if (isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) {
+          row.style.display = 'table-row';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+</script>
+
 
 
 

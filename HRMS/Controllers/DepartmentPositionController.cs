@@ -18,7 +18,7 @@ namespace HRMS.Controllers
         }
         public IActionResult List(string searchOption, string searchValue)
         {
-            ViewBag.DepartmentId = _repo.GetDepartmentList();
+            ViewBag.Departments = _repo.GetDepartmentList();
             var filter = _repo.GetFilter(searchOption, searchValue);
             return View(filter);
         }

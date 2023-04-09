@@ -105,53 +105,55 @@
 
 
 <script>
- const departmentFilter = document.getElementById('department-filter');
-const employeeTable = document.getElementById('employee-table');
-const searchBox = document.getElementById('search-box');
+        const departmentFilter = document.getElementById('department-filter');
+        const employeeTable = document.getElementById('employee-table');
+        const searchBox = document.getElementById('search-box');
 
-departmentFilter.addEventListener('change', () => {
-  const selectedDepartmentId = parseInt(departmentFilter.value);
-  const searchValue = searchBox.value.toLowerCase().trim();
-  const rows = employeeTable.querySelectorAll('tbody tr');
+        departmentFilter.addEventListener('change', () => {
+          const selectedDepartmentId = parseInt(departmentFilter.value);
+          const searchValue = searchBox.value.toLowerCase().trim();
+          const rows = employeeTable.querySelectorAll('tbody tr');
 
-  rows.forEach((row) => {
-    const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
-    const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-    const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-    const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+          rows.forEach((row) => {
+            const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
+            const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
 
-    if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
-        (searchValue === '' ||
-         fullName.includes(searchValue) ||
-         email.includes(searchValue) ||
-         position.includes(searchValue))) {
-      row.style.display = 'table-row';
-    } else {
-      row.style.display = 'none';
-    }
-  });
-});
+            if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
+                (searchValue === '' ||
+                 fullName.includes(searchValue) ||
+                 email.includes(searchValue) ||
+                 position.includes(searchValue))) {
+              row.style.display = 'table-row';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
 
-searchBox.addEventListener('input', () => {
-  const selectedDepartmentId = parseInt(departmentFilter.value);
-  const searchValue = searchBox.value.toLowerCase().trim();
-  const rows = employeeTable.querySelectorAll('tbody tr');
+        searchBox.addEventListener('input', () => {
+          const selectedDepartmentId = parseInt(departmentFilter.value);
+          const searchValue = searchBox.value.toLowerCase().trim();
+          const rows = employeeTable.querySelectorAll('tbody tr');
 
-  rows.forEach((row) => {
-    const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
-    const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-    const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-    const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+          rows.forEach((row) => {
+            const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
+            const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
 
-    if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
-        (searchValue === '' ||
-         fullName.includes(searchValue) ||
-         email.includes(searchValue) ||
-         position.includes(searchValue))) {
-      row.style.display = 'table-row';
-    } else {
-      row.style.display = 'none';
-    }
-  });
-});
+            if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
+                (searchValue === '' ||
+                 fullName.includes(searchValue) ||
+                 email.includes(searchValue) ||
+                 position.includes(searchValue))) {
+              row.style.display = 'table-row';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
 </script>
+
+
