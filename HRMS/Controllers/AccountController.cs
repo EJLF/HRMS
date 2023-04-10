@@ -51,6 +51,7 @@ namespace HRMS.Controllers
                     DateOfBirth = employeeViewModel.DateOfBirth,
                     Phone = employeeViewModel.Phone,
                     DepartmentId = employeeViewModel.DepartmentId,
+                    PositionId = employeeViewModel.PositionId,
                     EmployeeType = employeeViewModel.EmployeeType,
                     SSSNumber = employeeViewModel.SSSNumber,
                     PhilHealthId = employeeViewModel.PhilHealthId,
@@ -79,8 +80,12 @@ namespace HRMS.Controllers
 
                     // login the employee automatically
                     await _signInManager.SignInAsync(employeeModel, isPersistent: false);
+                    var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == employeeViewModel.Email);
+                    if (statusCheck.ActiveStatus == false)
+                    {
+                        return RedirectToAction("Privacy", "Home");
+                    }
                     return RedirectToAction("Index", "Home");
-
                 }
                 foreach (var error in result.Errors)
                 {
