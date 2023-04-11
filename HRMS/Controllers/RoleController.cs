@@ -149,6 +149,7 @@ namespace HRMS.Controllers
             }
 
             var currentRole = await _userManager.GetRolesAsync(user);
+            
 
             var result = await _userManager.RemoveFromRolesAsync(user, currentRole);
 

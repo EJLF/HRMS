@@ -119,10 +119,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                @{int j=0;}
+                @foreach(var performance in ViewBag.EmployeePerformance)
+                {
                       <tr>
-                        <th scope="row"> <a asp-controller="EmployeePerfomance" asp-action="List"></a> 1</th>
-                        <td>Performance</td>
+                        <th scope="row"> <a asp-controller="EmployeePerfomance" asp-action="List"></a> @(++j)</th>
+                        <td>@performance.About</td>
                       </tr>
+                }
                     </tbody>
                   </table>
 

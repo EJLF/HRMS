@@ -18,12 +18,10 @@ namespace HRMS.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
             string con = "Server = (localdb)\\MSSQLLocalDB; Database = HRMSDB; Integrated Security = true;";
             optionsBuilder.UseSqlServer(con).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             base.OnConfiguring(optionsBuilder);
         }
-
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -41,7 +39,6 @@ namespace HRMS.Data
 
 
         // Many to Many
-
         public DbSet<DepartmentPositioncs> DepartmentPositions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

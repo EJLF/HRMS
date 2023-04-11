@@ -112,9 +112,9 @@ namespace HRMS.Controllers
                 if (result.Succeeded)
                 {
                     var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == userViewModel.UserName);
-                    if (statusCheck.ActiveStatus == true)
+                    if (statusCheck.ActiveStatus == true )
                     {
-                        return RedirectToAction("Index", "Dashboard");
+                        return RedirectToAction("Index", "Home");
                     }
 
                     return RedirectToAction("Privacy", "Home");
