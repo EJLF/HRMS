@@ -280,7 +280,34 @@ namespace HRMS.Controllers
             return View(employeeViewModel);
         }
 
-        // Create Pefromance Review
+        // Employe Performance Review
+        public async Task<IActionResult> DepartamentalList()
+        {
+            var email = User.Identity.Name;
+            
+
+
+            if (User.IsInRole("Manager"))
+            {
+                var manager = _userManager.Users.Include(d => d.Department).FirstOrDefault(e => e.Email == email);
+                var employees = _userManager.Users.Include(d => d.Department)
+                                                 .Include(p => p.Position)
+                                                 .Where(status => status.ActiveStatus == true)
+                                                 .Where(e => e.DepartmentId == manager.DepartmentId)
+                                                 .ToList();
+                ViewBag.DepartmentName = manager.Department.DeptName;
+                ViewBag.DepartmentHead = manager.FullName;
+                return View(employees.ToList());
+            }
+            else if (User.IsInRole("Employee"))
+            {
+                var employeeRole = await _userManager.GetUsersInRoleAsync("Manager");
+                /////dito lagay kulng na code
+            }
+
+
+            return View();
+        }
 
     }
 }

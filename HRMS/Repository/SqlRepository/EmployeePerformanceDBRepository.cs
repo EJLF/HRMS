@@ -54,5 +54,10 @@ namespace HRMS.Repository.SqlRepository
             _dbcontext.SaveChanges();
             return newEmployeePerformance;
         }
+
+        public List<EmployeePerformance> ListOfEmployeePerformanceReviewBy(string employeeID)
+        {
+            return _dbcontext.EmployeePerformances.Where(e => e.ReviewBy == employeeID).AsNoTracking().ToList();
+        }
     }
 }
