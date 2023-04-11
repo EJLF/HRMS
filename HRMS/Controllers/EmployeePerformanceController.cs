@@ -91,6 +91,25 @@ namespace HRMS.Controllers
            
         }
 
+        [HttpGet]
+        public IActionResult Update(int no)
+        {
+            var employee = _repo.GetEmployeePerformanceById(no);
+            return View(employee);
+        }
+        [HttpPost]
+        public IActionResult Update(int no,EmployeePerformance newPerformance)
+        {
+            var result = _repo.UpdateEmployeePerformance(no,newPerformance);
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Delete(int no)
+        {
+            _repo.DeleteEmployeePerformance(no);
+            return RedirectToAction("List");
+
+        }
         public IActionResult Details(int no)
         {
             return View(_repo.GetEmployeePerformanceById(no));

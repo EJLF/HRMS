@@ -14,7 +14,7 @@ namespace HRMS.Repository
         // Update
         EmployeePerformance UpdateEmployeePerformance(int EmployeePerformanceId, EmployeePerformance newEmployeePerformance);
         // Delete
-        EmployeePerformance DeleteEmployeePerformance(string EmployeePerformanceId);
+        EmployeePerformance DeleteEmployeePerformance(int EmployeePerformanceId);
 
     }
 }

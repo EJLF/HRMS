@@ -23,9 +23,15 @@ namespace HRMS.Repository.SqlRepository
             return newEmployeePerformance;
         }
 
-        public EmployeePerformance DeleteEmployeePerformance(string EmployeePerformanceId)
+        public EmployeePerformance DeleteEmployeePerformance(int EmployeePerformanceId)
         {
-            throw new NotImplementedException();
+            var performance = GetEmployeePerformanceById(EmployeePerformanceId);
+            if (performance != null)
+            {
+                _dbcontext.EmployeePerformances.Remove(performance);
+                _dbcontext.SaveChanges();
+            }
+            return performance;
         }
 
         public EmployeePerformance GetEmployeePerformanceById(int Id)
