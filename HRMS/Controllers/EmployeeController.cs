@@ -328,7 +328,7 @@ namespace HRMS.Controllers
             var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();
             if(managerName == null)
             {
-                ViewBag.DepartmentHead = "The Manager is not Set";
+                ViewBag.DepartmentHead = "Unassigned";
             }
             else
             {

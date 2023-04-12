@@ -43,7 +43,6 @@ namespace HRMS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.SeedDefaultData();
             base.OnModelCreating(modelBuilder);
         }

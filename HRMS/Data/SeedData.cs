@@ -17,7 +17,7 @@ namespace HRMS.Data
                 new Department(2, "Information Technology")
                 ) ;
             modelBuilder.Entity<Position>().HasData(
-                new Position(1, "Manager"),
+                new Position(1, "Administrative Assistant"),
                 new Position(2, "Team Leader"),
                 new Position(3, "Associate")
                 );
