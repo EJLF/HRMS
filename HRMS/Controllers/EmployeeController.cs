@@ -190,8 +190,23 @@ namespace HRMS.Controllers
 
 
         //Drop Delete Employee
+
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string accountId)
+        {
+            var oldValue = await _userManager.FindByIdAsync(accountId);
+            var result = await _userManager.DeleteAsync(oldValue);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("InactiveList");
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return View();
+        }
+        public async Task<IActionResult> DeleteFromActive(string accountId)
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
             {

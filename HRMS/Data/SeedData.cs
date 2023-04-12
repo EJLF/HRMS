@@ -48,6 +48,7 @@ namespace HRMS.Data
                      FirstName = "Admin",
                      MiddleName = "Admin",
                      LastName = "Admin",
+                     FullName = "Administrator",
                      DepartmentId=1,
                      Gender = "Male",
                      DateOfBirth = DateTime.Now,

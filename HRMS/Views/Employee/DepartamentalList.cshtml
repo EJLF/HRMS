@@ -9,9 +9,10 @@
       <h1>Employee Table - @ViewBag.DepartmentName <span>Department</span></h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item">Employee</li>
+          <li class="breadcrumb-item">Department</li>
+          <li class="breadcrumb-item active">List</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -36,8 +37,10 @@
                     <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Position</th>
+                 @if(User.IsInRole("Manager")){
                     <th scope="col">Review</th>
                     <th scope="col">View</th>
+                 }
                     
                   </tr>
                 </thead>
@@ -60,9 +63,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Position.Name)
                         </td>
-         
+                         @if(User.IsInRole("Manager")){
                             <td>   <a class="btn btn-primary" role="button" asp-controller="EmployeePerformance" asp-action="Create" asp-route-userID="@item.Id" asp-route-employeeName="@item.FullName"> <i class="bi bi-chat-left-text"></i></a> </td>
                             <td>   <a class="btn btn-primary" role="button" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a> </td> 
+                        }      
                     </tr>
                     }
                 </tbody>
