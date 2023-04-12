@@ -71,6 +71,7 @@ namespace HRMS.Controllers
             return View(employees.ToList());
         }
 
+        [Authorize(Roles = "Administrator, Employee, Manager")]
         public IActionResult Details(string accountId)
         {
             ViewBag.DepartmentList = _repo.GetDepartmentList();
@@ -106,6 +107,7 @@ namespace HRMS.Controllers
         }
 
         //Update Accout
+        [Authorize(Roles = "Administrator, Employee, Manager")]
         [HttpGet]
         public async Task<IActionResult> Update(string accountId)
         {
@@ -138,6 +140,8 @@ namespace HRMS.Controllers
             };
             return View(employeeViewModel);
         }
+
+        [Authorize(Roles = "Administrator, Employee, Manager")]
         [HttpPost]
         public async Task<IActionResult> Update(EditEmployeeViewModel employee)
         {
@@ -190,7 +194,6 @@ namespace HRMS.Controllers
 
 
         //Drop Delete Employee
-
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string accountId)
         {
@@ -206,6 +209,7 @@ namespace HRMS.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteFromActive(string accountId)
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
