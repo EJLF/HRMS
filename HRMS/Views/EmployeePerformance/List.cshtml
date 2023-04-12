@@ -54,12 +54,15 @@
                                 @Html.DisplayFor(modelItem => item.ReviewBy)
                             </td>
                  @if(!User.IsInRole("Employee"))
-                         {
+                         {                             
                             <td>
-                                <a asp-action="Details" asp-route-No="@item.No">Details</a> |
-                                <a asp-action="Update" asp-route-No="@item.No">Edit</a> |
-                                <a asp-action="Delete" asp-route-No="@item.No">Delete</a>
+                                <a class="btn btn-primary" role="button" asp-action="Update" asp-route-No="@item.No">Edit</a> |
+                                <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
+                            if(item.Status==true){
+                                <td><span class="badge bg-success">New</span></td>
+                            }
+                            
                          }
                         </tr>
                 }

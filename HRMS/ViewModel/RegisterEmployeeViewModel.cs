@@ -53,16 +53,18 @@ namespace HRMS.ViewModel
         public string EmployeeType { get; set; }
 
         //Benefits
+        [Required]
         [RegularExpression("[0-9]{13}", ErrorMessage = "This is not a valid SSS Number")]
         [Display(Name = "SSS Number")]
-        public string? SSSNumber { get; set; }
-
+        public string SSSNumber { get; set; }
+        [Required]
         [RegularExpression("[0-9]{12}", ErrorMessage = "This is not a valid PagIbig Number")]
         [Display(Name = "PagIbig Number")]
-        public string? PagIbigId { get; set; }
+        public string PagIbigId { get; set; }
+        [Required]
         [RegularExpression("[0-9]{12}", ErrorMessage = "This is not a valid PhilHealth Number")]
         [Display(Name = "Philhealth Number")]
-        public string? PhilHealthId { get; set; }
+        public string PhilHealthId { get; set; }
 
 
         //Address

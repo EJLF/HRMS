@@ -2,6 +2,7 @@
 using HRMS.Models;
 using HRMS.Repository;
 using HRMS.Repository.SqlRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -85,6 +86,7 @@ namespace HRMS.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> CreateAsync(string employeeName, string userID)
         {
 
@@ -102,6 +104,7 @@ namespace HRMS.Controllers
             }
         }
         [HttpPost]
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Create(EmployeePerformance newEmployeePerformance)
         {
 
@@ -130,18 +133,20 @@ namespace HRMS.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Update(int no)
         {
             var employee = _repo.GetEmployeePerformanceById(no);
             return View(employee);
         }
         [HttpPost]
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Update(int no,EmployeePerformance newPerformance)
         {
             var result = _repo.UpdateEmployeePerformance(no,newPerformance);
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Delete(int no)
         {
             _repo.DeleteEmployeePerformance(no);

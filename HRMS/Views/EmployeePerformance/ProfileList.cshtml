@@ -50,13 +50,16 @@
                             </td>
                         @if(@item.Status==true)
                         {
+                            <td><span class="badge bg-success">Unread</span></td>
                              <td>
-                                <a asp-action="Details" asp-route-No="@item.No">New Message</a>
+                                <a class="btn btn-success" role="button" asp-action="Details" asp-route-No="@item.No">Mark as Read</a>
                             </td>
+                            
                         }
                         else{
+                            <td><span class="badge bg-primary">Read</span></td>
                              <td>
-                                <a asp-action="Details" asp-route-No="@item.No">View Message</a>
+                                <a class="btn btn-primary" role="button" asp-action="Details" asp-route-No="@item.No">View Message</a>
                             </td>
                         }
                            

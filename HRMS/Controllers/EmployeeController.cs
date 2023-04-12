@@ -29,7 +29,7 @@ namespace HRMS.Controllers
 
 
 
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> List(int searchOption = 0, string employeeSearch = "")
         {
             var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == true).Include(p => p.Position).ToList();
@@ -49,6 +49,7 @@ namespace HRMS.Controllers
             return View(employees.ToList());
         }
 
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> InactiveList(int searchOption = 0, string employeeSearch = "")
         {
             var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus==false).CountAsync();
@@ -88,6 +89,7 @@ namespace HRMS.Controllers
                 Email = employee.Email,
                 Phone = employee.Phone,
                 DepartmentId = employee.DepartmentId,
+                PositionId = employee.PositionId,
                 EmployeeType = employee.EmployeeType,
                 SSSNumber = employee.SSSNumber,
                 PhilHealthId = employee.PhilHealthId,
@@ -168,7 +170,15 @@ namespace HRMS.Controllers
             var result = await _userManager.UpdateAsync(oldValue);
             if (result.Succeeded)
             {
-                return RedirectToAction("List");
+                if (User.IsInRole("Administrator"))
+                {
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    return RedirectToAction("Profile","Details");
+                }
+                
             }
             foreach (var error in result.Errors)
             {
@@ -178,7 +188,9 @@ namespace HRMS.Controllers
 
         }
 
+
         //Drop Delete Employee
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string accountId)
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
@@ -197,6 +209,7 @@ namespace HRMS.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteFormInActive(string accountId)
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
@@ -217,6 +230,7 @@ namespace HRMS.Controllers
         }
 
         //Create
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -224,6 +238,7 @@ namespace HRMS.Controllers
             ViewBag.PositionList = _repo.GetPositionList();
             return View();
         }
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> Create(RegisterEmployeeViewModel employeeViewModel)
         {
@@ -284,29 +299,28 @@ namespace HRMS.Controllers
         public async Task<IActionResult> DepartamentalList()
         {
             var email = User.Identity.Name;
-            
-
-
-            if (User.IsInRole("Manager"))
+            var employee = _userManager.Users.Include(d => d.Department).FirstOrDefault(e => e.Email == email);
+            var employeeList = _userManager.Users.Include(d => d.Department)
+                                                .Include(p => p.Position)
+                                                .Where(status => status.ActiveStatus == true)
+                                                .Where(e => e.DepartmentId == employee.DepartmentId)
+                                                .ToList();
+            var manager = await _userManager.GetUsersInRoleAsync("Manager");
+            var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();
+            if(managerName == null)
             {
-                var manager = _userManager.Users.Include(d => d.Department).FirstOrDefault(e => e.Email == email);
-                var employees = _userManager.Users.Include(d => d.Department)
-                                                 .Include(p => p.Position)
-                                                 .Where(status => status.ActiveStatus == true)
-                                                 .Where(e => e.DepartmentId == manager.DepartmentId)
-                                                 .ToList();
-                ViewBag.DepartmentName = manager.Department.DeptName;
-                ViewBag.DepartmentHead = manager.FullName;
-                return View(employees.ToList());
+                ViewBag.DepartmentHead = "The Manager is not Set";
             }
-            else if (User.IsInRole("Employee"))
+            else
             {
-                var employeeRole = await _userManager.GetUsersInRoleAsync("Manager");
-                /////dito lagay kulng na code
+                ViewBag.DepartmentHead = managerName.FullName;
             }
+            ViewBag.DepartmentName = employee.Department.DeptName;
 
-
-            return View();
+            return View(employeeList.ToList());
+           
+                
+              
         }
 
     }
