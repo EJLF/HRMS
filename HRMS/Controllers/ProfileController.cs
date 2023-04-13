@@ -20,12 +20,18 @@ namespace HRMS.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-        public IActionResult Details()
+        public async Task<IActionResult> DetailsAsync()
         {
             ViewBag.DepartmentList = _repo.GetDepartmentList();
             ViewBag.PositionList = _repo.GetPositionList();
+            
             var email = User.Identity.Name;
             var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(e => e.Email == email);
+            var roles = await _userManager.GetRolesAsync(employee);
+
+            // assuming the employee has only one role
+            ViewBag.UserRole = roles.FirstOrDefault();
+
             EditEmployeeViewModel employeeViewModel = new EditEmployeeViewModel()
             {
                 Id = employee.Id,

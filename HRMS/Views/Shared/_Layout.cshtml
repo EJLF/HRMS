@@ -110,6 +110,7 @@ else if (_signInManager.IsSignedIn(User))
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
+                        <a class="dropdown-item" asp-area="" asp-controller="Profile" asp-action="Details">Profile</a>
                         <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Change Password</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                     </li>
