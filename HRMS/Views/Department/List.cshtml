@@ -73,5 +73,19 @@
             });
         });
     </script>
+
+    @if(TempData["DepartmentAlert"] != null)
+    {
+    <script>
+        // Show the alert
+        Swal.fire({
+            title: "Alert",
+            text: '@TempData["DepartmentAlert"]',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK"
+        });
+    </script>
+    }
 }
 

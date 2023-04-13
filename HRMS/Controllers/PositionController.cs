@@ -44,7 +44,6 @@ namespace HRMS.Controllers
         public IActionResult Update(int PosId)
         {
             Position Position = _repo.GetPositionById(PosId); ;
-            //ViewBag.PositionId = _repo.GetPositionList(Deptid);
             return View(Position);
         }
         [HttpPost]
@@ -61,8 +60,18 @@ namespace HRMS.Controllers
         }
         public IActionResult Delete(int PosId)
         {
-            _repo.DeletePosition(PosId);
-            return RedirectToAction("List");
+            var position = _repo.GetPositionById(PosId);
+            try
+            {
+                _repo.DeletePosition(PosId);
+                return RedirectToAction("List");
+            }
+            catch
+            {
+                TempData["PositionAlert"] = "It is not possible to delete this position while there is an employee assigned to it.";
+                return RedirectToAction("List");
+            }
+           
         }
     }
 }

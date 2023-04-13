@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.Migrations
 {
     [DbContext(typeof(HRMSDBContext))]
-    [Migration("20230409071938_init")]
+    [Migration("20230413141528_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -219,28 +219,30 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2c58a756-b07b-40c3-9d66-5671cb0a3a6b",
+                            Id = "1086c3f1-eb49-4421-8544-3d8f58658149",
                             AccessFailedCount = 0,
                             ActiveStatus = true,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "d2949c78-ffad-46d1-9d79-066510e71c57",
+                            ConcurrencyStamp = "314b96e3-ecab-4e47-8594-62321fd0a6be",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 9, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9925),
+                            DateOfBirth = new DateTime(2023, 4, 13, 22, 15, 27, 609, DateTimeKind.Local).AddTicks(4234),
                             DepartmentId = 1,
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
+                            FullName = "Administrator",
                             Gender = "Male",
                             LastName = "Admin",
                             LockoutEnabled = false,
                             MiddleName = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBZ8mdE7009vvfYhUM1IpOd2Gi8/26LWghXta99GUucHGMxOI/mWDCBRRrL+aEyn5Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPaL3of6lEX9985kijI4yr+E6D1d4mSAjHtO9k9K6wqPJ6z8WsO3ff9bnMvYxge8hg==",
                             Phone = "09111111111",
                             PhoneNumberConfirmed = false,
-                            PostalCode = 1,
+                            PositionId = 1,
+                            PostalCode = 123,
                             SecurityStamp = "",
                             State = "Admin",
                             Street = "Admin",
@@ -385,77 +387,6 @@ namespace HRMS.Migrations
                     b.HasIndex("PositionId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            EmpId = 1,
-                            ActiveStatus = true,
-                            Barangay = "Sabang",
-                            City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9787),
-                            DateOfBirth = new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9773),
-                            DepartmentId = 2,
-                            Email = "alvin@gmail.com",
-                            EmployeeType = "Regular",
-                            FirstName = "Alvin",
-                            Gender = "Male",
-                            LastName = "Root",
-                            MiddleName = "Eleuterio",
-                            Password = "alvin",
-                            Phone = "09952610728",
-                            PositionId = 2,
-                            PostalCode = 4217,
-                            State = "Batangas",
-                            Street = "P. Laygo St.",
-                            UserName = "alvin"
-                        },
-                        new
-                        {
-                            EmpId = 2,
-                            ActiveStatus = true,
-                            Barangay = "Sabang",
-                            City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 11, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9795),
-                            DateOfBirth = new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9795),
-                            DepartmentId = 2,
-                            Email = "earl@gmail.com",
-                            EmployeeType = "Regular",
-                            FirstName = "Earl Joseph",
-                            Gender = "Male",
-                            LastName = "Ferran",
-                            MiddleName = "Litong",
-                            Password = "earl",
-                            Phone = "09657610728",
-                            PositionId = 1,
-                            PostalCode = 4217,
-                            State = "Mindoro",
-                            Street = "P. Laygo St.",
-                            UserName = "earl"
-                        },
-                        new
-                        {
-                            EmpId = 3,
-                            ActiveStatus = true,
-                            Barangay = "Sabang",
-                            City = "Lipa City",
-                            DateHired = new DateTime(2023, 4, 12, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9799),
-                            DateOfBirth = new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9797),
-                            DepartmentId = 1,
-                            Email = "cocomama@gmail.com",
-                            EmployeeType = "Regular",
-                            FirstName = "Coco",
-                            Gender = "Male",
-                            LastName = "Martin",
-                            MiddleName = "Mama",
-                            Password = "coco",
-                            Phone = "09127610728",
-                            PositionId = 2,
-                            PostalCode = 4217,
-                            State = "Mindoro",
-                            Street = "P. Laygo St.",
-                            UserName = "coco"
-                        });
                 });
 
             modelBuilder.Entity("HRMS.Models.EmployeePerformance", b =>
@@ -738,22 +669,22 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3d596570-e91d-4874-b057-bb10b1a1cd80",
-                            ConcurrencyStamp = "c9791b75-2f36-45b1-a692-944071fda69e",
+                            Id = "4f4689d6-2fab-434e-9067-9099ddb7784e",
+                            ConcurrencyStamp = "5f68f486-4ef1-4655-811b-1079fdc7e7bf",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "61ea360e-475a-4bbc-8137-9f9f9f808051",
-                            ConcurrencyStamp = "cdc8d460-57c4-492a-8688-ee0d9346dbd9",
+                            Id = "9da5f688-1c82-4f57-8cf4-736ad1c632c0",
+                            ConcurrencyStamp = "7afffedf-7bf3-4ea5-81b2-a47cd03b7edd",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "a035d6de-693c-439e-b55d-af385a4cb25f",
-                            ConcurrencyStamp = "fb876b4f-b3a9-4cac-9493-04e88a41b43b",
+                            Id = "c6b5b2a0-2f2e-4768-bcf7-ddec4acc9351",
+                            ConcurrencyStamp = "2854def2-51e7-4a5e-99da-af8a5106de54",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -848,8 +779,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2c58a756-b07b-40c3-9d66-5671cb0a3a6b",
-                            RoleId = "3d596570-e91d-4874-b057-bb10b1a1cd80"
+                            UserId = "1086c3f1-eb49-4421-8544-3d8f58658149",
+                            RoleId = "4f4689d6-2fab-434e-9067-9099ddb7784e"
                         });
                 });
 

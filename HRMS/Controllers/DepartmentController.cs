@@ -61,8 +61,19 @@ namespace HRMS.Controllers
         }
         public IActionResult Delete(int DeptId)
         {
-            _repo.DeleteDepartment(DeptId);
-            return RedirectToAction("List");
+            var department = _repo.GetDepartmentById(DeptId);
+            try
+            {
+                _repo.DeleteDepartment(DeptId);
+                return RedirectToAction("List");
+            }
+            catch
+            {
+                
+                TempData["DepartmentAlert"] = "It is not possible to delete this department while there is an employee assigned to it.";
+                return RedirectToAction("List");
+            }
+           
         }
     }
 }

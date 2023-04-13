@@ -460,9 +460,9 @@ namespace HRMS.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3d596570-e91d-4874-b057-bb10b1a1cd80", "c9791b75-2f36-45b1-a692-944071fda69e", "Administrator", "ADMINISTRATOR" },
-                    { "61ea360e-475a-4bbc-8137-9f9f9f808051", "cdc8d460-57c4-492a-8688-ee0d9346dbd9", "Employee", "EMPLOYEE" },
-                    { "a035d6de-693c-439e-b55d-af385a4cb25f", "fb876b4f-b3a9-4cac-9493-04e88a41b43b", "Manager", "MANAGER" }
+                    { "4f4689d6-2fab-434e-9067-9099ddb7784e", "5f68f486-4ef1-4655-811b-1079fdc7e7bf", "Administrator", "ADMINISTRATOR" },
+                    { "9da5f688-1c82-4f57-8cf4-736ad1c632c0", "7afffedf-7bf3-4ea5-81b2-a47cd03b7edd", "Employee", "EMPLOYEE" },
+                    { "c6b5b2a0-2f2e-4768-bcf7-ddec4acc9351", "2854def2-51e7-4a5e-99da-af8a5106de54", "Manager", "MANAGER" }
                 });
 
             migrationBuilder.InsertData(
@@ -487,22 +487,12 @@ namespace HRMS.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveStatus", "Barangay", "City", "ConcurrencyStamp", "DateHired", "DateOfBirth", "DepartmentId", "Email", "EmailConfirmed", "EmployeeType", "FirstName", "FullName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PagIbigId", "PasswordHash", "PhilHealthId", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "PositionId", "PostalCode", "SSSNumber", "SecurityStamp", "State", "Street", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2c58a756-b07b-40c3-9d66-5671cb0a3a6b", 0, true, "Admin", "Admin", "d2949c78-ffad-46d1-9d79-066510e71c57", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 9, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9925), 1, "admin@admin.com", true, null, "Admin", null, "Male", "Admin", false, null, "Admin", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", null, "AQAAAAEAACcQAAAAEBZ8mdE7009vvfYhUM1IpOd2Gi8/26LWghXta99GUucHGMxOI/mWDCBRRrL+aEyn5Q==", null, "09111111111", null, false, null, 1, null, "", "Admin", "Admin", false, "admin@admin.com" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmpId", "ActiveStatus", "Barangay", "City", "DateHired", "DateOfBirth", "DepartmentId", "Email", "EmployeeType", "FirstName", "Gender", "LastName", "MiddleName", "Password", "Phone", "PositionId", "PostalCode", "State", "Street", "UserName" },
-                values: new object[,]
-                {
-                    { 1, true, "Sabang", "Lipa City", new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9787), new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9773), 2, "alvin@gmail.com", "Regular", "Alvin", "Male", "Root", "Eleuterio", "alvin", "09952610728", 2, 4217, "Batangas", "P. Laygo St.", "alvin" },
-                    { 2, true, "Sabang", "Lipa City", new DateTime(2023, 4, 11, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9795), new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9795), 2, "earl@gmail.com", "Regular", "Earl Joseph", "Male", "Ferran", "Litong", "earl", "09657610728", 1, 4217, "Mindoro", "P. Laygo St.", "earl" },
-                    { 3, true, "Sabang", "Lipa City", new DateTime(2023, 4, 12, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9799), new DateTime(2023, 4, 10, 15, 19, 37, 873, DateTimeKind.Local).AddTicks(9797), 1, "cocomama@gmail.com", "Regular", "Coco", "Male", "Martin", "Mama", "coco", "09127610728", 2, 4217, "Mindoro", "P. Laygo St.", "coco" }
-                });
+                values: new object[] { "1086c3f1-eb49-4421-8544-3d8f58658149", 0, true, "Admin", "Admin", "314b96e3-ecab-4e47-8594-62321fd0a6be", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 13, 22, 15, 27, 609, DateTimeKind.Local).AddTicks(4234), 1, "admin@admin.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", null, "AQAAAAEAACcQAAAAEPaL3of6lEX9985kijI4yr+E6D1d4mSAjHtO9k9K6wqPJ6z8WsO3ff9bnMvYxge8hg==", null, "09111111111", null, false, 1, 123, null, "", "Admin", "Admin", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "3d596570-e91d-4874-b057-bb10b1a1cd80", "2c58a756-b07b-40c3-9d66-5671cb0a3a6b" });
+                values: new object[] { "4f4689d6-2fab-434e-9067-9099ddb7784e", "1086c3f1-eb49-4421-8544-3d8f58658149" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AddressTypeId",

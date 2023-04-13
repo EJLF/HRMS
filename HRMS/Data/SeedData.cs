@@ -17,15 +17,9 @@ namespace HRMS.Data
                 new Department(2, "Information Technology")
                 ) ;
             modelBuilder.Entity<Position>().HasData(
-                new Position(1, "Administrative Assistant"),
+                new Position(1, "Manager"),
                 new Position(2, "Team Leader"),
                 new Position(3, "Associate")
-                );
-
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee(1, "Alvin", "Eleuterio", "Root", "Alvin Eleuterio Root", "Male", DateTime.Now.AddDays(1),"alvin@gmail.com", "09952610728", "alvin", "alvin", 2, 2, "P. Laygo St.", "Sabang", "Lipa City", "Batangas", 4217, true, "Regular", DateTime.Now.AddDays(1)),
-                new Employee(2, "Earl Joseph", "Litong", "Ferran", "Earl Joseph Litong Ferran", "Male", DateTime.Now.AddDays(1), "earl@gmail.com", "09657610728", "earl", "earl", 2, 1, "P. Laygo St.", "Sabang", "Lipa City", "Mindoro", 4217, true, "Regular", DateTime.Now.AddDays(2)),
-                new Employee(3, "Coco", "Mama", "Martin", "Coco Mama Martin", "Male", DateTime.Now.AddDays(1), "cocomama@gmail.com", "09127610728", "coco", "coco", 1, 2, "P. Laygo St.", "Sabang", "Lipa City", "Mindoro", 4217, true, "Regular", DateTime.Now.AddDays(3))
                 );
 
             var roleid = Guid.NewGuid().ToString();
@@ -50,6 +44,7 @@ namespace HRMS.Data
                      LastName = "Admin",
                      FullName = "Administrator",
                      DepartmentId=1,
+                     PositionId=1,
                      Gender = "Male",
                      DateOfBirth = DateTime.Now,
                      Email = "admin@admin.com",
@@ -62,7 +57,7 @@ namespace HRMS.Data
                      Barangay = "Admin",
                      City = "Admin",
                      State = "Admin",
-                     PostalCode = 1,
+                     PostalCode = 123,
                      ActiveStatus=true,
 
                      PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
@@ -70,8 +65,7 @@ namespace HRMS.Data
                  }
                  );
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
-                    new IdentityUserRole<string> { UserId = userId, RoleId = roleid } // Admin user has Admin role
-                  //  new IdentityUserRole<string> { UserId = managerId, RoleId = mroleid }
+                    new IdentityUserRole<string> { UserId = userId, RoleId = roleid }                  
                 );
            
         }

@@ -34,13 +34,15 @@ namespace HRMS.ViewModel
         [DisplayName("Phone Number")]
         [MaxLength(11)]
         public string Phone { get; set; }
+        public string? Email { get; set; }
 
-        public string? Email { get; set; }   
         // Foreign Key
+        [Required]
         [DisplayName("Department")]
         public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public Department? Department { get; set; }
+        [Required]
         [DisplayName("Position")]
         public int? PositionId { get; set; }
         [ForeignKey("PositionId")]

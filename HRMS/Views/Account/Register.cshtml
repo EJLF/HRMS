@@ -15,8 +15,7 @@
               <!-- Multi Columns Form -->
               
               <form asp-controller="Account" asp-action="Register" method="post" class="row g-3">
-                  <div asp-validation-summary="All" class="text-danger" >
-                  </div>
+                  
                 <div class="col-md-4">
                   <label for="inputEmail5" class="form-label">First Name</label>
                   <input asp-for="FirstName" class="form-control" />
@@ -34,7 +33,7 @@
                 </div>
                 <div class="col-md-2">
                   <label for="inputPassword5" class="form-label">Gender</label>
-                  <select  asp-for="Gender" name="Gender" class="form-control">
+                  <select  asp-for="Gender" name="Gender" class="form-select">
                         <option value="">Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -54,17 +53,17 @@
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Department</label>
-                  <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentList"></select>
+                  <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentList"></select>
                   <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Position</label>
-                  <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionList"></select>
+                  <select asp-for="PositionId" class="form-select" asp-items="ViewBag.PositionList"></select>
                   <span asp-validation-for="PositionId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Employment Type</label>
-                    <select  asp-for="EmployeeType" name="EmployeeType" class="form-control">
+                    <select  asp-for="EmployeeType" name="EmployeeType" class="form-select">
                         <option value="">Employment Type</option>
                         <option value="Regular">Regular</option>
                         <option value="Partime">Partime</option>
@@ -122,6 +121,7 @@
                   <label for="inputName5" class="form-label">Email</label>
                    <input asp-for="Email" class="form-control"/>
                    <span asp-validation-for="Email" class="text-danger"></span>
+                   
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Password</label>
@@ -133,7 +133,9 @@
                    <input asp-for="ConfirmPassword" class="form-control"/>
                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
+                
                 <div class="text-center">
+                  <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>

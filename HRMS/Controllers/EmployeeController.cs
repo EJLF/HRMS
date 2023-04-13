@@ -130,6 +130,8 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(EditEmployeeViewModel employee)
         {
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             if (ModelState.IsValid)
             {
                 var oldValue = await _userManager.FindByIdAsync(employee.Id.ToString());

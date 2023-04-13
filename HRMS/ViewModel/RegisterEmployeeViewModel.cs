@@ -45,11 +45,13 @@ namespace HRMS.ViewModel
         public int DepartmentId { get; set; }
         
         [ForeignKey("DepartmentId")]
+        [DisplayName("Department")]
         public Department? Department { get; set; }
         [Required]
         [DisplayName("Position")]
         public int PositionId { get; set; }
         [ForeignKey("PositionId")]
+        [DisplayName("Position")]
         public Position? Position { get; set; }
         public string EmployeeType { get; set; }
 
@@ -102,6 +104,7 @@ namespace HRMS.ViewModel
         [MinLength(8)]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Password and confirm password doesnt match")]

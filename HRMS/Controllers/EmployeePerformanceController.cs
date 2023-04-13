@@ -14,16 +14,21 @@ namespace HRMS.Controllers
     {
 
         IEmployeePerformanceDBRepository _repo;
+        IDepartmentRepository _deptrepo;
         private UserManager<ApplicationUser> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
-        public EmployeePerformanceController(IEmployeePerformanceDBRepository repo, UserManager<ApplicationUser> userManager)
+        public EmployeePerformanceController(IEmployeePerformanceDBRepository repo,
+                                             IDepartmentRepository deptrepo, 
+                                             UserManager<ApplicationUser> userManager)
         {
             _repo = repo;
             _userManager = userManager;
+            _deptrepo = deptrepo;
         }
 
         public IActionResult List()
         {
+            ViewBag.DepartmentList = _deptrepo.GetDepartmentList();
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
             if (User.IsInRole("Administrator"))

@@ -24,6 +24,23 @@
           <div class="card">
             <div class="card-body">
             </br>  
+            <form action="List">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group md-form align-content-sm-around form-2 pl-0">
+                            <select id="department-filter" name="searchOption" class="form-select" asp-items="ViewBag.DepartmentList"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="input-group md-form align-content-sm-around form-2 pl-0">
+                            <input id="search-box" type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button id="search-button" class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -79,5 +96,56 @@
 
   </main><!-- End #main -->
 
+  <script>
+        const departmentFilter = document.getElementById('department-filter');
+        const employeeTable = document.getElementById('employee-table');
+        const searchBox = document.getElementById('search-box');
+
+        departmentFilter.addEventListener('change', () => {
+          const selectedDepartmentId = parseInt(departmentFilter.value);
+          const searchValue = searchBox.value.toLowerCase().trim();
+          const rows = employeeTable.querySelectorAll('tbody tr');
+
+          rows.forEach((row) => {
+            const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
+            const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+            if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
+                (searchValue === '' ||
+                 fullName.includes(searchValue) ||
+                 email.includes(searchValue) ||
+                 position.includes(searchValue))) {
+              row.style.display = 'table-row';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+
+        searchBox.addEventListener('input', () => {
+          const selectedDepartmentId = parseInt(departmentFilter.value);
+          const searchValue = searchBox.value.toLowerCase().trim();
+          const rows = employeeTable.querySelectorAll('tbody tr');
+
+          rows.forEach((row) => {
+            const departmentId = parseInt(row.querySelector('[data-department-id]').getAttribute('data-department-id'));
+            const fullName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            const position = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+            if ((isNaN(selectedDepartmentId) || selectedDepartmentId === 0 || departmentId === selectedDepartmentId) &&
+                (searchValue === '' ||
+                 fullName.includes(searchValue) ||
+                 email.includes(searchValue) ||
+                 position.includes(searchValue))) {
+              row.style.display = 'table-row';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+</script>
 
 
