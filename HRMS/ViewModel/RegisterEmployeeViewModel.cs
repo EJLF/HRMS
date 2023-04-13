@@ -55,19 +55,19 @@ namespace HRMS.ViewModel
 
         //Benefits
         [Required]
-        [RegularExpression("[0-9]{13}", ErrorMessage = "This is not a valid SSS Number")]
         [Display(Name = "SSS Number")]
-        [MaxLength(13)]
+        [MinLength(12)]
+        [MaxLength(12)]
         public string SSSNumber { get; set; }
         [Required]
-        [RegularExpression("[0-9]{12}", ErrorMessage = "This is not a valid PagIbig Number")]
         [Display(Name = "PagIbig Number")]
-        [MaxLength(12)]
+        [MinLength(14)]
+        [MaxLength(14)]
         public string PagIbigId { get; set; }
         [Required]
-        [RegularExpression("[0-9]{12}", ErrorMessage = "This is not a valid PhilHealth Number")]
         [Display(Name = "Philhealth Number")]
-        [MaxLength(12)]
+        [MinLength(14)]
+        [MaxLength(14)]
         public string PhilHealthId { get; set; }
 
 

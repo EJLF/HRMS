@@ -130,48 +130,49 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(EditEmployeeViewModel employee)
         {
-
-            var oldValue = await _userManager.FindByIdAsync(employee.Id.ToString());
+            if (ModelState.IsValid)
             {
-
-                oldValue.FirstName = employee.FirstName;
-                oldValue.MiddleName = employee.MiddleName;
-                oldValue.LastName = employee.LastName;
-                oldValue.FullName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
-                oldValue.Gender = employee.Gender;
-                oldValue.DateOfBirth = employee.DateOfBirth;
-                oldValue.Phone = employee.Phone;
-                oldValue.DepartmentId = employee.DepartmentId;
-                oldValue.PositionId = employee.PositionId;
-                oldValue.EmployeeType = employee.EmployeeType;
-                oldValue.SSSNumber = employee.SSSNumber;
-                oldValue.PhilHealthId = employee.PhilHealthId;
-                oldValue.PagIbigId = employee.PagIbigId;
-                oldValue.Street = employee.Street;
-                oldValue.Barangay = employee.Barangay;
-                oldValue.City = employee.City;
-                oldValue.State = employee.State;
-                oldValue.PostalCode = employee.PostalCode;
-                oldValue.DateHired = employee.DateHired;
-                //   oldValue.ActiveStatus = employee.ActiveStatus;
-            }
-
-            var result = await _userManager.UpdateAsync(oldValue);
-            if (result.Succeeded)
-            {
-                if (User.IsInRole("Administrator"))
+                var oldValue = await _userManager.FindByIdAsync(employee.Id.ToString());
                 {
-                    return RedirectToAction("List");
+                    oldValue.FirstName = employee.FirstName;
+                    oldValue.MiddleName = employee.MiddleName;
+                    oldValue.LastName = employee.LastName;
+                    oldValue.FullName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
+                    oldValue.Gender = employee.Gender;
+                    oldValue.DateOfBirth = employee.DateOfBirth;
+                    oldValue.Phone = employee.Phone;
+                    oldValue.DepartmentId = employee.DepartmentId;
+                    oldValue.PositionId = employee.PositionId;
+                    oldValue.EmployeeType = employee.EmployeeType;
+                    oldValue.SSSNumber = employee.SSSNumber;
+                    oldValue.PhilHealthId = employee.PhilHealthId;
+                    oldValue.PagIbigId = employee.PagIbigId;
+                    oldValue.Street = employee.Street;
+                    oldValue.Barangay = employee.Barangay;
+                    oldValue.City = employee.City;
+                    oldValue.State = employee.State;
+                    oldValue.PostalCode = employee.PostalCode;
+                    oldValue.DateHired = employee.DateHired;
+                    //   oldValue.ActiveStatus = employee.ActiveStatus;
                 }
-                else
+
+                var result = await _userManager.UpdateAsync(oldValue);
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("Profile","Details");
+                    if (User.IsInRole("Administrator"))
+                    {
+                        return RedirectToAction("List");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Profile", "Details");
+                    }
+
                 }
-                
-            }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
             return View();
 

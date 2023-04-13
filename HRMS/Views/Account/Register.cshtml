@@ -65,7 +65,7 @@
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Employment Type</label>
                     <select  asp-for="EmployeeType" name="EmployeeType" class="form-control">
-                        <option value="" disabled>Employment Type</option>
+                        <option value="">Employment Type</option>
                         <option value="Regular">Regular</option>
                         <option value="Partime">Partime</option>
                         <option value="Job Order">Job Order</option>
@@ -75,17 +75,17 @@
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">SSS</label>
-                  <input asp-for="SSSNumber" class="form-control" />
-                  <span asp-validation-for="PhilHealthId" class="text-danger"></span>
+                  <input asp-for="SSSNumber" type="text" class="form-control" id="SSSNumber" name="SSSNumber" pattern="\d{2}-\d{7}-\d{1}" placeholder="XX-XXXXXXX-X">
+                  <span asp-validation-for="SSSNumber" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Philhealth</label>
-                  <input asp-for="PhilHealthId" class="form-control" />
+                  <input asp-for="PhilHealthId" type="text" class="form-control" id="PhilHealthId" name="PhilHealthId" pattern="\d{2}-\d{9}-\d{1}" placeholder="XX-XXXXXXXXX-X">
                   <span asp-validation-for="PhilHealthId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">PagIbig</label>
-                  <input asp-for="PagIbigId" class="form-control" />
+                  <input asp-for="PagIbigId" type="text" class="form-control" id="PagIbigId" name="PagIbigId" pattern="\d{4}-\d{4}-\d{4}" placeholder="XXXX-XXXX-XXXX">
                   <span asp-validation-for="PagIbigId" class="text-danger"></span>
                 </div>
                 <div class="col-md-3">
@@ -143,3 +143,29 @@
           </div>
     </section>
 </main>
+
+
+
+<script>
+    const sssNumberInput = document.getElementById('SSSNumber');
+    sssNumberInput.addEventListener('input', function(e) {
+        const input = e.target.value;
+        const formattedInput = input.replace(/\D/g, '').replace(/(\d{2})(\d{7})(\d{1})/, '$1-$2-$3');
+        e.target.value = formattedInput;
+    });
+
+    const philHealthIdInput = document.getElementById('PhilHealthId');
+    philHealthIdInput.addEventListener('input', function(e) {
+        const input = e.target.value;
+        const formattedInput = input.replace(/\D/g, '').replace(/(\d{2})(\d{9})(\d{1})/, '$1-$2-$3');
+        e.target.value = formattedInput;
+    });
+
+     const pagIbigIdInput = document.getElementById('PagIbigId');
+    pagIbigIdInput.addEventListener('input', function(e) {
+        const input = e.target.value;
+        const formattedInput = input.replace(/\D/g, '').replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+        e.target.value = formattedInput;
+    });
+
+</script>
