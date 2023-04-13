@@ -72,6 +72,7 @@ namespace HRMS.Controllers
                     {
                         UserId = user.Id,
                         FullName = user.FullName,
+                        Email = user.Email,
                         RoleName = role.Name
                     });
                 }

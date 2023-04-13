@@ -261,6 +261,8 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(RegisterEmployeeViewModel employeeViewModel)
         {
+            ViewBag.DepartmentList = _repo.GetDepartmentList();
+            ViewBag.PositionList = _repo.GetPositionList();
             if (ModelState.IsValid)
             {
                 var employeeModel = new ApplicationUser
@@ -302,7 +304,7 @@ namespace HRMS.Controllers
                     }
 
                     // login the employee automatically
-                    await _signInManager.SignInAsync(employeeModel, isPersistent: false);
+                   // await _signInManager.SignInAsync(employeeModel, isPersistent: false);
                     return RedirectToAction("List", "Employee");
 
                 }

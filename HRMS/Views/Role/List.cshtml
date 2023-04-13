@@ -28,7 +28,8 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>User Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Role Name</th>
                     <th></th>
                   </tr>
@@ -39,6 +40,7 @@
                     <tr>
                       <td>@(++i)</td>
                       <td>@userRole.FullName</td>
+                       <td>@userRole.Email</td>
                       <td>@userRole.RoleName</td>
                       <td><a class="btn btn-primary" role="button" asp-action="UpdateUserRole" asp-route-roleName="@userRole.RoleName" asp-route-userId="@userRole.UserId">Assign Role</a></td>
                     </tr>
