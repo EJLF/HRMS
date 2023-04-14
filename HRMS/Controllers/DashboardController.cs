@@ -32,7 +32,7 @@ namespace HRMS.Controllers
         public IActionResult Index()
         {
             var employees = _userManager.Users.Where(status => status.ActiveStatus == false).ToList();
-            ViewBag.Employees = _userManager.Users.Where(status => status.ActiveStatus == true).Count();
+            ViewBag.Employees = _userManager.Users.Where(status => status.ActiveStatus == true).Count()-1;
             ViewBag.Departments = _department.ListOfDepartment().Count();
             ViewBag.Positions = _position.ListOfPosition().Count();
             ViewBag.EmployeeInActive = employees;
