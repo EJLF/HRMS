@@ -217,16 +217,16 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1086c3f1-eb49-4421-8544-3d8f58658149",
+                            Id = "58627ece-6451-4b70-8daf-c6a7f0dc5dc6",
                             AccessFailedCount = 0,
                             ActiveStatus = true,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "314b96e3-ecab-4e47-8594-62321fd0a6be",
+                            ConcurrencyStamp = "4198cf4a-6f1f-45d7-9f03-c0557780abd5",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 13, 22, 15, 27, 609, DateTimeKind.Local).AddTicks(4234),
+                            DateOfBirth = new DateTime(2023, 4, 14, 22, 3, 1, 438, DateTimeKind.Local).AddTicks(5832),
                             DepartmentId = 1,
-                            Email = "admin@admin.com",
+                            Email = "administrator@pjli.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             FullName = "Administrator",
@@ -234,10 +234,10 @@ namespace HRMS.Migrations
                             LastName = "Admin",
                             LockoutEnabled = false,
                             MiddleName = "Admin",
-                            NormalizedEmail = "ADMIN@ADMIN.COM",
-                            NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPaL3of6lEX9985kijI4yr+E6D1d4mSAjHtO9k9K6wqPJ6z8WsO3ff9bnMvYxge8hg==",
-                            Phone = "09111111111",
+                            NormalizedEmail = "ADMINISTRATOR@PJLI.COM",
+                            NormalizedUserName = "ADMINISTRATOR@PJLI.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAECekjbOalPq+t3DlGO8qlzx9yCXHj6MkSuIZimHBmeHvfsyeDNBsI1FVRfAkTRNPaA==",
+                            Phone = "09236253623",
                             PhoneNumberConfirmed = false,
                             PositionId = 1,
                             PostalCode = 123,
@@ -245,7 +245,7 @@ namespace HRMS.Migrations
                             State = "Admin",
                             Street = "Admin",
                             TwoFactorEnabled = false,
-                            UserName = "admin@admin.com"
+                            UserName = "administrator@pjli.com"
                         });
                 });
 
@@ -667,22 +667,22 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4f4689d6-2fab-434e-9067-9099ddb7784e",
-                            ConcurrencyStamp = "5f68f486-4ef1-4655-811b-1079fdc7e7bf",
+                            Id = "0357e8a6-1345-41ef-8f52-159af4ce2eeb",
+                            ConcurrencyStamp = "2277717d-d1a1-44c4-8d73-382489ea94bd",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "9da5f688-1c82-4f57-8cf4-736ad1c632c0",
-                            ConcurrencyStamp = "7afffedf-7bf3-4ea5-81b2-a47cd03b7edd",
+                            Id = "5a346486-6f10-4767-8c9d-dd063231ba25",
+                            ConcurrencyStamp = "799c7728-2815-4757-965a-2d381c36db79",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "c6b5b2a0-2f2e-4768-bcf7-ddec4acc9351",
-                            ConcurrencyStamp = "2854def2-51e7-4a5e-99da-af8a5106de54",
+                            Id = "d62f1f5d-05d2-4f1d-a80f-bd1de4fb2344",
+                            ConcurrencyStamp = "7a5f4596-0c4e-41f1-a62e-728ab1a73519",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -777,8 +777,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1086c3f1-eb49-4421-8544-3d8f58658149",
-                            RoleId = "4f4689d6-2fab-434e-9067-9099ddb7784e"
+                            UserId = "58627ece-6451-4b70-8daf-c6a7f0dc5dc6",
+                            RoleId = "0357e8a6-1345-41ef-8f52-159af4ce2eeb"
                         });
                 });
 

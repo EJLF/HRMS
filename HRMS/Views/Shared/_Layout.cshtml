@@ -101,7 +101,7 @@ else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
         ViewBag.countMessage=countMessage;
         if(ViewBag.countMessage!=0){
             <li class="nav-item dropdown">
-                <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="List">
+                <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="ProfileList">
                 <i class="bi bi-chat-left-text"></i>
                 <span class="badge bg-success badge-number">@ViewBag.countMessage</span>
               </a>

@@ -65,7 +65,7 @@ namespace HRMS.Controllers
             foreach (var role in roles)
             {
                 var users = await _userManager.GetUsersInRoleAsync(role.Name);
-                var userList = users.Where(u => u.ActiveStatus == true);
+                var userList = users.Where(u => u.ActiveStatus == true).Where(e => e.Email != "administrator@pjli.com");
                 foreach (var user in userList)
                 {
                     usersWithRoles.Add(new UserRoleViewModel

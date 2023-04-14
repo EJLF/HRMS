@@ -47,12 +47,12 @@ namespace HRMS.Data
                      PositionId=1,
                      Gender = "Male",
                      DateOfBirth = DateTime.Now,
-                     Email = "admin@admin.com",
-                     NormalizedEmail = "ADMIN@ADMIN.COM",
+                     Email = "administrator@pjli.com",
+                     NormalizedEmail = "ADMINISTRATOR@PJLI.COM",
                      EmailConfirmed = true,
-                     UserName = "admin@admin.com",
-                     NormalizedUserName = "ADMIN@ADMIN.COM",
-                     Phone = "09111111111",
+                     UserName = "administrator@pjli.com",
+                     NormalizedUserName = "ADMINISTRATOR@PJLI.COM",
+                     Phone = "09236253623",
                      Street = "Admin",
                      Barangay = "Admin",
                      City = "Admin",
@@ -60,7 +60,7 @@ namespace HRMS.Data
                      PostalCode = 123,
                      ActiveStatus=true,
 
-                     PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
+                     PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "P@ssw0rd"),
                      SecurityStamp = String.Empty,
                  }
                  );
