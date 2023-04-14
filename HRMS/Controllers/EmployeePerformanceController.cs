@@ -62,6 +62,7 @@ namespace HRMS.Controllers
         {
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
+            
             if (User.IsInRole("Employee"))
             {
                 var value = _repo.ListOfEmployeePerformance(employee.Id);

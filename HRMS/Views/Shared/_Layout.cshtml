@@ -91,11 +91,13 @@ else if (_signInManager.IsSignedIn(User))
                 </a>
              </li>
           }
-
-
+     }
+else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
+    {
         //return the number Of Message
-
-        var countMessage = _repo.ListOfEmployeePerformance(null).Where(e => e.Status == true).Count();
+        var email = User.Identity.Name;
+        var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
+        var countMessage = _repo.ListOfEmployeePerformance(null).Where(e => e.Status == true).Where(u => u.userID == employee.Id).Count();
         ViewBag.countMessage=countMessage;
         if(ViewBag.countMessage!=0){
             <li class="nav-item dropdown">
@@ -106,6 +108,7 @@ else if (_signInManager.IsSignedIn(User))
             </li>
         }
     }
+    
         <li class="nav-item dropdown pe-3">
         @if (_signInManager.IsSignedIn(User))
         {
