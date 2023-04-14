@@ -40,13 +40,18 @@ namespace HRMS.Models
         public string Email { get; set; }
 
         // Foreign Key
+        [Required]
         [DisplayName("Department")]
-        public int? DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
+
         [ForeignKey("DepartmentId")]
+        [DisplayName("Department")]
         public Department? Department { get; set; }
+        [Required]
         [DisplayName("Position")]
-        public int? PositionId { get; set; }
+        public int PositionId { get; set; }
         [ForeignKey("PositionId")]
+        [DisplayName("Position")]
         public Position? Position { get; set; }
 
         public string? EmployeeType { get; set; }
@@ -82,36 +87,5 @@ namespace HRMS.Models
 
         public bool ActiveStatus { get; set; }
 
-
-        public ApplicationUser()
-        {
-        }
-
-        public ApplicationUser(string firstName, string middleName, string lastName, string? fullName, string gender, DateTime dateOfBirth, string phone, string email, int? departmentId, Department? department, int? positionId, Position? position, string? employeeType, string? sSSNumber, string? pagIbigId, string? philHealthId, string street, string barangay, string city, string state, int postalCode, DateTime dateHired, bool activeStatus)
-        {
-            FirstName = firstName;
-            MiddleName = middleName;
-            LastName = lastName;
-            FullName = fullName;
-            Gender = gender;
-            DateOfBirth = dateOfBirth;
-            Phone = phone;
-            Email = email;
-            DepartmentId = departmentId;
-            Department = department;
-            PositionId = positionId;
-            Position = position;
-            EmployeeType = employeeType;
-            SSSNumber = sSSNumber;
-            PagIbigId = pagIbigId;
-            PhilHealthId = philHealthId;
-            Street = street;
-            Barangay = barangay;
-            City = city;
-            State = state;
-            PostalCode = postalCode;
-            DateHired = dateHired;
-            ActiveStatus = activeStatus;
-        }
     }
 }
