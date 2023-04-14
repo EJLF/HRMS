@@ -99,6 +99,7 @@ namespace HRMS.ViewModel
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         [DisplayName("Password")]
         [PasswordPropertyText]
         [MinLength(8)]

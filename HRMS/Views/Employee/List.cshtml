@@ -86,10 +86,10 @@
                                 <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="Click to Write Reviews" asp-controller="EmployeePerformance" asp-action="Create" asp-route-userID="@item.Id" asp-route-employeeName="@item.FullName"> <i class="bi bi-chat-left-text"></i></a>
                                 <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="Click to View the Details" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a>
                               
-                                <button type="button" class="btn btn-success" title="Click to Deactivate" data-bs-toggle="modal" data-bs-target="#deactivateModal">
-                                     <i class="bi bi-check-circle"></i>
+                                <button type="button" class="btn btn-success" title="Click to Deactivate" data-bs-toggle="modal" data-bs-target="#deactivateModal-@item.Id" asp-route-accountId="@item.Id">
+                                     <i class="bi bi-check-circle"></i> 
                                 </button>
-                                <div class="modal fade" id="deactivateModal" tabindex="-1">
+                                <div class="modal fade" id="deactivateModal-@item.Id" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -97,7 +97,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to Deactivate this Account?
+                                        Are you sure you want to Deactivate @item.FullName?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
