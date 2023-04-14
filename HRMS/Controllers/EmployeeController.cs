@@ -210,7 +210,7 @@ namespace HRMS.Controllers
             var result = await _userManager.UpdateAsync(oldValue);
             if (result.Succeeded)
             {
-                return RedirectToAction("List");
+               return RedirectToAction("List");
             }
             foreach (var error in result.Errors)
             {
