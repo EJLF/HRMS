@@ -135,12 +135,12 @@
                     </div>
                     <div class="col-md-4">
                         <label for="inputName5" class="form-label">Department</label>
-                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentList"></select>
+                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentList" required></select>
                         <span asp-validation-for="DepartmentId" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
                         <label for="inputName5" class="form-label">Position</label>
-                        <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionList"></select>
+                        <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionList" required></select>
                         <span asp-validation-for="PositionId" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
