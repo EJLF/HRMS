@@ -119,7 +119,7 @@ namespace HRMS.Controllers
                 var Dept = _repo.AddEmployeePerformance(newEmployeePerformance);
                 return RedirectToAction("List");
             }
-            ViewData["Message"] = "Data is not valid to create the Department";
+            ViewData["Message"] = "Data is Not valid to create the Department";
             return View();
 
         }
@@ -140,28 +140,37 @@ namespace HRMS.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrator, Manager")]
-        public IActionResult Update(int no)
+        public IActionResult Update(int No)
         {
-            var employee = _repo.GetEmployeePerformanceById(no);
+            var employee = _repo.GetEmployeePerformanceById(No);
             return View(employee);
         }
+
         [HttpPost]
         [Authorize(Roles = "Administrator, Manager")]
-        public IActionResult Update(int no,EmployeePerformance newPerformance)
+        public IActionResult Update(int No,EmployeePerformance newPerformance)
         {
-            var result = _repo.UpdateEmployeePerformance(no,newPerformance);
+            var result = _repo.UpdateEmployeePerformance(No,newPerformance);
             return RedirectToAction("List");
         }
+
         [Authorize(Roles = "Administrator, Manager")]
-        public IActionResult Delete(int no)
+        public IActionResult Delete(int No)
         {
-            _repo.DeleteEmployeePerformance(no);
+            var employee = _repo.GetEmployeePerformanceById(No);
+            {
+                employee.DeleteStatus = true;
+            }
+
+            var result = _repo.UpdateEmployeePerformance(No, employee);
+
+
             return RedirectToAction("List");
 
         }
-        public IActionResult Details(int no)
+        public IActionResult Details(int No)
         {
-            return View(_repo.GetEmployeePerformanceById(no));
+            return View(_repo.GetEmployeePerformanceById(No));
         }
     }
 }

@@ -42,10 +42,10 @@ namespace HRMS.Repository.SqlRepository
         {
             if (employeeID == null)
             {
-                return _dbcontext.EmployeePerformances.AsNoTracking().ToList();
+                return _dbcontext.EmployeePerformances.Where(d=>d.DeleteStatus==false).AsNoTracking().ToList();
             }
             int count = _dbcontext.EmployeePerformances.Count();
-            return _dbcontext.EmployeePerformances.Where(e => e.userID == employeeID).AsNoTracking().ToList();
+            return _dbcontext.EmployeePerformances.Where(e => e.userID == employeeID).Where(d => d.DeleteStatus == false).AsNoTracking().ToList();
         }
 
         public EmployeePerformance UpdateEmployeePerformance(int EmployeePerformanceId, EmployeePerformance newEmployeePerformance)
