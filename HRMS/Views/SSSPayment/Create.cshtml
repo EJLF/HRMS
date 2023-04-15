@@ -39,16 +39,16 @@
                         <input asp-for="Year" class="form-control" value="@DateTime.Now.ToString("yyyy")" readonly />
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
+                    <br />
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
+                        <a class="btn btn-secondary" role="button" asp-controller="Employee" asp-action="List">Back to List</a>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+       
     </section>
 </main>
 @section Scripts {
