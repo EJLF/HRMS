@@ -119,7 +119,7 @@ else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" asp-area="" asp-controller="Profile" asp-action="Details">Profile</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Change Password</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                     </li>
                 </ul>

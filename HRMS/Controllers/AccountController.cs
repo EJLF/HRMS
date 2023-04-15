@@ -132,6 +132,11 @@ namespace HRMS.Controllers
             return RedirectToAction("Login");
         }
 
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
        
 
 
