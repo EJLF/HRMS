@@ -82,10 +82,10 @@
                                 </td>
 
                                  <td>   
-                                    <a class="btn btn-primary" role="button" title="Click to View the Details" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a> 
+                                    <a class="btn btn-primary" role="button" title="View Details" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a> 
                                    
                                      <!--Activate Message Box -->
-                                    <button type="button" class="btn btn-danger" title="Click to Deactivate this Account" data-bs-toggle="modal" data-bs-target="#activateModal-@item.Id" asp-route-accountId="@item.Id">
+                                    <button type="button" class="btn btn-danger" title="Activate Account" data-bs-toggle="modal" data-bs-target="#activateModal-@item.Id" asp-route-accountId="@item.Id">
                                     <i class="bi bi-exclamation-octagon"></i>
                                     </button>
                                     <div class="modal fade" id="activateModal-@item.Id" tabindex="-1">
@@ -107,7 +107,7 @@
                                     </div>
                                   
                                     <!--Delete Message Box -->
-                                    <button type="button" class="btn btn-danger" title="Click to Delete" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id" asp-route-accountId="@item.Id">
+                                    <button type="button" class="btn btn-danger" title="Delete Account" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.Id" asp-route-accountId="@item.Id">
                                     <i class="bi bi-trash"></i>
                                     </button>
                                     <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1">

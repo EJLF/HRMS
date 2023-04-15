@@ -78,6 +78,8 @@ namespace HRMS.Models
         [Required]
         public string State { get; set; }
         [Required]
+        [MinLength(4)]
+        [MaxLength(4)]
         public int PostalCode { get; set; }
 
         //Account Status
@@ -86,6 +88,7 @@ namespace HRMS.Models
         public DateTime DateHired { get; set; }
 
         public bool ActiveStatus { get; set; }
+        public bool DeleteStatus { get; set; }
 
     }
 }

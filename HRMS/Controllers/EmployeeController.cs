@@ -46,7 +46,9 @@ namespace HRMS.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> InactiveList()
         {
-            var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus==false).CountAsync();    
+            var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus==false)
+                                                       .Where(delete => delete.DeleteStatus==false)
+                                                       .CountAsync();    
             var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == false).Include(p => p.Position).ToList();
 
             ViewBag.NumberOfInActive = inaciveCount;
@@ -186,10 +188,14 @@ namespace HRMS.Controllers
         public async Task<IActionResult> Delete(string accountId)
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
-            var result = await _userManager.DeleteAsync(oldValue);
+            {
+                oldValue.DeleteStatus = true;
+            }
+
+            var result = await _userManager.UpdateAsync(oldValue);
             if (result.Succeeded)
             {
-                return RedirectToAction("InactiveList");
+                return RedirectToAction("List");
             }
             foreach (var error in result.Errors)
             {

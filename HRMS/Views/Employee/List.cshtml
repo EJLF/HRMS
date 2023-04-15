@@ -83,10 +83,10 @@
                         </td>
          
                             <td>   
-                                <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="Click to Write Reviews" asp-controller="EmployeePerformance" asp-action="Create" asp-route-userID="@item.Id" asp-route-employeeName="@item.FullName"> <i class="bi bi-chat-left-text"></i></a>
-                                <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="Click to View the Details" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a>
+                                <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="Write Reviews" asp-controller="EmployeePerformance" asp-action="Create" asp-route-userID="@item.Id" asp-route-employeeName="@item.FullName"> <i class="bi bi-chat-left-text"></i></a>
+                                <a class="btn btn-primary" role="button" data-bs-toggle="tooltip" title="View Details" asp-action="Details" asp-route-accountId="@item.Id"><i class="bi bi-folder"></i></a>
                               
-                                <button type="button" class="btn btn-success" title="Click to Deactivate" data-bs-toggle="modal" data-bs-target="#deactivateModal-@item.Id" asp-route-accountId="@item.Id">
+                                <button type="button" class="btn btn-success" title="Deactivate Account" data-bs-toggle="modal" data-bs-target="#deactivateModal-@item.Id" asp-route-accountId="@item.Id">
                                      <i class="bi bi-check-circle"></i> 
                                 </button>
                                 <div class="modal fade" id="deactivateModal-@item.Id" tabindex="-1">

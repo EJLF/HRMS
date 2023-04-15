@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.Migrations
 {
     [DbContext(typeof(HRMSDBContext))]
-    [Migration("20230414140301_init")]
+    [Migration("20230415010805_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,10 @@ namespace HRMS.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DepartmentId")
+                    b.Property<bool>("DeleteStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -173,10 +176,11 @@ namespace HRMS.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PositionId")
+                    b.Property<int>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<int>("PostalCode")
+                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<string>("SSSNumber")
@@ -219,14 +223,15 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "58627ece-6451-4b70-8daf-c6a7f0dc5dc6",
+                            Id = "7db6c711-4323-4164-b9ed-fc2061d02460",
                             AccessFailedCount = 0,
                             ActiveStatus = true,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "4198cf4a-6f1f-45d7-9f03-c0557780abd5",
+                            ConcurrencyStamp = "14014296-ba64-4fa7-9e94-c8a5bdfd7cd2",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 14, 22, 3, 1, 438, DateTimeKind.Local).AddTicks(5832),
+                            DateOfBirth = new DateTime(2023, 4, 15, 9, 8, 5, 362, DateTimeKind.Local).AddTicks(9943),
+                            DeleteStatus = false,
                             DepartmentId = 1,
                             Email = "administrator@pjli.com",
                             EmailConfirmed = true,
@@ -238,7 +243,7 @@ namespace HRMS.Migrations
                             MiddleName = "Admin",
                             NormalizedEmail = "ADMINISTRATOR@PJLI.COM",
                             NormalizedUserName = "ADMINISTRATOR@PJLI.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECekjbOalPq+t3DlGO8qlzx9yCXHj6MkSuIZimHBmeHvfsyeDNBsI1FVRfAkTRNPaA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEATsUrzxLu1B2rGSe2/GUrgLOIzqNg3RBL4kZSdMovXJ2S+u9TJVxWZ5hEIZh0YogQ==",
                             Phone = "09236253623",
                             PhoneNumberConfirmed = false,
                             PositionId = 1,
@@ -403,6 +408,9 @@ namespace HRMS.Migrations
 
                     b.Property<DateTime>("DateReview")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("DeleteStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("EmployeeName")
                         .IsRequired()
@@ -669,22 +677,22 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0357e8a6-1345-41ef-8f52-159af4ce2eeb",
-                            ConcurrencyStamp = "2277717d-d1a1-44c4-8d73-382489ea94bd",
+                            Id = "9b499483-c91a-4f35-845a-fb4c7ff76248",
+                            ConcurrencyStamp = "35daa8d7-9d78-42ce-b8bd-73cecfbc74c5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "5a346486-6f10-4767-8c9d-dd063231ba25",
-                            ConcurrencyStamp = "799c7728-2815-4757-965a-2d381c36db79",
+                            Id = "b83094d6-31ae-4977-a713-296a759a47c7",
+                            ConcurrencyStamp = "ed2218ff-329a-476b-b9d5-9a37adc46d96",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "d62f1f5d-05d2-4f1d-a80f-bd1de4fb2344",
-                            ConcurrencyStamp = "7a5f4596-0c4e-41f1-a62e-728ab1a73519",
+                            Id = "a67b965d-7ebe-4d90-9bf2-5c6470dbe8bc",
+                            ConcurrencyStamp = "e6a11981-8035-41cc-9820-9183877afd4d",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -779,8 +787,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "58627ece-6451-4b70-8daf-c6a7f0dc5dc6",
-                            RoleId = "0357e8a6-1345-41ef-8f52-159af4ce2eeb"
+                            UserId = "7db6c711-4323-4164-b9ed-fc2061d02460",
+                            RoleId = "9b499483-c91a-4f35-845a-fb4c7ff76248"
                         });
                 });
 
@@ -818,11 +826,15 @@ namespace HRMS.Migrations
                 {
                     b.HasOne("HRMS.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HRMS.Models.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId");
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
 
