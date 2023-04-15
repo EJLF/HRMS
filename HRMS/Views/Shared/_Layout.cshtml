@@ -207,6 +207,10 @@ else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="ProfileList" ><i class="bi bi-bar-chart-fill"></i> Read Review</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                             <i class="bi bi-credit-card"></i> <span> Benefits Payment </span><i class="bi bi-chevron-down ms-left"></i>
                         </a>
@@ -229,10 +233,6 @@ else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
                 {
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-area="" asp-controller="Profile" asp-action="Details"><i class="bi bi-person-circle"></i> Profile</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" asp-area="" asp-controller="Employee" asp-action="DepartamentalList"><i class="bi bi-people-fill"></i> Department</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="ProfileList"><i class="bi bi-bar-chart-fill"></i> Reviews</a>

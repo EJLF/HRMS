@@ -172,5 +172,26 @@ namespace HRMS.Controllers
         {
             return View(_repo.GetEmployeePerformanceById(No));
         }
+
+        //Search
+        public IActionResult Search(string departmentFilter, string searchText)
+        {
+            var query = _repo.ListOfEmployeePerformance(null).AsQueryable();
+
+            if (!string.IsNullOrEmpty(departmentFilter))
+            {
+               // query = query.Where(e => e. == departmentFilter);
+            }
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                query = query.Where(e => e.About.Contains(searchText) || e.userID.Contains(searchText) || e.ReviewBy.Contains(searchText));
+            }
+
+            var results = query.ToList();
+
+            return PartialView("_EmployeePerformanceTable", results);
+        }
+
     }
 }
