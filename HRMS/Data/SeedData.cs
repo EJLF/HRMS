@@ -57,7 +57,7 @@ namespace HRMS.Data
                      Barangay = "Admin",
                      City = "Admin",
                      State = "Admin",
-                     PostalCode = 123,
+                     PostalCode = "1234",
                      ActiveStatus=true,
 
                      PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "P@ssw0rd"),

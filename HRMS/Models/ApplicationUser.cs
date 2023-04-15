@@ -78,9 +78,8 @@ namespace HRMS.Models
         [Required]
         public string State { get; set; }
         [Required]
-        [MinLength(4)]
-        [MaxLength(4)]
-        public int PostalCode { get; set; }
+        [RegularExpression("[0-9]{4}", ErrorMessage = "This is not a valid Postal Code")]
+        public string PostalCode { get; set; }
 
         //Account Status
         [Required]

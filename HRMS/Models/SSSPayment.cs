@@ -14,7 +14,7 @@ namespace HRMS.Models
 
         public string? Month { get; set; } = DateTime.Now.Month.ToString();
         public string? Year { get; set; } = DateTime.Now.Year.ToString();
-
+        public bool status { get; set; }
         public SSSPayment() { }
 
         public SSSPayment(int no, string? sSSNumber, int payment, string? month, string? year)
