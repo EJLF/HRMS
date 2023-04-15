@@ -45,7 +45,6 @@ namespace HRMS.Controllers
             else if (User.IsInRole("Manager"))
             {
                 var value = _repo.ListOfEmployeePerformanceReviewBy(employee.FullName);
-
                 if (value != null)
                 {
                     foreach (var item in value)
@@ -58,22 +57,30 @@ namespace HRMS.Controllers
             }
             return View();
         }
+
+        //Return Profile List Review 
         public IActionResult ProfileList()
         {
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
-            
-            if (User.IsInRole("Employee"))
+            if(employee != null)
             {
-                var value = _repo.ListOfEmployeePerformance(employee.Id);
-                foreach (var item in value)
+                if (!User.IsInRole("Administrator"))
                 {
-                    item.userID = employee.FullName;
-                }
+                    var value = _repo.ListOfEmployeePerformance(employee.Id);
+                    if (value != null)
+                    {
+                        foreach (var item in value)
+                        {
+                            item.userID = employee.FullName;
+                        }
 
-                return View(value);
+                        return View(value);
+                    }
+                    return View();
+                }
+                return View();
             }
-            
             return View();
         }
         
@@ -91,11 +98,11 @@ namespace HRMS.Controllers
             return View(value);
         }
 
+        //Create Peformance Review
         [HttpGet]
         [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> CreateAsync(string employeeName, string userID)
         {
-
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
             EmployeePerformance employeePerformance = new EmployeePerformance();
@@ -125,6 +132,7 @@ namespace HRMS.Controllers
 
         }
 
+        //Update to Read
         public async Task<IActionResult> Unread(int No)
         {
             var employee = _repo.GetEmployeePerformanceById(No);
@@ -133,12 +141,11 @@ namespace HRMS.Controllers
             }
 
             var result = _repo.UpdateEmployeePerformance(No, employee);
-            
            
             return RedirectToAction("ProfileList");
-           
         }
 
+        //Update Performance Review
         [HttpGet]
         [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Update(int No)
@@ -146,7 +153,6 @@ namespace HRMS.Controllers
             var employee = _repo.GetEmployeePerformanceById(No);
             return View(employee);
         }
-
         [HttpPost]
         [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Update(int No,EmployeePerformance newPerformance)
@@ -155,6 +161,7 @@ namespace HRMS.Controllers
             return RedirectToAction("List");
         }
 
+        //Delete Reviews
         [Authorize(Roles = "Administrator, Manager")]
         public IActionResult Delete(int No)
         {
@@ -169,6 +176,8 @@ namespace HRMS.Controllers
             return RedirectToAction("List");
 
         }
+
+        //Details
         public IActionResult Details(int No)
         {
             return View(_repo.GetEmployeePerformanceById(No));

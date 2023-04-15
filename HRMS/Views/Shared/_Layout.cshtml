@@ -53,7 +53,7 @@
     <body class="toggle-sidebar">
     </body>
 }
-else if (!_signInManager.IsSignedIn(User))
+else if (_signInManager.IsSignedIn(User))
 {
     var statusCheck = _userManager.Users.FirstOrDefault(e => e.Email == User.Identity.Name);
     if(User.Identity.Name !=null && statusCheck.ActiveStatus == false)
@@ -203,11 +203,11 @@ else if(!User.IsInRole("Administrator") && _signInManager.IsSignedIn(User))
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="List" ><i class="bi bi-bar-chart-fill"></i> Write Review</a>
+                        <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="ProfileList" ><i class="bi bi-bar-chart-fill"></i> Read Review</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="ProfileList" ><i class="bi bi-bar-chart-fill"></i> Read Review</a>
+                        <a class="nav-link collapsed" asp-area="" asp-controller="EmployeePerformance" asp-action="List" ><i class="bi bi-bar-chart-fill"></i> Write Review</a>
                     </li>
 
                     <li class="nav-item">

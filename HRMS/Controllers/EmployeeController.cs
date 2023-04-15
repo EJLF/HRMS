@@ -325,10 +325,15 @@ namespace HRMS.Controllers
                                              .FirstOrDefault(e => e.Email == email);
 
             var employeeList = _userManager.Users.Include(d => d.Department)
-                                                .Include(p => p.Position)
-                                                .Where(status => status.ActiveStatus == true)
-                                                .Where(e => e.DepartmentId == employee.DepartmentId)
-                                                .ToList();
+                                                 .Include(p => p.Position)
+                                                 .Where(status => status.ActiveStatus == true)
+                                                 .Where(e => e.DepartmentId == employee.DepartmentId)
+                                                 .ToList() // materialize the query
+                                                 .Where(e => !_userManager.IsInRoleAsync(e, "Manager").Result)
+                                                 .Where(e => !_userManager.IsInRoleAsync(e, "Administrator").Result)
+                                                 .ToList();
+
+
 
             var manager = await _userManager.GetUsersInRoleAsync("Manager");
             var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();

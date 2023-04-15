@@ -57,7 +57,7 @@ namespace HRMS.Repository.SqlRepository
 
         public List<EmployeePerformance> ListOfEmployeePerformanceReviewBy(string employeeID)
         {
-            return _dbcontext.EmployeePerformances.Where(e => e.ReviewBy == employeeID).AsNoTracking().ToList();
+            return _dbcontext.EmployeePerformances.Where(e => e.ReviewBy == employeeID).Where(d => d.DeleteStatus == false).AsNoTracking().ToList();
         }
     }
 }
