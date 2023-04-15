@@ -49,7 +49,11 @@ namespace HRMS.Controllers
             var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus==false)
                                                        .Where(delete => delete.DeleteStatus==false)
                                                        .CountAsync();    
-            var employees = _userManager.Users.Include(d => d.Department).Where(status => status.ActiveStatus == false).Include(p => p.Position).ToList();
+
+            var employees = _userManager.Users.Include(d => d.Department)
+                                              .Where(status => status.ActiveStatus == false)
+                                              .Where(delete => delete.DeleteStatus == false)
+                                              .Include(p => p.Position).ToList();
 
             ViewBag.NumberOfInActive = inaciveCount;
             ViewBag.Departments = _repo.GetDepartmentList();

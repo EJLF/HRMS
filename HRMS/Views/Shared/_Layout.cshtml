@@ -81,7 +81,7 @@ else if (_signInManager.IsSignedIn(User))
 @if (User.IsInRole("Administrator"))
     {
         //return the number of new SignIn and Register
-        var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus == false).CountAsync();
+        var inaciveCount = await _userManager.Users.Where(status => status.ActiveStatus == false).Where(delete => delete.DeleteStatus==false).CountAsync();
         ViewBag.NumberOfInActive = inaciveCount;
         if(ViewBag.NumberOfInActive!=0){
              <li class="nav-item dropdown">
