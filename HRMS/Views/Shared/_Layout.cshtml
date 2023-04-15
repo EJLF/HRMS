@@ -53,7 +53,7 @@
     <body class="toggle-sidebar">
     </body>
 }
-else if (_signInManager.IsSignedIn(User))
+else if (!_signInManager.IsSignedIn(User))
 {
     var statusCheck = _userManager.Users.FirstOrDefault(e => e.Email == User.Identity.Name);
     if(User.Identity.Name !=null && statusCheck.ActiveStatus == false)

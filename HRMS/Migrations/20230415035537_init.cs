@@ -61,7 +61,7 @@ namespace HRMS.Migrations
                     PerformanceReview = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReviewBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DateReview = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateReview = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeleteStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -464,9 +464,9 @@ namespace HRMS.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "9b499483-c91a-4f35-845a-fb4c7ff76248", "35daa8d7-9d78-42ce-b8bd-73cecfbc74c5", "Administrator", "ADMINISTRATOR" },
-                    { "a67b965d-7ebe-4d90-9bf2-5c6470dbe8bc", "e6a11981-8035-41cc-9820-9183877afd4d", "Manager", "MANAGER" },
-                    { "b83094d6-31ae-4977-a713-296a759a47c7", "ed2218ff-329a-476b-b9d5-9a37adc46d96", "Employee", "EMPLOYEE" }
+                    { "677d179b-2cef-4f89-9aa4-91d949833dba", "a22d16cf-a1d2-4799-9e2c-3f3962eb8411", "Manager", "MANAGER" },
+                    { "b211a85e-9953-4bbc-a8a5-1cbc7a764fa2", "804cfb0a-8409-4daf-a002-8887d702d655", "Administrator", "ADMINISTRATOR" },
+                    { "e7002e30-a0ad-45bc-8995-693a84be98d8", "7173a212-beec-461d-be56-341a7836024b", "Employee", "EMPLOYEE" }
                 });
 
             migrationBuilder.InsertData(
@@ -491,12 +491,12 @@ namespace HRMS.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveStatus", "Barangay", "City", "ConcurrencyStamp", "DateHired", "DateOfBirth", "DeleteStatus", "DepartmentId", "Email", "EmailConfirmed", "EmployeeType", "FirstName", "FullName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PagIbigId", "PasswordHash", "PhilHealthId", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "PositionId", "PostalCode", "SSSNumber", "SecurityStamp", "State", "Street", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7db6c711-4323-4164-b9ed-fc2061d02460", 0, true, "Admin", "Admin", "14014296-ba64-4fa7-9e94-c8a5bdfd7cd2", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 15, 9, 8, 5, 362, DateTimeKind.Local).AddTicks(9943), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEATsUrzxLu1B2rGSe2/GUrgLOIzqNg3RBL4kZSdMovXJ2S+u9TJVxWZ5hEIZh0YogQ==", null, "09236253623", null, false, 1, 123, null, "", "Admin", "Admin", false, "administrator@pjli.com" });
+                values: new object[] { "c3a42b16-95c2-4bfc-9582-75a8402853ce", 0, true, "Admin", "Admin", "29955fa3-1f27-4143-bc89-9c9592a0f679", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 15, 11, 55, 37, 369, DateTimeKind.Local).AddTicks(5426), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEAkKlIG8Av1o+/i56RpFYxeKk+1HeOTWWhTx3kivC3tK3APKcvBNkle/s0yB931e9Q==", null, "09236253623", null, false, 1, 123, null, "", "Admin", "Admin", false, "administrator@pjli.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "9b499483-c91a-4f35-845a-fb4c7ff76248", "7db6c711-4323-4164-b9ed-fc2061d02460" });
+                values: new object[] { "b211a85e-9953-4bbc-a8a5-1cbc7a764fa2", "c3a42b16-95c2-4bfc-9582-75a8402853ce" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AddressTypeId",

@@ -100,9 +100,10 @@ namespace HRMS.Controllers
             var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
             EmployeePerformance employeePerformance = new EmployeePerformance();
             {
-                string reviewerName = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
+                string reviewerName = employee.FullName;
 
                 employeePerformance.userID = userID;
+                employeePerformance.DateReview = DateTime.Now.ToString("MM/dd/yyyy");
                 //employeePerformance.EmployeeName = employeeName;
                 employeePerformance.ReviewBy = reviewerName;
                 employeePerformance.Status = true;
