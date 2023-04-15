@@ -25,7 +25,7 @@ namespace HRMS.Repository.SqlRepository
             var Emp = GetDepartmentPositionById(DepartmentPositionId);
             if (Emp != null)
             {
-                _dbcontext.DepartmentPositions.UpdateRange(Emp);
+                _dbcontext.DepartmentPositions.Remove(Emp);
                 _dbcontext.SaveChanges();
             }
             return Emp;
@@ -33,7 +33,7 @@ namespace HRMS.Repository.SqlRepository
 
         public DepartmentPositioncs GetDepartmentPositionById(int Id)
         {
-            return _dbcontext.DepartmentPositions.Include(d => d.Department).AsNoTracking().ToList().FirstOrDefault(x => x.No == Id);
+            return _dbcontext.DepartmentPositions.Include(d => d.Department).Include(p=>p.Position).AsNoTracking().ToList().FirstOrDefault(x => x.No == Id);
         }
 
         public List<DepartmentPositioncs> ListOfDepartmentPosition()
