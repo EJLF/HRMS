@@ -65,7 +65,7 @@
                  @if(!User.IsInRole("Employee"))
                          {                             
                             <td>
-                                <a class="btn btn-primary" role="button" asp-action="Update" asp-route-No="@item.No">Edit</a> |
+                                <a class="btn btn-primary" role="button" asp-action="Update" asp-route-No="@item.No">Edit</a> 
                                 <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
                             if(item.Status==true){
