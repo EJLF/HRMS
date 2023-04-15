@@ -37,18 +37,13 @@ namespace HRMS.ViewModel
         public string? Email { get; set; }
 
         // Foreign Key
-        [Required]
         [DisplayName("Department")]
-        public int DepartmentId { get; set; }
-
+        public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
-        [DisplayName("Department")]
         public Department? Department { get; set; }
-        [Required]
         [DisplayName("Position")]
-        public int PositionId { get; set; }
+        public int? PositionId { get; set; }
         [ForeignKey("PositionId")]
-        [DisplayName("Position")]
         public Position? Position { get; set; }
         public string? EmployeeType { get; set; }
 

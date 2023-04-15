@@ -108,7 +108,7 @@ namespace HRMS.Migrations
                     b.Property<bool>("DeleteStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -174,7 +174,7 @@ namespace HRMS.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PositionId")
+                    b.Property<int?>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<string>("PostalCode")
@@ -221,14 +221,14 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cb1d974f-6ca5-4c25-b1f2-386cb640a06e",
+                            Id = "f5c97be9-5077-49be-b6bd-da77ca08774c",
                             AccessFailedCount = 0,
                             ActiveStatus = true,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "1295a849-777a-461b-8323-9a1c5b0cc358",
+                            ConcurrencyStamp = "b182501a-ebf1-405b-b096-632b5880513f",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 15, 12, 57, 31, 26, DateTimeKind.Local).AddTicks(2234),
+                            DateOfBirth = new DateTime(2023, 4, 15, 21, 16, 6, 154, DateTimeKind.Local).AddTicks(2998),
                             DeleteStatus = false,
                             DepartmentId = 1,
                             Email = "administrator@pjli.com",
@@ -241,7 +241,7 @@ namespace HRMS.Migrations
                             MiddleName = "Admin",
                             NormalizedEmail = "ADMINISTRATOR@PJLI.COM",
                             NormalizedUserName = "ADMINISTRATOR@PJLI.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOyuv5twMhBh5K5yTaespVvzXoLT2rTLwOEKoHCtVYzQPB4Wiu5iTipVpNKsCAWRSA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFGrVnhv4sVaBjCJmMsYU5QsBwCx5I/28Ptu3jd4MaMILfn4Q/a7JC4XidtfNDUH5w==",
                             Phone = "09236253623",
                             PhoneNumberConfirmed = false,
                             PositionId = 1,
@@ -685,22 +685,22 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bebdfc38-81f1-43e4-861d-3bce378b5c31",
-                            ConcurrencyStamp = "735dd6c3-6337-4f7d-ae8b-3cecbcff664c",
+                            Id = "c97bad1a-c968-4f5a-a885-1e758ec84eca",
+                            ConcurrencyStamp = "7ba41555-b1d0-4455-acd0-10b7df5e5bb8",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "987b6fdf-cf06-442f-9ff6-442a426ef8cb",
-                            ConcurrencyStamp = "f2f5697e-679c-4e21-b420-ee66f7fdec95",
+                            Id = "6925e707-4336-4913-aebd-56a144b5391d",
+                            ConcurrencyStamp = "cfaecb80-0234-48e6-8690-b62fddbf4800",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "f98d3261-03af-4ae9-b41c-8e0966e03716",
-                            ConcurrencyStamp = "7976817e-06c3-42dc-9f0c-c62bdb3008d1",
+                            Id = "4e3bb9ea-af5c-4956-9597-94ef7b4b1bf7",
+                            ConcurrencyStamp = "fefd3bcb-2c94-4ac5-975b-8fc2176822ee",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -795,8 +795,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "cb1d974f-6ca5-4c25-b1f2-386cb640a06e",
-                            RoleId = "bebdfc38-81f1-43e4-861d-3bce378b5c31"
+                            UserId = "f5c97be9-5077-49be-b6bd-da77ca08774c",
+                            RoleId = "c97bad1a-c968-4f5a-a885-1e758ec84eca"
                         });
                 });
 
@@ -834,15 +834,11 @@ namespace HRMS.Migrations
                 {
                     b.HasOne("HRMS.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.HasOne("HRMS.Models.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PositionId");
 
                     b.Navigation("Department");
 

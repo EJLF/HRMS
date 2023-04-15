@@ -208,8 +208,8 @@ namespace HRMS.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: true),
+                    PositionId = table.Column<int>(type: "int", nullable: true),
                     EmployeeType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SSSNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PagIbigId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -243,14 +243,12 @@ namespace HRMS.Migrations
                         name: "FK_AspNetUsers_Departments_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
-                        principalColumn: "DeptId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "DeptId");
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
-                        principalColumn: "PosId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PosId");
                 });
 
             migrationBuilder.CreateTable(
@@ -467,9 +465,9 @@ namespace HRMS.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "987b6fdf-cf06-442f-9ff6-442a426ef8cb", "f2f5697e-679c-4e21-b420-ee66f7fdec95", "Employee", "EMPLOYEE" },
-                    { "bebdfc38-81f1-43e4-861d-3bce378b5c31", "735dd6c3-6337-4f7d-ae8b-3cecbcff664c", "Administrator", "ADMINISTRATOR" },
-                    { "f98d3261-03af-4ae9-b41c-8e0966e03716", "7976817e-06c3-42dc-9f0c-c62bdb3008d1", "Manager", "MANAGER" }
+                    { "4e3bb9ea-af5c-4956-9597-94ef7b4b1bf7", "fefd3bcb-2c94-4ac5-975b-8fc2176822ee", "Manager", "MANAGER" },
+                    { "6925e707-4336-4913-aebd-56a144b5391d", "cfaecb80-0234-48e6-8690-b62fddbf4800", "Employee", "EMPLOYEE" },
+                    { "c97bad1a-c968-4f5a-a885-1e758ec84eca", "7ba41555-b1d0-4455-acd0-10b7df5e5bb8", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -494,12 +492,12 @@ namespace HRMS.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveStatus", "Barangay", "City", "ConcurrencyStamp", "DateHired", "DateOfBirth", "DeleteStatus", "DepartmentId", "Email", "EmailConfirmed", "EmployeeType", "FirstName", "FullName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PagIbigId", "PasswordHash", "PhilHealthId", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "PositionId", "PostalCode", "SSSNumber", "SecurityStamp", "State", "Street", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "cb1d974f-6ca5-4c25-b1f2-386cb640a06e", 0, true, "Admin", "Admin", "1295a849-777a-461b-8323-9a1c5b0cc358", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 15, 12, 57, 31, 26, DateTimeKind.Local).AddTicks(2234), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEOyuv5twMhBh5K5yTaespVvzXoLT2rTLwOEKoHCtVYzQPB4Wiu5iTipVpNKsCAWRSA==", null, "09236253623", null, false, 1, "1234", null, "", "Admin", "Admin", false, "administrator@pjli.com" });
+                values: new object[] { "f5c97be9-5077-49be-b6bd-da77ca08774c", 0, true, "Admin", "Admin", "b182501a-ebf1-405b-b096-632b5880513f", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 15, 21, 16, 6, 154, DateTimeKind.Local).AddTicks(2998), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEFGrVnhv4sVaBjCJmMsYU5QsBwCx5I/28Ptu3jd4MaMILfn4Q/a7JC4XidtfNDUH5w==", null, "09236253623", null, false, 1, "1234", null, "", "Admin", "Admin", false, "administrator@pjli.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "bebdfc38-81f1-43e4-861d-3bce378b5c31", "cb1d974f-6ca5-4c25-b1f2-386cb640a06e" });
+                values: new object[] { "c97bad1a-c968-4f5a-a885-1e758ec84eca", "f5c97be9-5077-49be-b6bd-da77ca08774c" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AddressTypeId",
