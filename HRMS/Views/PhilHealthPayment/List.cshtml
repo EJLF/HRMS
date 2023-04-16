@@ -50,10 +50,11 @@
                   </tr>
                 </thead>
                 <tbody>
+                 @{int no=0;}
                  @foreach (var item in Model) {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.No)
+                                @(++no)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.FullName)
@@ -88,13 +89,14 @@
     </section>
 
   </main><!-- End #main -->
-@section scripts{
-    <script>
-        $(function () {
-            $("#basic-text1").on('keyup', function (e) {
-                $("form").submit();
-            });
+
+<script>
+    $(function () {
+        console.log('Script is executing');
+        $("input[name=searchValue]").on('keyup', function (e) {
+            console.log('Keyup event fired');
+            $("form").submit();
         });
-    </script>
-}
+    });
+</script>
 

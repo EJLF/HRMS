@@ -21,9 +21,9 @@ namespace HRMS.Controllers
         }
 
         [Authorize(Roles = "Administrator, Employee, Manager")]
-        public IActionResult List()
+        public IActionResult List(string searchValue)
         {
-            var list = _repo.ListOfSSSPayment();
+            var list = _repo.ListOfSSSPayment(searchValue);
             return View(list);
         }
         [HttpGet]

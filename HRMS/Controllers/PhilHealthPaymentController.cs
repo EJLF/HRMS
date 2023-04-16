@@ -17,9 +17,9 @@ namespace HRMS.Controllers
             _userManager = userManager;
         }
         [Authorize(Roles = "Employee, Manager, Administrator")]
-        public IActionResult List()
+        public IActionResult List(string searchValue)
         {
-            var list = _repo.ListOfPhilHealthPayment();
+            var list = _repo.ListOfPhilHealthPayment(searchValue);
             return View(list);
         }
 
