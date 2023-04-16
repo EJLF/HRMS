@@ -114,7 +114,13 @@ namespace HRMS.Controllers
                     var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == userViewModel.UserName);
                     if (statusCheck.ActiveStatus == true )
                     {
-                        return RedirectToAction("Index", "Home");
+                        var roles = await _userManager.GetRolesAsync(statusCheck);
+
+                        if (roles.Contains("Administrator"))
+                        {
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        return RedirectToAction("Details", "Profile");
                     }
 
                     return RedirectToAction("Privacy", "Home");
