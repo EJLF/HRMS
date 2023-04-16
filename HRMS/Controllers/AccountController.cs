@@ -74,7 +74,7 @@ namespace HRMS.Controllers
                         var roleResult = await _userManager.AddToRoleAsync(employeeModel, role.Name);
                         if (!roleResult.Succeeded)
                         {
-                            ModelState.AddModelError(String.Empty, "employee Role cannot be assigned");
+                            ModelState.AddModelError(String.Empty, "Employee Role cannot be Assigned");
                         }
                     }
 
@@ -120,7 +120,7 @@ namespace HRMS.Controllers
                     return RedirectToAction("Privacy", "Home");
 
                 }
-                ModelState.AddModelError(string.Empty, "invalid login credentials");
+                ModelState.AddModelError(string.Empty, "Invalid Login Credentials");
             }
             return View(userViewModel);
         }
