@@ -132,13 +132,42 @@ namespace HRMS.Controllers
             return RedirectToAction("Login");
         }
 
-        public IActionResult ChangePassword()
+        [HttpGet]
+        public async Task<IActionResult> ChangePassword()
         {
+            var user = await _userManager.GetUserAsync(User);
             return View();
         }
+            [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-       
+            var user = await _userManager.GetUserAsync(User);
 
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            TempData["AlertMessage"] = "Your password has been changed.";
+            return RedirectToAction("Details","Profile");
+        }
     }
 }

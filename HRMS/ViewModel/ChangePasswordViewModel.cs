@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HRMS.ViewModel
 {
-    public class ConfirmPasswordViewModel
+    public class ChangePasswordViewModel
     {
         [Required]
         [DataType(DataType.Password)]
