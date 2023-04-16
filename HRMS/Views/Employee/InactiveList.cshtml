@@ -99,7 +99,7 @@
                                             Are you sure you want to Activate this Account?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                             <a class="btn btn-success" role="button"asp-action="DeleteFormInActive" asp-route-accountId="@item.Id">Activate</a>
                                         </div>
                                         </div>
@@ -118,10 +118,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Are you sure you want to Delete @item.FullName record?
+                                            Are you sure you want to Delete @item.FullName from record?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                             <a class="btn btn-danger" role="button"asp-action="Delete" asp-route-accountId="@item.Id">Delete</a>
                                         </div>
                                         </div>

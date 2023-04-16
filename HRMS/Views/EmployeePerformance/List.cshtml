@@ -25,11 +25,12 @@
             <div class="card-body">
             </br>  
             <form action="List">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="input-group md-form align-content-sm-around form-2 pl-0">
-                            <input id="search-box" type="text" class="form-control" placeholder="Search...">
-                        </div>
+                <div class="input-group md-form align-content-sm-around form-2 pl-0">
+                    <input name="searchValue" class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" id="basic-text1">
+                            <i class="fas fa-search text-black-grey" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -88,27 +89,15 @@
 
   </main><!-- End #main -->
 
-  <script>
-      $(document).ready(function () {
-    $('#search-box').on('keyup', function () {
-        var query = $(this).val().toLowerCase().trim();
-
-        $('#employee-table tbody tr').each(function () {
-            var $row = $(this);
-            var name = $row.find('td:nth-child(2)').text().toLowerCase().trim();
-            var subject = $row.find('td:nth-child(3)').text().toLowerCase().trim();
-            var reviewBy = $row.find('td:nth-child(4)').text().toLowerCase().trim();
-
-            if (name.indexOf(query) === -1 && subject.indexOf(query) === -1 && reviewBy.indexOf(query) === -1) {
-                $row.hide();
-            } else {
-                $row.show();
-            }
+ <script>
+    $(function () {
+        console.log('Script is executing');
+        $("input[name=searchValue]").on('keyup', function (e) {
+            console.log('Keyup event fired');
+            $("form").submit();
         });
     });
-});
-
-  </script>
+</script>
 
 
 

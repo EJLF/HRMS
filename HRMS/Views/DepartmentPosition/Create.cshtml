@@ -38,3 +38,17 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+   @if(TempData["DesignationAlert"] != null)
+    {
+    <script>
+        // Show the alert
+        Swal.fire({
+            title: "Alert",
+            text: '@TempData["DesignationAlert"]',
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK"
+        });
+    </script>
+    }
+}

@@ -37,7 +37,11 @@ namespace HRMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repo.AddDepartmentPositioncs(newDepartmentPositioncs);
+                var newdesignation = _repo.AddDepartmentPositioncs(newDepartmentPositioncs);
+                if(newdesignation == null)
+                {
+                    TempData["DesignationAlert"] = "Designation is already Exist.";
+                }
                 return RedirectToAction("List");
             }
             ViewData["Message"] = "Data is not valid to create the DepartmentPosition";
@@ -74,7 +78,7 @@ namespace HRMS.Controllers
             catch
             {
 
-                TempData["DepartmentAlert"] = "It is not possible to delete this department while there is an employee assigned to it.";
+                TempData["DesignationAlert"] = "It is not possible to delete this designation while there is an Employee assigned to it.";
                 return RedirectToAction("List");
             }
         }

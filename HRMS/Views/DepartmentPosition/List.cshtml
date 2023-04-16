@@ -24,21 +24,22 @@
           <div class="card">
             <div class="card-body">
             </br>  
-            <p>
-                
-            </p>
             <form action="List">
-                <div class="row justify-content-between">
-                    <div class="col-sm-auto">
-                        <a asp-action="Create">Create New</a>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group md-form align-content-sm-around form-2 pl-0">
-                            <label class="mr-2 mt-2">Filter: </label>
-                            <select id="department-filter" name="searchOption" class="form-control" asp-items="ViewBag.Departments"> </select>
-                        </div>
-                    </div>
+              <div class="row justify-content-between">
+                <div class="col-sm-auto">
+                  <a class="btn btn-primary" type="button" asp-action="Create">Create New</a>
                 </div>
+                <div class="col-sm-4">
+                  <div class="input-group md-form align-content-sm-around form-2 pl-0">
+                    <div class="col-sm-2">
+                      <label class="mr-2 mt-2">Filter:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <select id="department-filter" name="searchOption" class="form-control" asp-items="ViewBag.Departments"></select>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </form>
 
 
@@ -54,10 +55,11 @@
                   </tr>
                 </thead>
                 <tbody>
+                 @{int no=0;}
                  @foreach (var item in Model) {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.No)
+                                @(++no)
                             </td>
                             <td data-department-id="@item.Department.DeptId">
                                 @Html.DisplayFor(modelItem => item.Department.DeptName)
@@ -67,8 +69,8 @@
                                 @Html.DisplayFor(modelItem => item.Position.Name)
                             </td>
                             <td>
-                                <a asp-action="Update" asp-route-No="@item.No">Edit</a> |
-                                <a asp-action="Delete" asp-route-No="@item.No">Delete</a>
+                                <a class="btn btn-success" type="button" asp-action="Update" asp-route-No="@item.No">Edit</a> 
+                                <a class="btn btn-danger" type="button" asp-action="Delete" asp-route-No="@item.No">Delete</a>
                             </td>
                         </tr>
                 }

@@ -15,6 +15,14 @@ namespace HRMS.Repository.SqlRepository
    
         public DepartmentPositioncs AddDepartmentPositioncs(DepartmentPositioncs newDepartmentPosition)
         {
+            var existingDepartmentPosition = _dbcontext.DepartmentPositions.FirstOrDefault(dp =>
+                            dp.DepartmentId == newDepartmentPosition.DepartmentId &&
+                            dp.PositionId == newDepartmentPosition.PositionId);
+
+            if (existingDepartmentPosition != null)
+            {
+                return null;
+            }
             _dbcontext.Add(newDepartmentPosition);
             _dbcontext.SaveChanges();
             return newDepartmentPosition;
