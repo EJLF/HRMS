@@ -40,11 +40,12 @@ namespace HRMS.Controllers
                 var newdesignation = _repo.AddDepartmentPositioncs(newDepartmentPositioncs);
                 if(newdesignation == null)
                 {
-                    TempData["DesignationAlert"] = "Designation is already Exist.";
+                    TempData["DesignationAlert"] = "This designation already exists.";
+                    return RedirectToAction("Create");
                 }
                 return RedirectToAction("List");
             }
-            ViewData["Message"] = "Data is not valid to create the DepartmentPosition";
+            TempData["DesignationAlert"] = "Data is not valid to create the DepartmentPosition";
             return View();
         }
         
