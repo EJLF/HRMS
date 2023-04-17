@@ -403,71 +403,14 @@ namespace HRMS.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "pagIbigs",
-                columns: table => new
-                {
-                    PagIbigId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: true),
-                    StartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_pagIbigs", x => x.PagIbigId);
-                    table.ForeignKey(
-                        name: "FK_pagIbigs_Employees_EmpId",
-                        column: x => x.EmpId,
-                        principalTable: "Employees",
-                        principalColumn: "EmpId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PhilHealths",
-                columns: table => new
-                {
-                    PhilHealthId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: true),
-                    StartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PhilHealths", x => x.PhilHealthId);
-                    table.ForeignKey(
-                        name: "FK_PhilHealths_Employees_EmpId",
-                        column: x => x.EmpId,
-                        principalTable: "Employees",
-                        principalColumn: "EmpId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SSSs",
-                columns: table => new
-                {
-                    SSSNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: true),
-                    StartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SSSs", x => x.SSSNumber);
-                    table.ForeignKey(
-                        name: "FK_SSSs_Employees_EmpId",
-                        column: x => x.EmpId,
-                        principalTable: "Employees",
-                        principalColumn: "EmpId");
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "00654528-c0b1-4620-8c7e-de45defdb921", "9c744355-bba1-44db-8041-fafe8991e11b", "Manager", "MANAGER" },
-                    { "a5009a8d-31b2-451f-9789-4776e564445c", "ab174a7f-57b1-4ab2-866f-4331d8d4dce8", "Administrator", "ADMINISTRATOR" },
-                    { "d12c4a21-f19d-4821-95f6-af99d0c00408", "6d11ee0e-e6cf-41e0-a572-d0858be2d297", "Employee", "EMPLOYEE" }
+                    { "89750704-84ce-4b41-ad82-e7191888c6a4", "8227ce03-ccff-43d6-9ae7-7dee64688b74", "Administrator", "ADMINISTRATOR" },
+                    { "99f7e224-7f46-43fd-9e19-678d2a537ba3", "739c8215-e36d-4520-a742-c1dc0df77ee3", "Manager", "MANAGER" },
+                    { "ebf7e3c2-c45e-4976-aab7-03ac3652b3e8", "d2bf9dfa-1839-41ae-b044-7c1cfbd33250", "Employee", "EMPLOYEE" }
                 });
 
             migrationBuilder.InsertData(
@@ -492,12 +435,12 @@ namespace HRMS.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActiveStatus", "Barangay", "City", "ConcurrencyStamp", "DateHired", "DateOfBirth", "DeleteStatus", "DepartmentId", "Email", "EmailConfirmed", "EmployeeType", "FirstName", "FullName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PagIbigId", "PasswordHash", "PhilHealthId", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "PositionId", "PostalCode", "SSSNumber", "SecurityStamp", "State", "Street", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ea35aa87-a5d5-4f99-842b-68e65d79caf5", 0, true, "Admin", "Admin", "bbe63f00-971c-4e52-af87-883f7ed3fb89", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 16, 16, 0, 42, 453, DateTimeKind.Local).AddTicks(6476), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEPcbjethZ2jksLnQOHXMGHvFy6/G1QhdecXMBcz9N8LuPO4W9Ot2RyifJ3WrUnwByw==", null, "09236253623", null, false, 1, "1234", null, "", "Admin", "Admin", false, "administrator@pjli.com" });
+                values: new object[] { "52337893-5c01-4965-9121-74cc3b18c668", 0, true, "Admin", "Admin", "9bf490a9-6656-4953-a1ca-bcc70ca978f9", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 4, 17, 12, 53, 27, 820, DateTimeKind.Local).AddTicks(52), false, 1, "administrator@pjli.com", true, null, "Admin", "Administrator", "Male", "Admin", false, null, "Admin", "ADMINISTRATOR@PJLI.COM", "ADMINISTRATOR@PJLI.COM", null, "AQAAAAEAACcQAAAAEK2C7ibh+bmdiBJG92RkMg6UoA7Fhgodfu+4gOpj9L6AtDJw1YJB+UmlkkIYMMupFg==", null, "09236253623", null, false, 1, "1234", null, "", "Admin", "Admin", false, "administrator@pjli.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "a5009a8d-31b2-451f-9789-4776e564445c", "ea35aa87-a5d5-4f99-842b-68e65d79caf5" });
+                values: new object[] { "89750704-84ce-4b41-ad82-e7191888c6a4", "52337893-5c01-4965-9121-74cc3b18c668" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_AddressTypeId",
@@ -572,21 +515,6 @@ namespace HRMS.Migrations
                 name: "IX_Employees_PositionId",
                 table: "Employees",
                 column: "PositionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_pagIbigs_EmpId",
-                table: "pagIbigs",
-                column: "EmpId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhilHealths_EmpId",
-                table: "PhilHealths",
-                column: "EmpId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SSSs_EmpId",
-                table: "SSSs",
-                column: "EmpId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -616,25 +544,19 @@ namespace HRMS.Migrations
                 name: "EmployeePerformances");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "EmploymentTypes");
 
             migrationBuilder.DropTable(
                 name: "PagIbigPayments");
 
             migrationBuilder.DropTable(
-                name: "pagIbigs");
-
-            migrationBuilder.DropTable(
                 name: "PhilHealthPayments");
 
             migrationBuilder.DropTable(
-                name: "PhilHealths");
-
-            migrationBuilder.DropTable(
                 name: "SSSPayments");
-
-            migrationBuilder.DropTable(
-                name: "SSSs");
 
             migrationBuilder.DropTable(
                 name: "AddressesTypes");
@@ -644,9 +566,6 @@ namespace HRMS.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Departments");

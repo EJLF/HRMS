@@ -14,15 +14,21 @@ namespace HRMS.Controllers
     public class EmployeeController : Controller
     {
         IEmployeeRepository _repo;
+        IDepartmentPositionRepository _departmentPositionRepository;
         private UserManager<ApplicationUser> _userManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
         private SignInManager<ApplicationUser> _signInManager { get; }
-        public EmployeeController(UserManager<ApplicationUser> userManager, IEmployeeRepository repo, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
+        public EmployeeController(UserManager<ApplicationUser> userManager, 
+                                   RoleManager<IdentityRole> roleManager, 
+                                   SignInManager<ApplicationUser> signInManager,
+                                   IEmployeeRepository repo,
+                                   IDepartmentPositionRepository departmentPositionRepository)
         {
             _userManager = userManager;
             _repo = repo;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _departmentPositionRepository = departmentPositionRepository;
         }
 
         //Get All the Employee
@@ -65,8 +71,8 @@ namespace HRMS.Controllers
         [Authorize(Roles = "Administrator, Employee, Manager")]
         public IActionResult Details(string accountId)
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
             EditEmployeeViewModel employeeViewModel = new EditEmployeeViewModel()
             {
@@ -103,8 +109,8 @@ namespace HRMS.Controllers
         public async Task<IActionResult> Update(string accountId)
         {
             var employee = _userManager.Users.Include(d => d.Department).Include(p => p.Position).FirstOrDefault(u => u.Id == accountId);
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             //  var roles = await _userManager.GetRolesAsync(user);
             EditEmployeeViewModel employeeViewModel = new EditEmployeeViewModel()
             {
@@ -136,8 +142,8 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(EditEmployeeViewModel employee)
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             if (ModelState.IsValid)
             {
                 var oldValue = await _userManager.FindByIdAsync(employee.Id.ToString());
@@ -255,16 +261,16 @@ namespace HRMS.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             return View();
         }
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> Create(RegisterEmployeeViewModel employeeViewModel)
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             if (ModelState.IsValid)
             {
                 var employeeModel = new ApplicationUser
@@ -328,7 +334,7 @@ namespace HRMS.Controllers
                                                  .Include(p => p.Position)
                                                  .Where(status => status.ActiveStatus == true)
                                                  .Where(e => e.DepartmentId == employee.DepartmentId)
-                                                 .ToList() // materialize the query
+                                                 .ToList() 
                                                  .Where(e => !_userManager.IsInRoleAsync(e, "Manager").Result)
                                                  .Where(e => !_userManager.IsInRoleAsync(e, "Administrator").Result)
                                                  .ToList();

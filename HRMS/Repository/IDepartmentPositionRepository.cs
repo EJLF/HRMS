@@ -15,6 +15,7 @@ namespace HRMS.Repository
         // Delete
         DepartmentPositioncs DeleteDepartmentPosition(int DepartmentPositionId);
         List<SelectListItem> GetDepartmentList();
+        List<SelectListItem> GetPositionList();
         List<SelectListItem> GetPosition(int DeptID=1);
         List<DepartmentPositioncs> ListDepartmentPositioncs();
         List<DepartmentPositioncs> GetFilter(string a, string b);

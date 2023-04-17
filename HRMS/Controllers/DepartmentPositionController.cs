@@ -13,7 +13,7 @@ namespace HRMS.Controllers
     {
 
         IDepartmentPositionRepository _repo ;
-       // HRMSDBContext _dbcontext;
+
         public DepartmentPositionController(IDepartmentPositionRepository repo)
         {
             _repo = repo;
@@ -29,7 +29,7 @@ namespace HRMS.Controllers
         public IActionResult Create()
         {
             ViewBag.DepartmentId = _repo.GetDepartmentList();
-            ViewBag.PositionId = _repo.GetPosition();
+            ViewBag.PositionId = _repo.GetPositionList();
             return View();
         }
         [HttpPost]
@@ -53,7 +53,7 @@ namespace HRMS.Controllers
         public IActionResult Update(int No)
         {
             ViewBag.DepartmentId = _repo.GetDepartmentList();
-            ViewBag.PositionId = _repo.GetPosition();
+            ViewBag.PositionId = _repo.GetPositionList();
             DepartmentPositioncs departmentPositioncs = _repo.GetDepartmentPositionById(No);
             return View(departmentPositioncs);
         }
@@ -61,7 +61,7 @@ namespace HRMS.Controllers
         public  IActionResult Update(int No, DepartmentPositioncs departmentPositioncs)
         {
             ViewBag.DepartmentId = _repo.GetDepartmentList();
-            ViewBag.PositionId = _repo.GetPosition();
+            ViewBag.PositionId = _repo.GetPositionList();
             _repo.UpdateDepartmentPosition(No, departmentPositioncs);
             return RedirectToAction("List");
         }

@@ -74,6 +74,25 @@ namespace HRMS.Repository.SqlRepository
             return listDept;
         }
 
+        public List<SelectListItem> GetPositionList()
+        {
+            var listPosition = new List<SelectListItem>();
+            List<Position> positions = _dbcontext.Positions.ToList();
+            listPosition = positions.Select(pos => new SelectListItem
+            {
+                Value = (pos.PosId).ToString(),
+                Text = pos.Name
+            }).ToList();
+
+            var defItem = new SelectListItem()
+            {
+                Value = "",
+                Text = "Select Position"
+            };
+            listPosition.Insert(0, defItem);
+            return listPosition;
+        }
+
         public List<SelectListItem> GetPosition(int deptID = 1)
         {
             var listPosition = new List<SelectListItem>();

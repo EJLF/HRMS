@@ -53,14 +53,14 @@
                   <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                  <label for="inputName5" class="form-label">Department</label>
-                  <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentList"></select>
-                  <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    <label for="DepartmentId" class="form-label">Department</label>
+                    <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentList" id="departmentId" onchange="FillPosition(this, 'positionId');"></select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                  <label for="inputName5" class="form-label">Position</label>
-                  <select asp-for="PositionId" class="form-select" asp-items="ViewBag.PositionList"></select>
-                  <span asp-validation-for="PositionId" class="text-danger"></span>
+                    <label for="PositionId" class="form-label">Position</label>
+                    <select asp-for="PositionId" class="form-select" asp-items="ViewBag.PositionList" id="positionId"></select>
+                    <span asp-validation-for="PositionId" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
                   <label for="inputName5" class="form-label">Employment Type</label>
@@ -166,4 +166,37 @@
         const formattedInput = input.replace(/\D/g, '').replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
         e.target.value = formattedInput;
     });
+
+    function FillPosition(listDepartmentCtrl, listPositionCtrl) 
+    {
+        var listPosition = $("#" + listPositionCtrl);
+        listPosition.empty();
+
+        var selectedDepartment = listDepartmentCtrl.options[listDepartmentCtrl.selectedIndex].value;
+
+        if (selectedDepartment != null && selectedDepartment != '') {
+            $.getJSON("/Account/GetPositionByDepartment", { departmentId: selectedDepartment }, function (positions) {
+                if (positions != null && positions.length > 0) {
+                    $.each(positions, function (index, position) {
+                        listPosition.append($('<option/>', {
+                            value: position.value,
+                            text: position.text
+                        }));
+                    });
+                }
+                else {
+                    listPosition.append($('<option/>', {
+                        value: '',
+                        text: 'No positions found'
+                    }));
+                }
+            });
+        }
+        else {
+            listPosition.append($('<option/>', {
+                value: '',
+                text: 'Select a Department first'
+            }));
+        }
+    }
 </script>
