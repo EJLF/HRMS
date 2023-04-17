@@ -85,7 +85,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8">@Model.Street @Model.Barangay @Model.City</div>
+                    <div class="col-lg-9 col-md-8">@Model.Street,  @Model.Barangay, @Model.City, @Model.State</div>
                   </div>
 
                   <div class="row">
@@ -174,7 +174,7 @@
                         <span asp-validation-for="PagIbigId" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
-                        <label for="inputName5" class="form-label">Street</label>
+                        <label for="inputName5" class="form-label">House No. / Street</label>
                         <input asp-for="Street" class="form-control" />
                         <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
@@ -184,7 +184,7 @@
                         <span asp-validation-for="Barangay" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
-                        <label for="inputName5" class="form-label">City</label>
+                        <label for="inputName5" class="form-label">Municipality / City</label>
                         <input asp-for="City" class="form-control" />
                         <span asp-validation-for="City" class="text-danger"></span>
                     </div>
