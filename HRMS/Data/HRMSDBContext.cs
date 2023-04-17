@@ -27,9 +27,6 @@ namespace HRMS.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<EmployeePerformance> EmployeePerformances { get; set; }
-        public DbSet<SSS> SSSs { get; set; }
-        public DbSet<PhilHealth> PhilHealths { get; set; }
-        public DbSet<PagIbig> pagIbigs { get; set; }
         public DbSet<EmploymentType> EmploymentTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AddressType> AddressesTypes { get; set; }

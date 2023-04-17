@@ -3,12 +3,14 @@ using HRMS.Repository;
 using HRMS.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HRMS.Controllers
 {
     public class AccountController : Controller
     {
         IEmployeeRepository _repo;
+        IDepartmentPositionRepository _departmentPositionRepository;
         private UserManager<ApplicationUser> _userManager { get; }
         // login user details 
         private SignInManager<ApplicationUser> _signInManager { get; }
@@ -17,26 +19,28 @@ namespace HRMS.Controllers
         public AccountController(UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
                                 RoleManager<IdentityRole> roleManager,
-                                IEmployeeRepository repo)
+                                IEmployeeRepository repo,
+                                IDepartmentPositionRepository departmentPositionRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _repo = repo;
+            _departmentPositionRepository = departmentPositionRepository;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEmployeeViewModel employeeViewModel)
         {
-            ViewBag.DepartmentList = _repo.GetDepartmentList();
-            ViewBag.PositionList = _repo.GetPositionList();
+            ViewBag.DepartmentList = _departmentPositionRepository.GetDepartmentList();
+            ViewBag.PositionList = _departmentPositionRepository.GetPosition();
             if (ModelState.IsValid)
             {
                 var employeeModel = new ApplicationUser
@@ -175,5 +179,12 @@ namespace HRMS.Controllers
             TempData["AlertMessage"] = "Your password has been changed.";
             return RedirectToAction("Details","Profile");
         }
+
+        [HttpGet]
+        public JsonResult GetPositionByDepartment(int departmentId)
+        {
+            List<SelectListItem> positionList = _departmentPositionRepository.GetPosition(departmentId);
+            return Json(positionList);
+        } 
     }
 }
