@@ -103,7 +103,6 @@ namespace HRMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LogInEmployeeViewModel userViewModel)
         {
-
             if (ModelState.IsValid)
             {
                 // login activity -> cookie [Roles and Claims]
@@ -144,7 +143,8 @@ namespace HRMS.Controllers
             var user = await _userManager.GetUserAsync(User);
             return View();
         }
-            [HttpPost]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
