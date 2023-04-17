@@ -19,6 +19,13 @@ namespace HRMS.Controllers
         [Authorize(Roles = "Employee, Manager, Administrator")]
         public IActionResult List(string searchValue)
         {
+            if (!User.IsInRole("Administrator"))
+            {
+                var email = User.Identity.Name;
+                var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+                var employeeList = _repo.ListOfPhilHealthPayment(searchValue).Where(e => e.FullName == employee.FullName);
+                return View(employeeList);
+            }
             var list = _repo.ListOfPhilHealthPayment(searchValue);
             return View(list);
         }

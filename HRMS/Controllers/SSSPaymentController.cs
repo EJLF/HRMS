@@ -23,6 +23,13 @@ namespace HRMS.Controllers
         [Authorize(Roles = "Administrator, Employee, Manager")]
         public IActionResult List(string searchValue)
         {
+            if (!User.IsInRole("Administrator"))
+            {
+                var email = User.Identity.Name;
+                var employee = _userManager.Users.FirstOrDefault(e => e.Email == email);
+                var employeeList = _repo.ListOfSSSPayment(searchValue).Where(e => e.FullName == employee.FullName);
+                return View(employeeList);
+            }
             var list = _repo.ListOfSSSPayment(searchValue);
             return View(list);
         }
