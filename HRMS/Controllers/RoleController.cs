@@ -1,4 +1,5 @@
 ﻿using HRMS.Models;
+using HRMS.Repository;
 using HRMS.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,17 +11,20 @@ namespace HRMS.Controllers
     [Authorize(Roles = "Administrator")]
     public class RoleController : Controller
     {
+        IDepartmentPositionRepository _repo;
         private UserManager<ApplicationUser> _userManager { get; }
         private SignInManager<ApplicationUser> _signInManager { get; }
         public RoleManager<IdentityRole> _roleManager { get; }
 
         public RoleController(UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
-                                RoleManager<IdentityRole> roleManager)
+                                RoleManager<IdentityRole> roleManager,
+                                 IDepartmentPositionRepository repo )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _repo = repo;
         }
 
         [HttpGet]
@@ -54,22 +58,26 @@ namespace HRMS.Controllers
         [HttpGet]
         public async Task<IActionResult> ListAsync()
         {
+            ViewBag.Departments = _repo.GetDepartmentList();
             var usersWithRoles = new List<UserRoleViewModel>();
-
             var roles = await _roleManager.Roles.ToListAsync();
 
             foreach (var role in roles)
             {
                 var users = await _userManager.GetUsersInRoleAsync(role.Name);
-                var userList = users.Where(u => u.ActiveStatus == true).Where(e => e.Email != "administrator@pjli.com");
+                var userList = users.Where(u => u.ActiveStatus == true)
+                                    .Where(e => e.Email != "administrator@pjli.com");
                 foreach (var user in userList)
                 {
+                    var userdetails= _userManager.Users.Include(d => d.Department).FirstOrDefault(e => e.Email == user.Email);
                     usersWithRoles.Add(new UserRoleViewModel
                     {
                         UserId = user.Id,
                         FullName = user.FullName,
                         Email = user.Email,
-                        RoleName = role.Name
+                        RoleName = role.Name,
+                        Department = userdetails.Department.DeptName,
+                        deptId = userdetails.Department.DeptId,
                     });
                 }
             }
