@@ -26,14 +26,14 @@ namespace HRMS.Controllers
             _deptrepo = deptrepo;
         }
 
-        public IActionResult List()
+        public IActionResult List(string searchValue)
         {
             ViewBag.DepartmentList = _deptrepo.GetDepartmentList();
             var email = User.Identity.Name;
             var employee = _userManager.Users.FirstOrDefault(x => x.Email == email);
             if (User.IsInRole("Administrator"))
             {
-                var value = _repo.ListOfEmployeePerformance(null);
+                var value = _repo.SearchListOfEmployeePerformance(null, searchValue);
                 foreach (var item in value)
                 {
                     var fullName = _userManager.Users.FirstOrDefault(x => x.Id == item.userID);
@@ -177,30 +177,10 @@ namespace HRMS.Controllers
 
         }
 
-        //Details
+        //get the Details Employee Performances
         public IActionResult Details(int No)
         {
             return View(_repo.GetEmployeePerformanceById(No));
-        }
-
-        //Search
-        public IActionResult Search(string departmentFilter, string searchText)
-        {
-            var query = _repo.ListOfEmployeePerformance(null).AsQueryable();
-
-            if (!string.IsNullOrEmpty(departmentFilter))
-            {
-               // query = query.Where(e => e. == departmentFilter);
-            }
-
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                query = query.Where(e => e.About.Contains(searchText) || e.userID.Contains(searchText) || e.ReviewBy.Contains(searchText));
-            }
-
-            var results = query.ToList();
-
-            return PartialView("_EmployeePerformanceTable", results);
         }
 
     }
