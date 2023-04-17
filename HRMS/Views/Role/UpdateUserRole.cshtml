@@ -30,6 +30,7 @@
                 <label asp-for="RoleName"></label>
                 <select asp-for="RoleName" asp-items="@(new SelectList(ViewBag.Roles, "Name", "Name", Model.RoleName))" class="form-select"></select>
             </div>
+            <br />
             <button type="submit" class="btn btn-primary">Update Role</button>
         </form>
     </section>

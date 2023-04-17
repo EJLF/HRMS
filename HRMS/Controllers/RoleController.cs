@@ -26,10 +26,6 @@ namespace HRMS.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
-            //_roleManager.Roles;
-            //_roleManager.DeleteAsync();
-            //_roleManager.UpdateAsync();
             return View();
         }
 
@@ -133,7 +129,7 @@ namespace HRMS.Controllers
                 RoleName = roleName
             };
 
-            ViewBag.Roles = _roleManager.Roles.ToList();
+            ViewBag.Roles = _roleManager.Roles.Where(r => r.Name != "Administrator").ToList();
 
             return View(viewModel);
         }
