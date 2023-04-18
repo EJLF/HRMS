@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRMS.Migrations
 {
     [DbContext(typeof(HRMSDBContext))]
-    [Migration("20230417045328_init")]
+    [Migration("20230418070158_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,14 +223,14 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "52337893-5c01-4965-9121-74cc3b18c668",
+                            Id = "0a69c218-96e4-4d5c-981f-1b583c8ab3f1",
                             AccessFailedCount = 0,
                             ActiveStatus = true,
                             Barangay = "Admin",
                             City = "Admin",
-                            ConcurrencyStamp = "9bf490a9-6656-4953-a1ca-bcc70ca978f9",
+                            ConcurrencyStamp = "65db138f-3649-4760-b3c5-68d7a50b7634",
                             DateHired = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2023, 4, 17, 12, 53, 27, 820, DateTimeKind.Local).AddTicks(52),
+                            DateOfBirth = new DateTime(2023, 4, 18, 15, 1, 57, 867, DateTimeKind.Local).AddTicks(504),
                             DeleteStatus = false,
                             DepartmentId = 1,
                             Email = "administrator@pjli.com",
@@ -243,7 +243,7 @@ namespace HRMS.Migrations
                             MiddleName = "Admin",
                             NormalizedEmail = "ADMINISTRATOR@PJLI.COM",
                             NormalizedUserName = "ADMINISTRATOR@PJLI.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK2C7ibh+bmdiBJG92RkMg6UoA7Fhgodfu+4gOpj9L6AtDJw1YJB+UmlkkIYMMupFg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOv891/lfnmBhx9K+CEO4sRfG7lN7F6rhH5esgSr5qfrtDjSH0lseH7/qXEGWdFQoQ==",
                             Phone = "09236253623",
                             PhoneNumberConfirmed = false,
                             PositionId = 1,
@@ -621,22 +621,22 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89750704-84ce-4b41-ad82-e7191888c6a4",
-                            ConcurrencyStamp = "8227ce03-ccff-43d6-9ae7-7dee64688b74",
+                            Id = "0c1c376e-b43c-4879-b794-1c6c3f70edf2",
+                            ConcurrencyStamp = "26bb9c21-8a23-4d9e-a9aa-267b7b9e97b4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "ebf7e3c2-c45e-4976-aab7-03ac3652b3e8",
-                            ConcurrencyStamp = "d2bf9dfa-1839-41ae-b044-7c1cfbd33250",
+                            Id = "df7f5714-436b-4a69-aa2b-277eda6c717d",
+                            ConcurrencyStamp = "24663766-7347-477e-8f3c-f7d2dbf6da22",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "99f7e224-7f46-43fd-9e19-678d2a537ba3",
-                            ConcurrencyStamp = "739c8215-e36d-4520-a742-c1dc0df77ee3",
+                            Id = "689a7879-995f-4e80-b459-461eb7011d53",
+                            ConcurrencyStamp = "8cec7ca3-c80c-4a98-90ec-21fe5c03bcf3",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         });
@@ -731,8 +731,8 @@ namespace HRMS.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "52337893-5c01-4965-9121-74cc3b18c668",
-                            RoleId = "89750704-84ce-4b41-ad82-e7191888c6a4"
+                            UserId = "0a69c218-96e4-4d5c-981f-1b583c8ab3f1",
+                            RoleId = "0c1c376e-b43c-4879-b794-1c6c3f70edf2"
                         });
                 });
 
