@@ -60,7 +60,7 @@
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
                              <td>
-                                @Html.DisplayFor(modelItem => item.Payment)
+                                ₱ @String.Format("{0:N2}", (decimal)item.Payment)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Month)
