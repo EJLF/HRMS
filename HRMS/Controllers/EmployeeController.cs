@@ -175,6 +175,7 @@ namespace HRMS.Controllers
                 {
                     if (User.IsInRole("Administrator"))
                     {
+                        TempData["EmployeeAlert"] = oldValue.FullName + " Details is Successfully Updated!";
                         return RedirectToAction("List");
                     }
                     else
@@ -205,6 +206,7 @@ namespace HRMS.Controllers
             var result = await _userManager.UpdateAsync(oldValue);
             if (result.Succeeded)
             {
+                TempData["EmployeeAlert"] = oldValue.FullName + " is Successfully Deleted in the Record!";
                 return RedirectToAction("List");
             }
             foreach (var error in result.Errors)
@@ -226,7 +228,8 @@ namespace HRMS.Controllers
             var result = await _userManager.UpdateAsync(oldValue);
             if (result.Succeeded)
             {
-               return RedirectToAction("List");
+                TempData["EmployeeAlert"] = oldValue.FullName + " Account is Now Deactivated!";
+                return RedirectToAction("List");
             }
             foreach (var error in result.Errors)
             {
@@ -241,6 +244,7 @@ namespace HRMS.Controllers
         {
             var oldValue = await _userManager.FindByIdAsync(accountId);
             {
+                TempData["EmployeeAlert"] = oldValue.FullName + " Account is Now Activated!";
                 oldValue.ActiveStatus = true;
             }
 
@@ -311,6 +315,7 @@ namespace HRMS.Controllers
                             ModelState.AddModelError(String.Empty, "employee Role cannot be assigned");
                         }
                     }
+                    TempData["EmployeeAlert"] = "New Account is Successfully Added!";
                     return RedirectToAction("List", "Employee");
 
                 }

@@ -124,7 +124,8 @@ namespace HRMS.Controllers
 
             if (ModelState.IsValid)
             {
-                var Dept = _repo.AddEmployeePerformance(newEmployeePerformance);
+                var employee = _repo.AddEmployeePerformance(newEmployeePerformance);
+                TempData["EmployeePerformanceAlert"] = "The performance review is successfully sent to " + employee.EmployeeName;
                 return RedirectToAction("List");
             }
             ViewData["Message"] = "Data is Not valid to create the Department";
@@ -158,6 +159,7 @@ namespace HRMS.Controllers
         public IActionResult Update(int No,EmployeePerformance newPerformance)
         {
             var result = _repo.UpdateEmployeePerformance(No,newPerformance);
+            TempData["EmployeePerformanceAlert"] = "Performance Review Successfully Updated!";
             return RedirectToAction("List");
         }
 
@@ -171,7 +173,7 @@ namespace HRMS.Controllers
             }
 
             var result = _repo.UpdateEmployeePerformance(No, employee);
-
+            TempData["EmployeePerformanceAlert"] = "Performance Review Successfully Deleted!";
 
             return RedirectToAction("List");
 

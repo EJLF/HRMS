@@ -122,6 +122,19 @@
 
   </main><!-- End #main -->
 
+ @if(TempData["EmployeeAlert"] != null)
+    {
+    <script>
+        // Show the alert
+        Swal.fire({
+            title: "Alert",
+            text: '@TempData["EmployeeAlert"]',
+            icon: "",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK"
+        });
+    </script>
+    }
 
 <script>
         const departmentFilter = document.getElementById('department-filter');
@@ -174,5 +187,7 @@
           });
         });
 </script>
+
+
 
 

@@ -43,6 +43,7 @@ namespace HRMS.Controllers
                     TempData["DesignationAlert"] = "This designation already exists.";
                     return RedirectToAction("Create");
                 }
+                TempData["DesignationAlert"] = "The designation is successfully added.";
                 return RedirectToAction("List");
             }
             TempData["DesignationAlert"] = "Data is not valid to create the DepartmentPosition";
@@ -63,7 +64,14 @@ namespace HRMS.Controllers
         {
             ViewBag.DepartmentId = _repo.GetDepartmentList();
             ViewBag.PositionId = _repo.GetPositionList();
-            _repo.UpdateDepartmentPosition(No, departmentPositioncs);
+            
+            var newdesignation = _repo.UpdateDepartmentPosition(No, departmentPositioncs);
+            if (newdesignation == null)
+            {
+                TempData["DesignationAlert"] = "This Designation already exists.";
+                return RedirectToAction("List");
+            }
+            TempData["DesignationAlert"] = "The Designation is Successfully Updated!";
             return RedirectToAction("List");
         }
 
@@ -73,12 +81,12 @@ namespace HRMS.Controllers
             var department = _repo.GetDepartmentPositionById(No);
             try
             {
+                TempData["DesignationAlert"] = "The Designation is Successfully Deleted!";
                 _repo.DeleteDepartmentPosition(No);
                 return RedirectToAction("List");
             }
             catch
             {
-
                 TempData["DesignationAlert"] = "It is not possible to delete this designation while there is an Employee assigned to it.";
                 return RedirectToAction("List");
             }
