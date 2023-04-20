@@ -50,7 +50,8 @@ namespace HRMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repo.AddPagIbigPayment(pagIbigPayment);
+                var payment = _repo.AddPagIbigPayment(pagIbigPayment);
+                TempData["PagibigAlert"] = "Payment is Added to " + payment.FullName + " Account";
                 return RedirectToAction("List");
             }
             return View();
@@ -68,12 +69,14 @@ namespace HRMS.Controllers
         public IActionResult Edit(PagIbigPayment pagIbigPayment)
         {
             _repo.UpdatePagIbigPayment(pagIbigPayment);
+            TempData["PagibigAlert"] = "Payment is Updated Successfully";
             return RedirectToAction("List");
         }
         [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int No)
         {
             _repo.DeletePagIbigPayment(No);
+            TempData["PagibigAlert"] = "Payment is Deleted Successfully";
             return RedirectToAction("List");
         }
     }

@@ -52,7 +52,8 @@ namespace HRMS.Controllers
         {
             if(ModelState.IsValid)
             {
-                _repo.AddPhilHealthPayment(philHealthPayment);
+                var payment = _repo.AddPhilHealthPayment(philHealthPayment);
+                TempData["PhilhealthAlert"] = "Payment is Added to " + payment.FullName + " Account";
                 return RedirectToAction("List");
             }
             return View();
@@ -70,12 +71,14 @@ namespace HRMS.Controllers
         public IActionResult Edit(PhilHealthPayment philHealthPayment)
         {
             _repo.UpdatePhilHealthPayment(philHealthPayment);
+            TempData["PhilhealthAlert"] = "Payment is Updated Successfully";
             return RedirectToAction("List");
         }
         [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int No)
         {
             _repo.DeletePhilHealthPayment(No);
+            TempData["PhilhealthAlert"] = "Payment is Deleted Successfully";
             return RedirectToAction("List");
         }
     }

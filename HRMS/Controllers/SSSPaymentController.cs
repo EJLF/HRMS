@@ -55,7 +55,8 @@ namespace HRMS.Controllers
             { 
                 if (ModelState.IsValid)
                 {
-                    _repo.AddSSSPayment(sssPayment);
+                    var payment = _repo.AddSSSPayment(sssPayment);
+                    TempData["SSSAlert"] ="Payment is Added to " +payment.FullName+ " Account";
                     return RedirectToAction("List");
                 }
                 return View();
@@ -73,6 +74,7 @@ namespace HRMS.Controllers
         public IActionResult Edit(SSSPayment newSSSPayment)
         {
             _repo.UpdateSSSPayment(newSSSPayment);
+            TempData["SSSAlert"] = "Payment is Updated Successfully";
             return RedirectToAction("List");
         }
 
@@ -80,6 +82,7 @@ namespace HRMS.Controllers
         public IActionResult Delete(int No)
         {
             _repo.DeleteSSSPayment(No);
+            TempData["SSSAlert"] = "Payment is Deleted Successfully";
             return RedirectToAction("List");
         }
 

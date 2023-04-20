@@ -42,7 +42,6 @@
               </div>
             </form>
 
-
               <!-- Table with stripped rows -->
               <table id="employee-table" class="table datatable">
                 <thead>
@@ -64,7 +63,6 @@
                             <td data-department-id="@item.Department.DeptId">
                                 @Html.DisplayFor(modelItem => item.Department.DeptName)
                             </td>
-
                             <td>
                                 @Html.DisplayFor(modelItem => item.Position.Name)
                             </td>
@@ -78,7 +76,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Warning</h5>
+                                        <h5 class="modal-title" style="font-weight:bold;">Warning</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
