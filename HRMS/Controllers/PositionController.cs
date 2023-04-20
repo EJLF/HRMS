@@ -33,10 +33,11 @@ namespace HRMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Dept = _repo.AddPosition(newDept);
+                var pos = _repo.AddPosition(newDept);
+                TempData["PositionAlert"] = pos.Name + " Successfully Added!";
                 return RedirectToAction("List");
             }
-            ViewData["Message"] = "Data is not valid to create the Position";
+            ViewData["PositionAlert"] = "Data is not valid to create the Position";
             return View();
         }
 
@@ -49,6 +50,7 @@ namespace HRMS.Controllers
         [HttpPost]
         public IActionResult Update(int PosId, Position Position)
         {
+            TempData["PositionAlert"] ="Update Successfully!";
             _repo.UpdatePosition(PosId, Position);
             return RedirectToAction("List");
         }
