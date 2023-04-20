@@ -109,9 +109,8 @@ namespace HRMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                // login activity -> cookie [Roles and Claims]
                 var result = await _signInManager.PasswordSignInAsync(userViewModel.UserName, userViewModel.Password, false, false);
-                //login cookie and transfter to the client 
+   
                 if (result.Succeeded)
                 {
                     var statusCheck = _userManager.Users.FirstOrDefault(u => u.Email == userViewModel.UserName);
