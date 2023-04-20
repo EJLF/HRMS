@@ -24,11 +24,9 @@
           <div class="card">
             <div class="card-body">
             </br>
-            <p style="font-size:20px;">Manager: <span style="font-weight:bold;">@ViewBag.DepartmentHead</span></p>
-            
-
-            
-            
+            @foreach (var dept in ViewBag.DepartmentHead) {
+                    <p style="font-size:20px;">Manager: <span style="font-weight:bold;">@dept</span></p>
+                }
               <!-- Table with stripped rows -->
               <table id="employee-table" class="table datatable">
                 <thead>

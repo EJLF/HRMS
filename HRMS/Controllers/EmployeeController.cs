@@ -331,9 +331,13 @@ namespace HRMS.Controllers
         public async Task<IActionResult> DepartamentalList()
         {
             var email = User.Identity.Name;
+            var manager = await _userManager.GetUsersInRoleAsync("Manager");
+            
 
             var employee = _userManager.Users.Include(d => d.Department)
                                              .FirstOrDefault(e => e.Email == email);
+
+            var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).ToList();
 
             var employeeList = _userManager.Users.Include(d => d.Department)
                                                  .Include(p => p.Position)
@@ -347,19 +351,19 @@ namespace HRMS.Controllers
 
             if (User.IsInRole("Manager"))
             {
-                ViewBag.DepartmentHead = employee.FullName;
+                ViewBag.DepartmentHead = manager.Where(d => d.DepartmentId == employee.DepartmentId).Select(f => f.FullName).ToList();
             }
             else
             {
-                var manager = await _userManager.GetUsersInRoleAsync("Manager");
-                var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();
+                
                 if (managerName == null)
                 {
                     ViewBag.DepartmentHead = "Unassigned";
                 }
                 else
                 {
-                    ViewBag.DepartmentHead = managerName.FullName;
+                    //ViewBag.DepartmentHead = managerName.FullName;
+                    ViewBag.DepartmentHead = manager.Where(d => d.DepartmentId == employee.DepartmentId).ToList();
                 }      
             }
 
