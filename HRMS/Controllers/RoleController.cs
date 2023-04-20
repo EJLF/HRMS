@@ -167,10 +167,11 @@ namespace HRMS.Controllers
 
             if (!result.Succeeded)
             {
+                TempData["RoleAlert"] ="Failed to update user to selected role.";
                 ModelState.AddModelError(string.Empty, "Failed to add user to selected role.");
                 return BadRequest(ModelState);
             }
-
+            TempData["RoleAlert"] = user.FullName + " Role Updated Successfully!";
             return RedirectToAction("List");
         }
     }

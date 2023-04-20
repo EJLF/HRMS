@@ -75,6 +75,21 @@
 
   </main><!-- End #main -->
 
+  @if(TempData["RoleAlert"] != null)
+    {
+    <script>
+        // Show the alert
+        Swal.fire({
+            title: "Alert",
+            text: '@TempData["RoleAlert"]',
+            icon: "",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "OK",
+            position: "top",
+        });
+    </script>
+    }
+
   <script>
     const departmentFilter = document.getElementById('department-filter');
     const employeeTable = document.getElementById('employee-table');

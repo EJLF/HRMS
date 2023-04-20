@@ -42,6 +42,7 @@
                     <th scope="col">Employe Name</th>
                     <th scope="col">Subject / Topic</th>
                     <th scope="col">Review By</th>
+                    <th scope="col">Date</th>
                     <th></th>
                
                   </tr>
@@ -62,6 +63,9 @@
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.ReviewBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateReview)
                             </td>
                  @if(!User.IsInRole("Employee"))
                          {                             
@@ -112,13 +116,13 @@
    @if(TempData["EmployeePerformanceAlert"] != null)
     {
     <script>
-        // Show the alert
         Swal.fire({
             title: "Alert",
             text: '@TempData["EmployeePerformanceAlert"]',
             icon: "",
             confirmButtonColor: "#3085d6",
-            confirmButtonText: "OK"
+            confirmButtonText: "OK",
+            position: "top",
         });
     </script>
     }
