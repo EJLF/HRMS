@@ -345,19 +345,25 @@ namespace HRMS.Controllers
                                                  .ToList();
 
 
-
-            var manager = await _userManager.GetUsersInRoleAsync("Manager");
-            var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();
-            if(managerName == null)
+            if (User.IsInRole("Manager"))
             {
-                ViewBag.DepartmentHead = "Unassigned";
+                ViewBag.DepartmentHead = employee.FullName;
             }
             else
             {
-                ViewBag.DepartmentHead = managerName.FullName;
+                var manager = await _userManager.GetUsersInRoleAsync("Manager");
+                var managerName = manager.Where(d => d.DepartmentId == employee.DepartmentId).FirstOrDefault();
+                if (managerName == null)
+                {
+                    ViewBag.DepartmentHead = "Unassigned";
+                }
+                else
+                {
+                    ViewBag.DepartmentHead = managerName.FullName;
+                }      
             }
-            ViewBag.DepartmentName = employee.Department.DeptName;
 
+            ViewBag.DepartmentName = employee.Department.DeptName;
             return View(employeeList.ToList());   
         }
 
