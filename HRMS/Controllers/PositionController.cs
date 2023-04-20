@@ -64,6 +64,7 @@ namespace HRMS.Controllers
             try
             {
                 _repo.DeletePosition(PosId);
+                TempData["PositionAlert"] = position.Name + " is Successfully Deleted!";
                 return RedirectToAction("List");
             }
             catch

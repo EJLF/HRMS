@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="inputName5" class="form-label">Gender</label>
-                        <select asp-for="Gender" name="Gender" class="form-control">
+                        <select asp-for="Gender" name="Gender" class="form-select">
                             <option value="">Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -131,18 +131,18 @@
                         <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
-                        <label for="inputName5" class="form-label">Department</label>
-                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentList" required></select>
+                        <label for="DepartmentId" class="form-label">Department</label>
+                        <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentList" id="departmentId" onchange="FillPosition(this, 'positionId');" required></select>
                         <span asp-validation-for="DepartmentId" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
-                        <label for="inputName5" class="form-label">Position</label>
-                        <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionList" required></select>
+                        <label for="PositionId" class="form-label">Position</label>
+                        <select asp-for="PositionId" class="form-select" asp-items="ViewBag.PositionList" id="positionId" required></select>
                         <span asp-validation-for="PositionId" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
                         <label for="inputName5" class="form-label">Employment Type</label>
-                        <select asp-for="EmployeeType" name="EmployeeType" class="form-control">
+                        <select asp-for="EmployeeType" name="EmployeeType" class="form-select">
                             <option value="" disabled>Employment Type</option>
                             <option value="Regular">Regular</option>
                             <option value="Partime">Partime</option>
@@ -217,6 +217,7 @@
 </main>
  
 @section Scripts {
+
     @if (TempData.ContainsKey("AlertMessage")){
           <script>
             $(function() {

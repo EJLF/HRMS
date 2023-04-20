@@ -64,6 +64,7 @@ namespace HRMS.Controllers
             var department = _repo.GetDepartmentById(DeptId);
             try
             {
+                TempData["DepartmentAlert"] = department.DeptName + " is Successfully Deleted!";
                 _repo.DeleteDepartment(DeptId);
                 return RedirectToAction("List");
             }
